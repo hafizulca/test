@@ -10,6 +10,169 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- === CSS FOR ANALOG CLOCK === -->
+    <style>
+        .clock {
+            /* Sizing and Positioning */
+            width: 120px; /* Reduced size for floating element */
+            height: 120px;
+            position: relative; /* Changed from fixed */
+            /* bottom: 22px; */ /* Removed */
+            /* left: 18px; */ /* Removed */
+            /* z-index: 70; */ /* Removed */
+            flex-shrink: 0; /* Prevent clock from shrinking */
+            
+            /* Appearance */
+            border-radius: 50%;
+            border: 3px solid #333; /* Scaled down from 8px */
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(0, 0, 0, 0.05);
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Hide clock on small screens */
+        @media (max-width: 560px) {
+            .clock {
+                /* display: none; */ /* Removed, now part of header */
+                width: 80px; /* Make it smaller on mobile instead of hiding */
+                height: 80px;
+                border-width: 2px;
+                font-size: 0.7rem;
+            }
+            .clock::after {
+                width: 4px;
+                height: 4px;
+            }
+            .clock .number {
+                font-size: 0.7rem;
+                padding-top: 5px;
+            }
+            /* Adjust hands for smaller size */
+            .clock .hand.hour { width: 35%; height: 3px; left: 15%; }
+            .clock .hand.minute { width: 45%; height: 2px; left: 5%; }
+            .clock .hand.second { width: 48%; height: 1px; left: 2%; }
+            /* Adjust marks for smaller size */
+            .clock .mark.minute-mark span { height: 3px; }
+            .clock .mark.hour-mark span { width: 1px; height: 5px; }
+        }
+
+        /* Center point of the clock */
+        .clock::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 6px; /* Scaled down from 15px */
+            height: 6px; /* Scaled down from 15px */
+            background-color: #333;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 12;
+        }
+
+        /* Clock numbers */
+        .number {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 0.9rem; /* Scaled down from 1.5rem */
+            font-weight: 600;
+            color: #333;
+            transform: rotate(var(--rotation));
+            padding-top: 8px; /* Scaled down from 20px */
+            box-sizing: border-box;
+        }
+
+        .number span {
+            display: inline-block;
+            transform: rotate(calc(-1 * var(--rotation)));
+        }
+
+        /* Clock hands */
+        .hand {
+            width: 50%;
+            height: 3px; /* Scaled down from 6px */
+            background-color: #333;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+            border-radius: 2px;
+        }
+
+        /* Hour hand */
+        .hand.hour {
+            width: 35%;
+            height: 4px; /* Scaled down from 8px */
+            left: 15%;
+            background-color: #333;
+            z-index: 8;
+        }
+
+        /* Minute hand */
+        .hand.minute {
+            width: 45%;
+            height: 3px; /* Scaled down from 6px */
+            left: 5%;
+            background-color: #555;
+            z-index: 9;
+        }
+
+        /* Second hand */
+        .hand.second {
+            width: 48%;
+            height: 2px; /* Scaled down from 3px */
+            left: 2%;
+            background-color: #e74c3c;
+            z-index: 10;
+        }
+
+        /* Container for all marks */
+        .marks-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1; /* Behind numbers and hands */
+        }
+
+        /* Individual mark container (for rotation) */
+        .mark {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        /* The visible line of the mark */
+        .mark span {
+            display: block;
+            position: absolute;
+            background-color: #333;
+            top: 1px; /* Scaled down from 2px */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .mark.minute-mark span {
+            width: 1px;
+            height: 4px; /* Scaled down from 8px */
+            background-color: #999;
+        }
+
+        .mark.hour-mark span {
+            width: 2px; /* Scaled down from 3px */
+            height: 7px; /* Scaled down from 12px */
+            background-color: #333;
+        }
+    </style>
+    <!-- === END CLOCK CSS === -->
+
+
     <style>
         :root{
             --navy: #1a2b4c;
@@ -218,12 +381,47 @@
     </style>
 </head>
 <body style="margin:0;font-family:Poppins,Arial,sans-serif;background:#f7f7f7;color:#1a2b4c;">
-    <header style="padding:40px 20px;text-align:center;background:#1a2b4c;color:white;">
-        <div style="display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;">
-            <img src="https://i.ibb.co/zTsc152b/unnamed.jpg" alt="Logo Prudential" style="width:90px;height:50px;object-fit:contain;" />
-            <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Logo Shazay" style="width:60px;height:60px;border-radius:50%;object-fit:cover;" />
+    <!-- === HEADER MODIFIED === -->
+    <header style="padding: 20px; text-align: center; background: #1a2b4c; color: white; display: flex; justify-content: space-between; align-items: center;">
+        
+        <!-- === ANALOG CLOCK HTML (MOVED HERE) === -->
+        <div class="clock">
+            <!-- Clock hands will be injected by JS, but we can add numbers -->
+            <div class="hand hour" data-hour-hand></div>
+            <div class="hand minute" data-minute-hand></div>
+            <div class="hand second" data-second-hand></div>
+    
+            <!-- Tick marks container -->
+            <div class="marks-container"></div>
+    
+            <!-- Generate numbers 1 through 12 -->
+            <div class="number" style="--rotation: 30deg;"><span>1</span></div>
+            <div class="number" style="--rotation: 60deg;"><span>2</span></div>
+            <div class="number" style="--rotation: 90deg;"><span>3</span></div>
+            <div class="number" style="--rotation: 120deg;"><span>4</span></div>
+            <div class="number" style="--rotation: 150deg;"><span>5</span></div>
+            <div class="number" style="--rotation: 180deg;"><span>6</span></div>
+            <div class="number" style="--rotation: 210deg;"><span>7</span></div>
+            <div class="number" style="--rotation: 240deg;"><span>8</span></div>
+            <div class="number" style="--rotation: 270deg;"><span>9</span></div>
+            <div class="number" style="--rotation: 300deg;"><span>10</span></div>
+            <div class="number" style="--rotation: 330deg;"><span>11</span></div>
+            <div class="number" style="--rotation: 360deg;"><span>12</span></div>
         </div>
-        <h1 style="margin:10px 0 0 0;font-size:32px;font-weight:700;">Hafizul Takaful</h1>
+        <!-- === END ANALOG CLOCK HTML === -->
+
+        <!-- Existing Header Content (Wrapped in a div) -->
+        <div>
+            <div style="display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;">
+                <img src="https://i.ibb.co/zTsc152b/unnamed.jpg" alt="Logo Prudential" style="width:90px;height:50px;object-fit:contain;" />
+                <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Logo Shazay" style="width:60px;height:60px;border-radius:50%;object-fit:cover;" />
+            </div>
+            <h1 style="margin:10px 0 0 0;font-size:32px;font-weight:700;">Hafizul Takaful</h1>
+        </div>
+
+        <!-- Spacer to keep the middle content centered -->
+        <!-- Matches clock width. We hide it on mobile so title can center properly -->
+        <div style="width: 120px; flex-shrink: 0;" class="hidden sm:block"></div>
     </header>
 
     <section style="padding:80px 20px 40px 20px;text-align:center;">
@@ -233,31 +431,31 @@
         <div style="margin-top: 30px; display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; max-width: 400px; margin-left: auto; margin-right: auto;">
 
             <a href="https://qoutation.hafizulcheamid.com/" 
-               target="_blank" 
-               rel="noopener" 
-               style="display: block; width: 100%; background-color: #1a2b4c; color: white; padding: 16px 28px; border-radius: 12px; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 0 4px 12px rgba(26,43,76,0.15); transition: all 0.2s ease;">
+                target="_blank" 
+                rel="noopener" 
+                style="display: block; width: 100%; background-color: #1a2b4c; color: white; padding: 16px 28px; border-radius: 12px; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 0 4px 12px rgba(26,43,76,0.15); transition: all 0.2s ease;">
                 Quick Quotation
                 <span style="display: block; font-size: 12px; font-weight: 400; opacity: 0.8; margin-top: 4px;">(Sebut Harga Pantas)</span>
             </a>
 
             <a href="https://linktr.ee/hafizulca" 
-               target="_blank" 
-               rel="noopener" 
-               style="display: block; width: 100%; background-color: #1a2b4c; color: white; padding: 16px 28px; border-radius: 12px; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 0 4px 12px rgba(26,43,76,0.15); transition: all 0.2s ease;">
+                target="_blank" 
+                rel="noopener" 
+                style="display: block; width: 100%; background-color: #1a2b4c; color: white; padding: 16px 28px; border-radius: 12px; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 0 4px 12px rgba(26,43,76,0.15); transition: all 0.2s ease;">
                 Lain Lain Perkhidmatan
                 <span style="display: block; font-size: 12px; font-weight: 400; opacity: 0.8; margin-top: 4px;">(Linktree)</span>
             </a>
 
             <a href="https://wa.me/601125517767" 
-               target="_blank" 
-               rel="noopener" 
-               style="display: block; width: 100%; background-color: #25D366; color: white; padding: 16px 28px; border-radius: 12px; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 0 4px 12px rgba(37,211,102,0.2); transition: all 0.2s ease;">
+                target="_blank" 
+                rel="noopener" 
+                style="display: block; width: 100%; background-color: #25D366; color: white; padding: 16px 28px; border-radius: 12px; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 0 4px 12px rgba(37,211,102,0.2); transition: all 0.2s ease;">
                 WhatsApp Saya
                 <span style="display: block; font-size: 12px; font-weight: 400; opacity: 0.8; margin-top: 4px;">(Direct Mesej)</span>
             </a>
 
             <a href="tel:+601125517767" 
-               style="display: block; width: 100%; background-color: #6b7280; color: white; padding: 16px 28px; border-radius: 12px; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 0 4px 12px rgba(107,114,128,0.2); transition: all 0.2s ease;">
+                style="display: block; width: 100%; background-color: #6b7280; color: white; padding: 16px 28px; border-radius: 12px; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 0 4px 12px rgba(107,114,128,0.2); transition: all 0.2s ease;">
                 Call Saya
                 <span style="display: block; font-size: 12px; font-weight: 400; opacity: 0.8; margin-top: 4px;">(Direct Call)</span>
             </a>
@@ -270,6 +468,11 @@
     </footer>
 
     
+    <!-- === ANALOG CLOCK HTML === -->
+    <!-- (This block has been MOVED to the header) -->
+    <!-- === END ANALOG CLOCK HTML === -->
+
+
     <div id="bc-badge" class="float-badge" style="bottom:22px; right:18px;">
         <div class="speech hidden sm:block">Tanya saya 🚀</div>
         <button class="relative w-14 h-14 rounded-full ring-4 ring-white shadow-lg overflow-hidden focus:outline-none focus:ring-4 focus:ring-sky-300" aria-label="Buka kad bisnes">
@@ -301,7 +504,7 @@
             </div>
             
             <div class="mt-3 flex justify-between text-xs text-slate-600">
-                <button id="flip"  class="px-3 py-1 rounded-lg border border-slate-300 bg-white/80 hover:bg-white">Flip</button>
+                <button id="flip"   class="px-3 py-1 rounded-lg border border-slate-300 bg-white/80 hover:bg-white">Flip</button>
                 <button id="reset" class="px-3 py-1 rounded-lg border border-slate-300 bg-white/80 hover:bg-white">Reset</button>
             </div>
         </div>
@@ -318,6 +521,100 @@
     </div>
     
     <script>
+        // --- ANALOG CLOCK SCRIPT ---
+        
+        // Get references to the hand elements
+        const hourHand = document.querySelector('[data-hour-hand]');
+        const minuteHand = document.querySelector('[data-minute-hand]');
+        const secondHand = document.querySelector('[data-second-hand]');
+        const marksContainer = document.querySelector('.marks-container');
+
+        /**
+         * Sets the clock hands to the current time.
+         */
+        function setClock() {
+            const currentDate = new Date();
+            const seconds = currentDate.getSeconds();
+            const milliseconds = currentDate.getMilliseconds();
+            const minutes = currentDate.getMinutes();
+            const hours = currentDate.getHours();
+
+            // Calculate rotation for each hand
+            // We add the next unit down for smoother movement
+            const secondsRatio = (seconds + milliseconds / 1000) / 60;
+            const minutesRatio = (secondsRatio + minutes) / 60;
+            const hoursRatio = (minutesRatio + hours) / 12;
+
+            // Apply the rotation (add 90 because we started at 90deg in CSS)
+            setRotation(secondHand, secondsRatio);
+            setRotation(minuteHand, minutesRatio);
+            setRotation(hourHand, hoursRatio);
+        }
+
+        /**
+         * Applies the rotation transform to a clock hand.
+         * @param {HTMLElement} element - The clock hand element.
+         * @param {number} rotationRatio - The ratio of rotation (0 to 1).
+         */
+        function setRotation(element, rotationRatio) {
+            // Check if element exists before setting style
+            if (element) {
+                const rotation = rotationRatio * 360;
+                // We add 90 degrees because the hands are initially set to 90deg (pointing up)
+                element.style.transform = `rotate(${rotation + 90}deg)`;
+            }
+        }
+
+        /**
+         * Creates and adds the clock tick marks.
+         */
+        function createMarks() {
+            // Check if container exists
+            if (!marksContainer) return;
+
+            // Clear any existing marks to avoid duplication if script runs twice
+            marksContainer.innerHTML = ''; 
+
+            for (let i = 0; i < 60; i++) {
+                const mark = document.createElement('div');
+                mark.classList.add('mark');
+                
+                // 5-minute marks (hour marks) are thicker
+                if (i % 5 === 0) {
+                    mark.classList.add('hour-mark');
+                } else {
+                    mark.classList.add('minute-mark');
+                }
+                
+                // Rotate the mark into position (6 degrees per mark)
+                mark.style.transform = `rotate(${i * 6}deg)`;
+                
+                // Add an inner span for the visible line
+                const markLine = document.createElement('span');
+                mark.appendChild(markLine);
+                
+                marksContainer.appendChild(mark);
+            }
+        }
+
+        // Set the clock immediately on load
+        createMarks(); // Add the tick marks
+
+        /**
+         * Animation loop for the clock.
+         */
+        function animateClock() {
+            setClock(); // Update the clock hands
+            requestAnimationFrame(animateClock); // Request the next frame
+        }
+
+        // Start the animation loop
+        animateClock();
+
+        // --- END ANALOG CLOCK SCRIPT ---
+
+
+
         // 3D Card Functionality
         const badge     = document.getElementById('bc-badge');
         const overlay   = document.getElementById('bc-overlay');
@@ -399,7 +696,7 @@
         }
         window.addEventListener('mousemove', move); 
         window.addEventListener('touchmove', move, {passive:true});
-        window.addEventListener('mouseup', up);    
+        window.addEventListener('mouseup', up);   
         window.addEventListener('touchend', up);
 
         if (btnFlip) btnFlip.addEventListener('click', ()=>{ flipped=!flipped; render(); });
