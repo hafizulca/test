@@ -10,169 +10,6 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- === CSS FOR ANALOG CLOCK === -->
-    <style>
-        .clock {
-            /* Sizing and Positioning */
-            width: 120px; /* Reduced size for floating element */
-            height: 120px;
-            position: relative; /* Changed from fixed */
-            /* bottom: 22px; */ /* Removed */
-            /* left: 18px; */ /* Removed */
-            /* z-index: 70; */ /* Removed */
-            flex-shrink: 0; /* Prevent clock from shrinking */
-            
-            /* Appearance */
-            border-radius: 50%;
-            border: 3px solid #333; /* Scaled down from 8px */
-            background-color: #ffffff;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(0, 0, 0, 0.05);
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* Hide clock on small screens */
-        @media (max-width: 560px) {
-            .clock {
-                /* display: none; */ /* Removed, now part of header */
-                width: 80px; /* Make it smaller on mobile instead of hiding */
-                height: 80px;
-                border-width: 2px;
-                font-size: 0.7rem;
-            }
-            .clock::after {
-                width: 4px;
-                height: 4px;
-            }
-            .clock .number {
-                font-size: 0.7rem;
-                padding-top: 5px;
-            }
-            /* Adjust hands for smaller size */
-            .clock .hand.hour { width: 35%; height: 3px; left: 15%; }
-            .clock .hand.minute { width: 45%; height: 2px; left: 5%; }
-            .clock .hand.second { width: 48%; height: 1px; left: 2%; }
-            /* Adjust marks for smaller size */
-            .clock .mark.minute-mark span { height: 3px; }
-            .clock .mark.hour-mark span { width: 1px; height: 5px; }
-        }
-
-        /* Center point of the clock */
-        .clock::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 6px; /* Scaled down from 15px */
-            height: 6px; /* Scaled down from 15px */
-            background-color: #333;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 12;
-        }
-
-        /* Clock numbers */
-        .number {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            font-size: 0.9rem; /* Scaled down from 1.5rem */
-            font-weight: 600;
-            color: #333;
-            transform: rotate(var(--rotation));
-            padding-top: 8px; /* Scaled down from 20px */
-            box-sizing: border-box;
-        }
-
-        .number span {
-            display: inline-block;
-            transform: rotate(calc(-1 * var(--rotation)));
-        }
-
-        /* Clock hands */
-        .hand {
-            width: 50%;
-            height: 3px; /* Scaled down from 6px */
-            background-color: #333;
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform-origin: 100%;
-            transform: rotate(90deg);
-            border-radius: 2px;
-        }
-
-        /* Hour hand */
-        .hand.hour {
-            width: 35%;
-            height: 4px; /* Scaled down from 8px */
-            left: 15%;
-            background-color: #333;
-            z-index: 8;
-        }
-
-        /* Minute hand */
-        .hand.minute {
-            width: 45%;
-            height: 3px; /* Scaled down from 6px */
-            left: 5%;
-            background-color: #555;
-            z-index: 9;
-        }
-
-        /* Second hand */
-        .hand.second {
-            width: 48%;
-            height: 2px; /* Scaled down from 3px */
-            left: 2%;
-            background-color: #e74c3c;
-            z-index: 10;
-        }
-
-        /* Container for all marks */
-        .marks-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1; /* Behind numbers and hands */
-        }
-
-        /* Individual mark container (for rotation) */
-        .mark {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-        }
-
-        /* The visible line of the mark */
-        .mark span {
-            display: block;
-            position: absolute;
-            background-color: #333;
-            top: 1px; /* Scaled down from 2px */
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .mark.minute-mark span {
-            width: 1px;
-            height: 4px; /* Scaled down from 8px */
-            background-color: #999;
-        }
-
-        .mark.hour-mark span {
-            width: 2px; /* Scaled down from 3px */
-            height: 7px; /* Scaled down from 12px */
-            background-color: #333;
-        }
-    </style>
-    <!-- === END CLOCK CSS === -->
-
-
     <style>
         :root{
             --navy: #1a2b4c;
@@ -186,231 +23,435 @@
         html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--navy)}
         a{color:inherit;text-decoration:none}
 
-        /* Container */
-        .container{max-width:1100px;margin:0 auto;padding:32px}
-
-        /* Header */
-        header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-        .brand{display:flex;align-items:center;gap:12px}
-        .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--navy),#2a3f6b);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-family:Poppins}
-        nav{display:flex;gap:18px;align-items:center}
-        .btn{background:var(--navy);color:white;padding:10px 16px;border-radius:10px;font-weight:600}
-        .btn-ghost{background:transparent;border:1px solid rgba(26,43,76,0.08);padding:8px 12px;border-radius:10px}
-
-        /* Hero */
-        .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:36px 0}
-        .hero h1{font-family:Poppins;font-size:36px;margin:0;line-height:1.05}
-        .hero p{color:var(--muted);margin-top:12px}
-        .ctas{margin-top:20px;display:flex;gap:12px}
-        .card{background:var(--card);border-radius:var(--radius);box-shadow:0 8px 30px rgba(16,24,40,0.06);padding:20px}
-
-        /* Feature boxes */
-        .features{display:flex;gap:14px;margin-top:20px}
-        .feature{flex:1;padding:18px;border-radius:12px;background:linear-gradient(180deg,#ffffff,#fbfcff);border:1px solid rgba(26,43,76,0.04)}
-        .feature h3{margin:0 0 8px 0;font-size:16px}
-        .feature p{margin:0;color:var(--muted);font-size:14px}
-
-        /* Subpages grid */
-        .subpages{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
-        .sub{padding:16px;border-radius:12px;background:linear-gradient(180deg,#fff,#fcfdff);display:flex;flex-direction:column;gap:8px;border:1px solid rgba(26,43,76,0.04)}
-        .sub small{color:var(--muted)}
-
-        /* Why choose */
-        .why{display:flex;gap:16px;margin-top:28px}
-        .why .left{flex:1}
-        .why .right{flex:1}
-        .list{display:flex;flex-direction:column;gap:12px}
-
-        /* Testimoni */
-        .testimoni{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
-        .testimonial{padding:16px;border-radius:12px;background:linear-gradient(180deg,#fff,#fcfdff)}
-
-        /* Footer --- INI BAHAGIAN YANG DI BETULKAN --- */
-        footer{
-            margin-top: 36px;
-            padding: 30px 20px; /* Tambah padding atas bawah */
-            color: var(--muted);
-            text-align: center; /* Tengahkan teks */
-            font-size: 14px;
+        /* === FLOATING CLOCK STYLES === */
+        .floating-clock {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 70;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #333;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(0, 0, 0, 0.05);
+            font-family: 'Inter', sans-serif;
         }
 
-        /* Responsive */
-        @media (max-width:960px){
-            .hero{grid-template-columns:1fr;}
-            .subpages{grid-template-columns:repeat(2,1fr)}
-            .testimoni{grid-template-columns:repeat(2,1fr)}
+        .floating-clock::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background-color: #333;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 12;
         }
-        @media (max-width:560px){
-            .subpages{grid-template-columns:1fr}
-            .testimoni{grid-template-columns:1fr}
-            .hero h1{font-size:28px}
+
+        .clock-number {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            transform: rotate(var(--rotation));
+            padding-top: 8px;
+            box-sizing: border-box;
         }
 
-        /* small helpers */
-        .muted{color:var(--muted)}
-        .kicker{font-size:13px;color:var(--muted);font-weight:600}
-        .pill{background:rgba(26,43,76,0.06);padding:6px 10px;border-radius:999px;font-weight:600;font-size:13px}
+        .clock-number span {
+            display: inline-block;
+            transform: rotate(calc(-1 * var(--rotation)));
+        }
 
+        .clock-hand {
+            width: 50%;
+            height: 3px;
+            background-color: #333;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+            border-radius: 2px;
+        }
 
-        /* BAHAGIAN TAMBAHAN 2: CSS UNTUK KAD BISNES
-          Ini adalah CSS daripada fail sebelum ini.
-        */
-        
-        /* ================= Kad 3D berisi (extruded) ================= */
+        .clock-hand.hour {
+            width: 35%;
+            height: 4px;
+            left: 15%;
+            background-color: #333;
+            z-index: 8;
+        }
+
+        .clock-hand.minute {
+            width: 45%;
+            height: 3px;
+            left: 5%;
+            background-color: #555;
+            z-index: 9;
+        }
+
+        .clock-hand.second {
+            width: 48%;
+            height: 2px;
+            left: 2%;
+            background-color: #e74c3c;
+            z-index: 10;
+        }
+
+        .clock-marks-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .clock-mark {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .clock-mark span {
+            display: block;
+            position: absolute;
+            background-color: #333;
+            top: 1px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .clock-mark.minute-mark span {
+            width: 1px;
+            height: 4px;
+            background-color: #999;
+        }
+
+        .clock-mark.hour-mark span {
+            width: 2px;
+            height: 7px;
+            background-color: #333;
+        }
+
+        /* === FLOATING CALENDAR STYLES === */
+        .floating-calendar {
+            position: fixed;
+            top: 20px;
+            left: 160px;
+            z-index: 70;
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .calendar-day {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #1a2b4c;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .calendar-month {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* === RESPONSIVE STYLES === */
+        @media (max-width: 768px) {
+            .floating-clock {
+                width: 80px;
+                height: 80px;
+                top: 15px;
+                left: 15px;
+            }
+            
+            .floating-calendar {
+                width: 80px;
+                height: 80px;
+                top: 15px;
+                left: 110px;
+                padding: 10px;
+            }
+            
+            .calendar-day {
+                font-size: 2.2rem;
+                margin-bottom: 3px;
+            }
+            
+            .calendar-month {
+                font-size: 0.8rem;
+                letter-spacing: 0.5px;
+            }
+            
+            .clock-number {
+                font-size: 0.7rem;
+                padding-top: 5px;
+            }
+            
+            .clock-hand.hour { width: 35%; height: 3px; left: 15%; }
+            .clock-hand.minute { width: 45%; height: 2px; left: 5%; }
+            .clock-hand.second { width: 48%; height: 1px; left: 2%; }
+        }
+
+        /* === MAIN CONTENT STYLES === */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        .button-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .service-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .service-button span {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-top: 6px;
+        }
+
+        .service-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+
+        /* === HEADER STYLES === */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            background: #1a2b4c;
+            color: white;
+            position: relative;
+        }
+
+        /* === FLOATING BUSINESS CARD STYLES === */
+        .float-badge {
+            position: fixed;
+            right: 18px;
+            bottom: 22px;
+            z-index: 70;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            animation: bob 2.6s ease-in-out infinite;
+        }
+
+        .speech {
+            background: #0ea5e9;
+            color: #fff;
+            padding: .5rem .7rem;
+            border-radius: 9999px;
+            font-size: .8rem;
+            box-shadow: 0 10px 20px rgba(14,165,233,.25);
+            position: relative;
+        }
+
+        .speech:after {
+            content: "";
+            position: absolute;
+            right: -6px;
+            bottom: 10px;
+            width: 10px;
+            height: 10px;
+            background: #0ea5e9;
+            transform: rotate(45deg);
+        }
+
+        @keyframes bob {
+            0%,100%{transform:translateY(0)}
+            50%{transform:translateY(-6px)}
+        }
+
+        .glass {
+            background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.35));
+            backdrop-filter: blur(8px);
+        }
+
+        /* === 3D CARD STYLES === */
         :root { --thk: 14px; }
         .scene { perspective: 1400px; }
-        .card3d { 
-            position: relative; 
-            transform-style: preserve-3d; 
-            transform: rotateX(0) rotateY(0); 
-            transition: transform 80ms linear, box-shadow .2s; 
-            border-radius: 12px; 
-            background: #fff; 
-            overflow: visible; 
-            box-shadow: 0 24px 40px -20px rgba(2,132,199,.35), 0 18px 36px -18px rgba(15,23,42,.30), 0 6px 14px rgba(0,0,0,.18); 
+        .card3d {
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(0) rotateY(0);
+            transition: transform 80ms linear, box-shadow .2s;
+            border-radius: 12px;
+            background: #fff;
+            overflow: visible;
+            box-shadow: 0 24px 40px -20px rgba(2,132,199,.35), 0 18px 36px -18px rgba(15,23,42,.30), 0 6px 14px rgba(0,0,0,.18);
         }
         .card3d.is-dragging { cursor: grabbing; }
-        .face { 
-            position:absolute; 
-            inset:0; 
-            backface-visibility:hidden; 
-            border-radius:12px; 
-            overflow:hidden; 
+        .face {
+            position:absolute;
+            inset:0;
+            backface-visibility:hidden;
+            border-radius:12px;
+            overflow:hidden;
         }
-        .face img { 
-            width:100%; 
-            height:100%; 
-            object-fit:fill; 
+        .face img {
+            width:100%;
+            height:100%;
+            object-fit:fill;
         }
         .front { transform: translateZ(calc(var(--thk)/2)); }
         .back  { transform: rotateY(180deg) translateZ(calc(var(--thk)/2)); }
-        .side { 
-            position:absolute; 
-            background: linear-gradient(180deg,#e5e7eb,#cbd5e1 60%,#94a3b8); 
-            box-shadow: inset 0 0 6px rgba(0,0,0,.12); 
+        .side {
+            position:absolute;
+            background: linear-gradient(180deg,#e5e7eb,#cbd5e1 60%,#94a3b8);
+            box-shadow: inset 0 0 6px rgba(0,0,0,.12);
         }
-        .side.left    { 
-            width:var(--thk); 
-            height:100%; 
-            left:0;  
-            top:0; 
-            transform: rotateY(-90deg) translateZ(calc(50% - var(--thk)/2)); 
-            transform-origin:left center;  
-            border-radius:8px; 
+        .side.left    {
+            width:var(--thk);
+            height:100%;
+            left:0;
+            top:0;
+            transform: rotateY(-90deg) translateZ(calc(50% - var(--thk)/2));
+            transform-origin:left center;
+            border-radius:8px;
         }
-        .side.right  { 
-            width:var(--thk); 
-            height:100%; 
-            right:0; 
-            top:0; 
-            transform: rotateY( 90deg) translateZ(calc(50% - var(--thk)/2)); 
-            transform-origin:right center; 
-            border-radius:8px; 
+        .side.right  {
+            width:var(--thk);
+            height:100%;
+            right:0;
+            top:0;
+            transform: rotateY( 90deg) translateZ(calc(50% - var(--thk)/2));
+            transform-origin:right center;
+            border-radius:8px;
         }
-        .side.top     { 
-            height:var(--thk); 
-            width:100%; 
-            left:0;  
-            top:0; 
-            transform: rotateX( 90deg) translateZ(calc(50% - var(--thk)/2)); 
-            transform-origin:center top;   
-            border-radius:8px; 
-            background: linear-gradient(90deg,#e5e7eb,#cbd5e1 60%,#94a3b8); 
+        .side.top     {
+            height:var(--thk);
+            width:100%;
+            left:0;
+            top:0;
+            transform: rotateX( 90deg) translateZ(calc(50% - var(--thk)/2));
+            transform-origin:center top;
+            border-radius:8px;
+            background: linear-gradient(90deg,#e5e7eb,#cbd5e1 60%,#94a3b8);
         }
-        .side.bottom { 
-            height:var(--thk); 
-            width:100%; 
-            left:0;  
-            bottom:0; 
-            transform: rotateX(-90deg) translateZ(calc(50% - var(--thk)/2)); 
-            transform-origin:center bottom; 
-            border-radius:8px; 
-            background: linear-gradient(90deg,#e5e7eb,#cbd5e1 60%,#94a3b8); 
-        }
-
-        /* Balloon (avatar) + Modal */
-        .float-badge { 
-            position:fixed; 
-            right:18px; 
-            bottom:22px; 
-            z-index:70; 
-            display:flex; 
-            align-items:center; 
-            gap:.5rem; 
-            animation:bob 2.6s ease-in-out infinite; 
-        }
-        .speech { 
-            background:#0ea5e9; 
-            color:#fff; 
-            padding:.5rem .7rem; 
-            border-radius:9999px; 
-            font-size:.8rem; 
-            box-shadow:0 10px 20px rgba(14,165,233,.25); 
-            position:relative; 
-        }
-        .speech:after { 
-            content:""; 
-            position:absolute; 
-            right:-6px; 
-            bottom:10px; 
-            width:10px; 
-            height:10px; 
-            background:#0ea5e9; 
-            transform:rotate(45deg); 
-        }
-        @keyframes bob { 
-            0%,100%{transform:translateY(0)} 
-            50%{transform:translateY(-6px)} 
-        }
-        .glass { 
-            background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.35)); 
-            backdrop-filter: blur(8px); 
+        .side.bottom {
+            height:var(--thk);
+            width:100%;
+            left:0;
+            bottom:0;
+            transform: rotateX(-90deg) translateZ(calc(50% - var(--thk)/2));
+            transform-origin:center bottom;
+            border-radius:8px;
+            background: linear-gradient(90deg,#e5e7eb,#cbd5e1 60%,#94a3b8);
         }
 
-        /* Zoom overlay */
-        #zoomImg.fit  { 
-            max-width:92vw; 
-            max-height:92vh; 
-            object-fit:contain; 
-        }
-        #zoomImg.full { 
-            max-width:none; 
-            max-height:none; 
+        /* === MODAL STYLES === */
+        #bc-overlay, #bc-modal, #zoomOverlay {
+            transition: opacity 0.3s ease;
         }
 
+        #zoomImg.fit  {
+            max-width:92vw;
+            max-height:92vh;
+            object-fit:contain;
+        }
+        #zoomImg.full {
+            max-width:none;
+            max-height:none;
+        }
+
+        /* === FOOTER STYLES === */
+        footer {
+            margin-top: 36px;
+            padding: 30px 20px;
+            color: var(--muted);
+            text-align: center;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body style="margin:0;font-family:Poppins,Arial,sans-serif;background:#f7f7f7;color:#1a2b4c;">
-    <!-- === HEADER MODIFIED === -->
-    <header style="padding: 20px; text-align: center; background: #1a2b4c; color: white; display: flex; justify-content: space-between; align-items: center;">
-        
-        <!-- === ANALOG CLOCK HTML (MOVED HERE) === -->
-        <div class="clock">
-            <!-- Clock hands will be injected by JS, but we can add numbers -->
-            <div class="hand hour" data-hour-hand></div>
-            <div class="hand minute" data-minute-hand></div>
-            <div class="hand second" data-second-hand></div>
     
-            <!-- Tick marks container -->
-            <div class="marks-container"></div>
-    
-            <!-- Generate numbers 1 through 12 -->
-            <div class="number" style="--rotation: 30deg;"><span>1</span></div>
-            <div class="number" style="--rotation: 60deg;"><span>2</span></div>
-            <div class="number" style="--rotation: 90deg;"><span>3</span></div>
-            <div class="number" style="--rotation: 120deg;"><span>4</span></div>
-            <div class="number" style="--rotation: 150deg;"><span>5</span></div>
-            <div class="number" style="--rotation: 180deg;"><span>6</span></div>
-            <div class="number" style="--rotation: 210deg;"><span>7</span></div>
-            <div class="number" style="--rotation: 240deg;"><span>8</span></div>
-            <div class="number" style="--rotation: 270deg;"><span>9</span></div>
-            <div class="number" style="--rotation: 300deg;"><span>10</span></div>
-            <div class="number" style="--rotation: 330deg;"><span>11</span></div>
-            <div class="number" style="--rotation: 360deg;"><span>12</span></div>
-        </div>
-        <!-- === END ANALOG CLOCK HTML === -->
+    <!-- === FLOATING CLOCK AND CALENDAR === -->
+    <div class="floating-clock" id="floatingClock">
+        <div class="clock-hand hour" data-hour-hand></div>
+        <div class="clock-hand minute" data-minute-hand></div>
+        <div class="clock-hand second" data-second-hand></div>
 
-        <!-- Existing Header Content (Wrapped in a div) -->
+        <div class="clock-marks-container" id="clockMarks"></div>
+
+        <div class="clock-number" style="--rotation: 30deg;"><span>1</span></div>
+        <div class="clock-number" style="--rotation: 60deg;"><span>2</span></div>
+        <div class="clock-number" style="--rotation: 90deg;"><span>3</span></div>
+        <div class="clock-number" style="--rotation: 120deg;"><span>4</span></div>
+        <div class="clock-number" style="--rotation: 150deg;"><span>5</span></div>
+        <div class="clock-number" style="--rotation: 180deg;"><span>6</span></div>
+        <div class="clock-number" style="--rotation: 210deg;"><span>7</span></div>
+        <div class="clock-number" style="--rotation: 240deg;"><span>8</span></div>
+        <div class="clock-number" style="--rotation: 270deg;"><span>9</span></div>
+        <div class="clock-number" style="--rotation: 300deg;"><span>10</span></div>
+        <div class="clock-number" style="--rotation: 330deg;"><span>11</span></div>
+        <div class="clock-number" style="--rotation: 360deg;"><span>12</span></div>
+    </div>
+
+    <div class="floating-calendar">
+        <div class="calendar-day" id="calendar-day"></div>
+        <div class="calendar-month" id="calendar-month"></div>
+    </div>
+
+    <!-- === HEADER === -->
+    <header>
         <div>
             <div style="display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;">
                 <img src="https://i.ibb.co/zTsc152b/unnamed.jpg" alt="Logo Prudential" style="width:90px;height:50px;object-fit:contain;" />
@@ -418,69 +459,66 @@
             </div>
             <h1 style="margin:10px 0 0 0;font-size:32px;font-weight:700;">Hafizul Takaful</h1>
         </div>
-
-        <!-- Spacer to keep the middle content centered -->
-        <!-- Matches clock width. We hide it on mobile so title can center properly -->
-        <div style="width: 120px; flex-shrink: 0;" class="hidden sm:block"></div>
     </header>
 
-    <section style="padding:80px 20px 40px 20px;text-align:center;">
-        <h2 style="font-size:24px;font-weight:600;margin-bottom:20px;color:#1a2b4c;">Selamat Datang</h2>
-        <p style="max-width:500px;margin:0 auto 40px auto;opacity:0.8;">Laman utama ringkas untuk memudahkan anda pilih perkhidmatan takaful yang diperlukan.</p>
+    <!-- === MAIN CONTENT === -->
+    <div class="main-content">
+        <div class="welcome-section">
+            <h2 style="font-size:24px;font-weight:600;margin-bottom:20px;color:#1a2b4c;">Selamat Datang</h2>
+            <p style="max-width:500px;margin:0 auto 40px auto;opacity:0.8;">Laman utama ringkas untuk memudahkan anda pilih perkhidmatan takaful yang diperlukan.</p>
+        </div>
 
-        <div style="margin-top: 30px; display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; max-width: 400px; margin-left: auto; margin-right: auto;">
-
+        <div class="button-grid">
             <a href="https://qoutation.hafizulcheamid.com/" 
                 target="_blank" 
                 rel="noopener" 
-                style="display: block; width: 100%; background-color: #1a2b4c; color: white; padding: 16px 28px; border-radius: 12px; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 0 4px 12px rgba(26,43,76,0.15); transition: all 0.2s ease;">
+                class="service-button" 
+                style="background-color: #1a2b4c; color: white;">
                 Quick Quotation
-                <span style="display: block; font-size: 12px; font-weight: 400; opacity: 0.8; margin-top: 4px;">(Sebut Harga Pantas)</span>
+                <span>(Sebut Harga Pantas)</span>
             </a>
 
             <a href="https://linktr.ee/hafizulca" 
                 target="_blank" 
                 rel="noopener" 
-                style="display: block; width: 100%; background-color: #1a2b4c; color: white; padding: 16px 28px; border-radius: 12px; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 0 4px 12px rgba(26,43,76,0.15); transition: all 0.2s ease;">
+                class="service-button" 
+                style="background-color: #1a2b4c; color: white;">
                 Lain Lain Perkhidmatan
-                <span style="display: block; font-size: 12px; font-weight: 400; opacity: 0.8; margin-top: 4px;">(Linktree)</span>
+                <span>(Linktree)</span>
             </a>
 
             <a href="https://wa.me/601125517767" 
                 target="_blank" 
                 rel="noopener" 
-                style="display: block; width: 100%; background-color: #25D366; color: white; padding: 16px 28px; border-radius: 12px; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 0 4px 12px rgba(37,211,102,0.2); transition: all 0.2s ease;">
+                class="service-button" 
+                style="background-color: #25D366; color: white;">
                 WhatsApp Saya
-                <span style="display: block; font-size: 12px; font-weight: 400; opacity: 0.8; margin-top: 4px;">(Direct Mesej)</span>
+                <span>(Direct Mesej)</span>
             </a>
 
             <a href="tel:+601125517767" 
-                style="display: block; width: 100%; background-color: #6b7280; color: white; padding: 16px 28px; border-radius: 12px; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 0 4px 12px rgba(107,114,128,0.2); transition: all 0.2s ease;">
+                class="service-button" 
+                style="background-color: #6b7280; color: white;">
                 Call Saya
-                <span style="display: block; font-size: 12px; font-weight: 400; opacity: 0.8; margin-top: 4px;">(Direct Call)</span>
+                <span>(Direct Call)</span>
             </a>
-
         </div>
-    </section>
+    </div>
 
     <footer>
         &copy; 2025 Hafizul Takaful. Hak Cipta Terpelihara.
     </footer>
 
-    
-    <!-- === ANALOG CLOCK HTML === -->
-    <!-- (This block has been MOVED to the header) -->
-    <!-- === END ANALOG CLOCK HTML === -->
-
-
-    <div id="bc-badge" class="float-badge" style="bottom:22px; right:18px;">
-        <div class="speech hidden sm:block">Tanya saya 🚀</div>
+    <!-- === FLOATING BUSINESS CARD === -->
+    <div id="bc-badge" class="float-badge">
+        <div class="speech">Kad Bisnes Saya</div>
         <button class="relative w-14 h-14 rounded-full ring-4 ring-white shadow-lg overflow-hidden focus:outline-none focus:ring-4 focus:ring-sky-300" aria-label="Buka kad bisnes">
             <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Avatar" class="w-full h-full object-cover">
             <span class="absolute inset-0 rounded-full animate-ping bg-sky-500/25"></span>
         </button>
     </div>
 
+    <!-- === BUSINESS CARD MODAL === -->
     <div id="bc-overlay" class="hidden fixed inset-0 z-[80] bg-black/40 backdrop-blur-sm"></div>
 
     <div id="bc-modal" class="hidden fixed inset-0 z-[90] p-4 grid place-items-center">
@@ -499,39 +537,38 @@
                         <img id="imgBack"  src="https://i.ibb.co/MD2DP338/Scanned-Document-06-10-2025-at-22-20-45.jpg" alt="Kad Bisnes Belakang">
                     </div>
                     
-                    <div class="side left"></div><div class="side right"></div><div class="side top"></div><div class="side bottom"></div>
+                    <div class="side left"></div>
+                    <div class="side right"></div>
+                    <div class="side top"></div>
+                    <div class="side bottom"></div>
                 </div>
             </div>
             
             <div class="mt-3 flex justify-between text-xs text-slate-600">
-                <button id="flip"   class="px-3 py-1 rounded-lg border border-slate-300 bg-white/80 hover:bg-white">Flip</button>
+                <button id="flip" class="px-3 py-1 rounded-lg border border-slate-300 bg-white/80 hover:bg-white">Flip</button>
                 <button id="reset" class="px-3 py-1 rounded-lg border border-slate-300 bg-white/80 hover:bg-white">Reset</button>
             </div>
         </div>
     </div>
 
+    <!-- === ZOOM OVERLAY === -->
     <div id="zoomOverlay" class="hidden fixed inset-0 z-[100] bg-black/80">
         <div id="zoomScroll" class="w-full h-full overflow-auto flex items-center justify-center p-4">
             <img id="zoomImg" class="fit select-none" src="" alt="Zoomed Image">
         </div>
         <div class="absolute top-3 right-3 flex gap-2">
             <button id="zoomToggle" class="px-3 py-1 rounded-lg bg-white/90 text-slate-800 text-sm">100%</button>
-            <button id="zoomClose"  class="px-3 py-1 rounded-lg bg-white/90 text-slate-800 text-sm">Close</button>
+            <button id="zoomClose" class="px-3 py-1 rounded-lg bg-white/90 text-slate-800 text-sm">Close</button>
         </div>
     </div>
     
     <script>
         // --- ANALOG CLOCK SCRIPT ---
-        
-        // Get references to the hand elements
         const hourHand = document.querySelector('[data-hour-hand]');
         const minuteHand = document.querySelector('[data-minute-hand]');
         const secondHand = document.querySelector('[data-second-hand]');
-        const marksContainer = document.querySelector('.marks-container');
+        const marksContainer = document.getElementById('clockMarks');
 
-        /**
-         * Sets the clock hands to the current time.
-         */
         function setClock() {
             const currentDate = new Date();
             const seconds = currentDate.getSeconds();
@@ -539,57 +576,38 @@
             const minutes = currentDate.getMinutes();
             const hours = currentDate.getHours();
 
-            // Calculate rotation for each hand
-            // We add the next unit down for smoother movement
             const secondsRatio = (seconds + milliseconds / 1000) / 60;
             const minutesRatio = (secondsRatio + minutes) / 60;
             const hoursRatio = (minutesRatio + hours) / 12;
 
-            // Apply the rotation (add 90 because we started at 90deg in CSS)
             setRotation(secondHand, secondsRatio);
             setRotation(minuteHand, minutesRatio);
             setRotation(hourHand, hoursRatio);
         }
 
-        /**
-         * Applies the rotation transform to a clock hand.
-         * @param {HTMLElement} element - The clock hand element.
-         * @param {number} rotationRatio - The ratio of rotation (0 to 1).
-         */
         function setRotation(element, rotationRatio) {
-            // Check if element exists before setting style
             if (element) {
                 const rotation = rotationRatio * 360;
-                // We add 90 degrees because the hands are initially set to 90deg (pointing up)
                 element.style.transform = `rotate(${rotation + 90}deg)`;
             }
         }
 
-        /**
-         * Creates and adds the clock tick marks.
-         */
         function createMarks() {
-            // Check if container exists
             if (!marksContainer) return;
-
-            // Clear any existing marks to avoid duplication if script runs twice
-            marksContainer.innerHTML = ''; 
+            marksContainer.innerHTML = '';
 
             for (let i = 0; i < 60; i++) {
                 const mark = document.createElement('div');
-                mark.classList.add('mark');
+                mark.classList.add('clock-mark');
                 
-                // 5-minute marks (hour marks) are thicker
                 if (i % 5 === 0) {
                     mark.classList.add('hour-mark');
                 } else {
                     mark.classList.add('minute-mark');
                 }
                 
-                // Rotate the mark into position (6 degrees per mark)
                 mark.style.transform = `rotate(${i * 6}deg)`;
                 
-                // Add an inner span for the visible line
                 const markLine = document.createElement('span');
                 mark.appendChild(markLine);
                 
@@ -597,96 +615,109 @@
             }
         }
 
-        // Set the clock immediately on load
-        createMarks(); // Add the tick marks
+        createMarks();
 
-        /**
-         * Animation loop for the clock.
-         */
         function animateClock() {
-            setClock(); // Update the clock hands
-            requestAnimationFrame(animateClock); // Request the next frame
+            setClock();
+            requestAnimationFrame(animateClock);
         }
 
-        // Start the animation loop
         animateClock();
 
-        // --- END ANALOG CLOCK SCRIPT ---
+        // --- CALENDAR SCRIPT ---
+        const monthNames = [
+            'Januari', 'Februari', 'Mac', 'April', 'Mei', 'Jun',
+            'Julai', 'Ogos', 'September', 'Oktober', 'November', 'Disember'
+        ];
+        
+        function updateCalendar() {
+            const currentDate = new Date();
+            const day = currentDate.getDate();
+            const month = currentDate.getMonth();
+            
+            document.getElementById('calendar-day').textContent = day;
+            document.getElementById('calendar-month').textContent = monthNames[month];
+        }
+        
+        updateCalendar();
 
-
-
-        // 3D Card Functionality
-        const badge     = document.getElementById('bc-badge');
-        const overlay   = document.getElementById('bc-overlay');
-        const modal     = document.getElementById('bc-modal');
-        const closeX    = document.getElementById('bc-close');
+        // --- BUSINESS CARD FUNCTIONALITY ---
+        const badge = document.getElementById('bc-badge');
+        const overlay = document.getElementById('bc-overlay');
+        const modal = document.getElementById('bc-modal');
+        const closeX = document.getElementById('bc-close');
 
         function openModal(){ 
-            if (overlay) overlay.classList.remove('hidden'); 
-            if (modal) modal.classList.remove('hidden'); 
+            overlay.classList.remove('hidden');
+            modal.classList.remove('hidden');
             autoSpin(true);
         }
+
         function closeModal(){ 
-            if (modal) modal.classList.add('hidden'); 
-            if (overlay) overlay.classList.add('hidden'); 
+            modal.classList.add('hidden');
+            overlay.classList.add('hidden');
             autoSpin(false);
         }
 
-        if (badge) badge.addEventListener('click', openModal);
-        if (overlay) overlay.addEventListener('click', closeModal);
-        if (closeX) closeX.addEventListener('click', closeModal);
+        badge.addEventListener('click', openModal);
+        overlay.addEventListener('click', closeModal);
+        closeX.addEventListener('click', closeModal);
+        
         document.addEventListener('keydown', e => { 
-            if(e.key==='Escape' && modal && !modal.classList.contains('hidden')) {
+            if(e.key === 'Escape' && !modal.classList.contains('hidden')) {
                 closeModal();
             }
         });
 
-        const scene     = document.getElementById('scene');
-        const card      = document.getElementById('card3d');
-        const imgF      = document.getElementById('imgFront');
-        const imgB      = document.getElementById('imgBack');
-        const frontEl   = document.getElementById('frontFace');
-        const backEl    = document.getElementById('backFace');
-        const btnR      = document.getElementById('reset');
-        const btnFlip   = document.getElementById('flip');
+        // 3D Card Controls
+        const scene = document.getElementById('scene');
+        const card = document.getElementById('card3d');
+        const imgF = document.getElementById('imgFront');
+        const imgB = document.getElementById('imgBack');
+        const frontEl = document.getElementById('frontFace');
+        const backEl = document.getElementById('backFace');
+        const btnR = document.getElementById('reset');
+        const btnFlip = document.getElementById('flip');
 
-        let rotX=0, rotY=0, dragging=false, lastX=0, lastY=0, spinTimer=null, flipped=false;
+        let rotX = 0, rotY = 0, dragging = false, lastX = 0, lastY = 0, spinTimer = null, flipped = false;
 
         function render(){ 
-            if (!card) return;
             const viewY = flipped ? rotY + 180 : rotY; 
             card.style.transform = `rotateX(${rotX}deg) rotateY(${viewY}deg)`; 
         }
+
         function autoSpin(run){ 
-            if(spinTimer){ clearInterval(spinTimer); spinTimer=null; } 
+            if(spinTimer){ clearInterval(spinTimer); spinTimer = null; } 
             if(run){ 
-                spinTimer=setInterval(()=>{ rotY += 0.6; render(); }, 30); 
+                spinTimer = setInterval(() => { rotY += 0.6; render(); }, 30); 
             } 
         }
+
         function pos(e){ 
-            return e.touches? {x:e.touches[0].clientX, y:e.touches[0].clientY} : {x:e.clientX, y:e.clientY}; 
+            return e.touches ? {x: e.touches[0].clientX, y: e.touches[0].clientY} : {x: e.clientX, y: e.clientY}; 
         }
+
         function down(e){ 
-            if (!card) return;
-            dragging=true; 
+            dragging = true; 
             card.classList.add('is-dragging'); 
-            const p=pos(e); 
-            lastX=p.x; lastY=p.y; 
+            const p = pos(e); 
+            lastX = p.x; lastY = p.y; 
             autoSpin(false);
         }
+
         function move(e){ 
-            if(!dragging || !card) return; 
-            const p=pos(e); 
-            const dx=p.x-lastX, dy=p.y-lastY; 
+            if(!dragging) return; 
+            const p = pos(e); 
+            const dx = p.x - lastX, dy = p.y - lastY; 
             rotY += dx * 0.4; 
             rotX -= dy * 0.4; 
             rotX = Math.max(-60, Math.min(60, rotX));
-            lastX=p.x; lastY=p.y; 
+            lastX = p.x; lastY = p.y; 
             render(); 
         }
+
         function up(){ 
-            if (!card) return;
-            dragging=false; 
+            dragging = false; 
             card.classList.remove('is-dragging'); 
         }
         
@@ -699,8 +730,8 @@
         window.addEventListener('mouseup', up);   
         window.addEventListener('touchend', up);
 
-        if (btnFlip) btnFlip.addEventListener('click', ()=>{ flipped=!flipped; render(); });
-        if (btnR) btnR.addEventListener('click', ()=>{ rotX=0; rotY=0; flipped=false; render(); autoSpin(true); });
+        if (btnFlip) btnFlip.addEventListener('click', () => { flipped = !flipped; render(); });
+        if (btnR) btnR.addEventListener('click', () => { rotX = 0; rotY = 0; flipped = false; render(); autoSpin(true); });
 
         function fitToImage(){
             if (!imgF || !scene || !card) return;
@@ -716,7 +747,7 @@
             
             scene.style.width = w + 'px';
             scene.style.height = h + 'px';
-            card.style.width  = w + 'px';
+            card.style.width = w + 'px';
             card.style.height = h + 'px';
         }
         
@@ -729,63 +760,72 @@
             if (imgF.complete) initCard();
             else imgF.addEventListener('load', initCard);
         }
+        
         window.addEventListener('resize', fitToImage);
 
         // Zoom functionality
         const zoomOverlay = document.getElementById('zoomOverlay');
-        const zoomImg     = document.getElementById('zoomImg');
-        const zoomScroll  = document.getElementById('zoomScroll');
-        const zoomClose   = document.getElementById('zoomClose');
-        const zoomToggle  = document.getElementById('zoomToggle');
-        let zoomMode='fit';
+        const zoomImg = document.getElementById('zoomImg');
+        const zoomScroll = document.getElementById('zoomScroll');
+        const zoomClose = document.getElementById('zoomClose');
+        const zoomToggle = document.getElementById('zoomToggle');
+        let zoomMode = 'fit';
 
         function openZoom(src){ 
-            if (!zoomImg || !zoomOverlay || !zoomScroll) return;
             zoomImg.src = src; 
-            zoomMode='fit'; 
+            zoomMode = 'fit'; 
             zoomImg.classList.remove('full'); 
             zoomImg.classList.add('fit'); 
             zoomOverlay.classList.remove('hidden'); 
             autoSpin(false);
-            zoomScroll.scrollTop=0; 
-            zoomScroll.scrollLeft=0; 
+            zoomScroll.scrollTop = 0; 
+            zoomScroll.scrollLeft = 0; 
         }
+
         function closeZoom(){ 
-            if (!zoomOverlay) return;
             zoomOverlay.classList.add('hidden'); 
-            if (modal && !modal.classList.contains('hidden')) {
+            if (!modal.classList.contains('hidden')) {
                 autoSpin(true);
             }
         }
+
         function toggleZoom(){ 
-            if (!zoomImg || !zoomToggle || !zoomScroll) return;
-            if(zoomMode==='fit'){ 
-                zoomMode='full'; 
+            if(zoomMode === 'fit'){ 
+                zoomMode = 'full'; 
                 zoomImg.classList.remove('fit'); 
                 zoomImg.classList.add('full'); 
-                zoomToggle.textContent='Fit'; 
+                zoomToggle.textContent = 'Fit'; 
             } else { 
-                zoomMode='fit'; 
+                zoomMode = 'fit'; 
                 zoomImg.classList.remove('full'); 
                 zoomImg.classList.add('fit'); 
-                zoomToggle.textContent='100%'; 
-                zoomScroll.scrollTop=0; 
-                zoomScroll.scrollLeft=0; 
+                zoomToggle.textContent = '100%'; 
+                zoomScroll.scrollTop = 0; 
+                zoomScroll.scrollLeft = 0; 
             } 
         }
 
-        if (frontEl) frontEl.addEventListener('click', ()=>{ if(!dragging) openZoom(imgF.src); });
-        if (backEl) backEl.addEventListener('click', ()=>{ if(!dragging) openZoom(imgB.src); });
+        if (frontEl) frontEl.addEventListener('click', () => { if(!dragging) openZoom(imgF.src); });
+        if (backEl) backEl.addEventListener('click', () => { if(!dragging) openZoom(imgB.src); });
         if (zoomClose) zoomClose.addEventListener('click', closeZoom);
         if (zoomToggle) zoomToggle.addEventListener('click', toggleZoom);
         
-        document.addEventListener('keydown', (e)=>{ 
-            if(zoomOverlay && !zoomOverlay.classList.contains('hidden') && e.key==='Escape') {
+        document.addEventListener('keydown', (e) => { 
+            if(!zoomOverlay.classList.contains('hidden') && e.key === 'Escape') {
                 closeZoom();
             }
         });
-        if (zoomOverlay) zoomOverlay.addEventListener('click', (e)=>{ 
+        
+        if (zoomOverlay) zoomOverlay.addEventListener('click', (e) => { 
             if(e.target === zoomOverlay) closeZoom(); 
+        });
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded successfully');
+            console.log('Clock element:', document.getElementById('floatingClock'));
+            console.log('Calendar element:', document.querySelector('.floating-calendar'));
+            console.log('Business card button:', document.getElementById('bc-badge'));
         });
     </script>
 </body>
