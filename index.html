@@ -1,1503 +1,1181 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ms">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prudential Takaful - Perlindungan Keluarga Anda</title>
-     
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hafizul Takaful Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
-     
+
     <style>
-        /* ================= Kad 3D berisi (extruded) ================= */
+        :root{
+            --navy: #1a2b4c;
+            --gold: #d4a73a;
+            --muted:#6b7280;
+            --bg:#f7f8fb;
+            --card:#ffffff;
+            --radius:14px;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--navy)}
+        a{color:inherit;text-decoration:none}
+
+        /* === FLOATING CLOCK STYLES === */
+        .floating-clock {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 70;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #333;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(0, 0, 0, 0.05);
+            font-family: 'Inter', sans-serif;
+            display: block; /* Default display */
+        }
+
+        .floating-clock::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background-color: #333;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 12;
+        }
+
+        .clock-number {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            transform: rotate(var(--rotation));
+            padding-top: 8px;
+            box-sizing: border-box;
+        }
+
+        .clock-number span {
+            display: inline-block;
+            transform: rotate(calc(-1 * var(--rotation)));
+        }
+
+        .clock-hand {
+            width: 50%;
+            height: 3px;
+            background-color: #333;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+            border-radius: 2px;
+        }
+
+        .clock-hand.hour {
+            width: 35%;
+            height: 4px;
+            left: 15%;
+            background-color: #333;
+            z-index: 8;
+        }
+
+        .clock-hand.minute {
+            width: 45%;
+            height: 3px;
+            left: 5%;
+            background-color: #555;
+            z-index: 9;
+        }
+
+        .clock-hand.second {
+            width: 48%;
+            height: 2px;
+            left: 2%;
+            background-color: #e74c3c;
+            z-index: 10;
+        }
+
+        .clock-marks-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .clock-mark {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .clock-mark span {
+            display: block;
+            position: absolute;
+            background-color: #333;
+            top: 1px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .clock-mark.minute-mark span {
+            width: 1px;
+            height: 4px;
+            background-color: #999;
+        }
+
+        .clock-mark.hour-mark span {
+            width: 2px;
+            height: 7px;
+            background-color: #333;
+        }
+
+        /* === FLOATING CALENDAR STYLES === */
+        .floating-calendar {
+            position: fixed;
+            top: 20px;
+            left: 160px;
+            z-index: 70;
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            display: flex; /* Default display */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .calendar-day {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #1a2b4c;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .calendar-month {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* === RESPONSIVE STYLES (TABLET) === */
+        @media (max-width: 768px) {
+            .floating-clock {
+                width: 80px;
+                height: 80px;
+                top: 15px;
+                left: 15px;
+            }
+            
+            .floating-calendar {
+                width: 80px;
+                height: 80px;
+                top: 15px;
+                left: 110px;
+                padding: 10px;
+            }
+            
+            .calendar-day {
+                font-size: 2.2rem;
+                margin-bottom: 3px;
+            }
+            
+            .calendar-month {
+                font-size: 0.8rem;
+                letter-spacing: 0.5px;
+            }
+            
+            .clock-number {
+                font-size: 0.7rem;
+                padding-top: 5px;
+            }
+            
+            .clock-hand.hour { width: 35%; height: 3px; left: 15%; }
+            .clock-hand.minute { width: 45%; height: 2px; left: 5%; }
+            .clock-hand.second { width: 48%; height: 1px; left: 2%; }
+        }
+
+        /* === PHONE-SPECIFIC STYLES === */
+        @media (max-width: 480px) {
+            .floating-clock {
+                width: 70px;
+                height: 70px;
+                top: 10px;
+                left: 10px;
+            }
+            
+            .floating-calendar {
+                width: 70px;
+                height: 70px;
+                top: 90px; /* 10px (top) + 70px (clock height) + 10px (gap) */
+                left: 10px; /* Align with clock */
+                padding: 8px;
+            }
+            
+            .calendar-day {
+                font-size: 1.8rem;
+            }
+            
+            .calendar-month {
+                font-size: 0.7rem;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+            
+            /* Target the flex container inside header */
+            header > div > div {
+                gap: 12px;
+            }
+
+            .main-content {
+                padding: 24px 15px;
+            }
+            
+            .service-button {
+                font-size: 16px;
+                padding: 18px 15px;
+            }
+
+            .float-badge {
+                right: 10px;
+                bottom: 10px;
+            }
+
+            .float-badge .speech {
+                display: none; /* Hide speech bubble on small screens */
+            }
+
+            #bc-modal .glass {
+                padding: 12px; /* Reduce padding on modal */
+            }
+        }
+
+        /* === HIDE ON PORTRAIT === */
+        @media (orientation: portrait) {
+            .floating-clock,
+            .floating-calendar {
+                display: none;
+            }
+        }
+
+
+        /* === MAIN CONTENT STYLES === */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        .button-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .service-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .service-button span {
+            display: block;
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-top: 6px;
+        }
+
+        .service-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+
+        /* === HEADER STYLES === */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            background: #1a2b4c;
+            color: white;
+            position: relative;
+        }
+
+        /* === FLOATING BUSINESS CARD STYLES === */
+        .float-badge {
+            position: fixed;
+            right: 18px;
+            bottom: 22px;
+            z-index: 70;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            animation: bob 2.6s ease-in-out infinite;
+        }
+
+        .speech {
+            background: #0ea5e9;
+            color: #fff;
+            padding: .5rem .7rem;
+            border-radius: 9999px;
+            font-size: .8rem;
+            box-shadow: 0 10px 20px rgba(14,165,233,.25);
+            position: relative;
+        }
+
+        .speech:after {
+            content: "";
+            position: absolute;
+            right: -6px;
+            bottom: 10px;
+            width: 10px;
+            height: 10px;
+            background: #0ea5e9;
+            transform: rotate(45deg);
+        }
+
+        @keyframes bob {
+            0%,100%{transform:translateY(0)}
+            50%{transform:translateY(-6px)}
+        }
+
+        .glass {
+            background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.35));
+            backdrop-filter: blur(8px);
+        }
+
+        /* === 3D CARD STYLES === */
         :root { --thk: 14px; }
         .scene { perspective: 1400px; }
-        .card3d { 
-            position: relative; 
-            transform-style: preserve-3d; 
-            transform: rotateX(0) rotateY(0); 
-            transition: transform 80ms linear, box-shadow .2s; 
-            border-radius: 12px; 
-            background: #fff; 
-            overflow: visible; 
-            box-shadow: 0 24px 40px -20px rgba(2,132,199,.35), 0 18px 36px -18px rgba(15,23,42,.30), 0 6px 14px rgba(0,0,0,.18); 
+        .card3d {
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(0) rotateY(0);
+            transition: transform 80ms linear, box-shadow .2s;
+            border-radius: 12px;
+            background: #fff;
+            overflow: visible;
+            box-shadow: 0 24px 40px -20px rgba(2,132,199,.35), 0 18px 36px -18px rgba(15,23,42,.30), 0 6px 14px rgba(0,0,0,.18);
         }
         .card3d.is-dragging { cursor: grabbing; }
-        .face { 
-            position:absolute; 
-            inset:0; 
-            backface-visibility:hidden; 
-            border-radius:12px; 
-            overflow:hidden; 
+        .face {
+            position:absolute;
+            inset:0;
+            backface-visibility:hidden;
+            border-radius:12px;
+            overflow:hidden;
         }
-        .face img { 
-            width:100%; 
-            height:100%; 
-            object-fit:fill; 
+        .face img {
+            width:100%;
+            height:100%;
+            object-fit:fill;
         }
         .front { transform: translateZ(calc(var(--thk)/2)); }
         .back  { transform: rotateY(180deg) translateZ(calc(var(--thk)/2)); }
-        .side { 
-            position:absolute; 
-            background: linear-gradient(180deg,#e5e7eb,#cbd5e1 60%,#94a3b8); 
-            box-shadow: inset 0 0 6px rgba(0,0,0,.12); 
+        .side {
+            position:absolute;
+            background: linear-gradient(180deg,#e5e7eb,#cbd5e1 60%,#94a3b8);
+            box-shadow: inset 0 0 6px rgba(0,0,0,.12);
         }
-        .side.left     { 
-            width:var(--thk); 
-            height:100%; 
-            left:0;  
-            top:0; 
-            transform: rotateY(-90deg) translateZ(calc(50% - var(--thk)/2)); 
-            transform-origin:left center;  
-            border-radius:8px; 
+        .side.left     {
+            width:var(--thk);
+            height:100%;
+            left:0;
+            top:0;
+            transform: rotateY(-90deg) translateZ(calc(50% - var(--thk)/2));
+            transform-origin:left center;
+            border-radius:8px;
         }
-        .side.right  { 
-            width:var(--thk); 
-            height:100%; 
-            right:0; 
-            top:0; 
-            transform: rotateY( 90deg) translateZ(calc(50% - var(--thk)/2)); 
-            transform-origin:right center; 
-            border-radius:8px; 
+        .side.right   {
+            width:var(--thk);
+            height:100%;
+            right:0;
+            top:0;
+            transform: rotateY( 90deg) translateZ(calc(50% - var(--thk)/2));
+            transform-origin:right center;
+            border-radius:8px;
         }
-        .side.top      { 
-            height:var(--thk); 
-            width:100%; 
-            left:0;  
-            top:0; 
-            transform: rotateX( 90deg) translateZ(calc(50% - var(--thk)/2)); 
-            transform-origin:center top;   
-            border-radius:8px; 
-            background: linear-gradient(90deg,#e5e7eb,#cbd5e1 60%,#94a3b8); 
+        .side.top      {
+            height:var(--thk);
+            width:100%;
+            left:0;
+            top:0;
+            transform: rotateX( 90deg) translateZ(calc(50% - var(--thk)/2));
+            transform-origin:center top;
+            border-radius:8px;
+            background: linear-gradient(90deg,#e5e7eb,#cbd5e1 60%,#94a3b8);
         }
-        .side.bottom { 
-            height:var(--thk); 
-            width:100%; 
-            left:0;  
-            bottom:0; 
-            transform: rotateX(-90deg) translateZ(calc(50% - var(--thk)/2)); 
-            transform-origin:center bottom; 
-            border-radius:8px; 
-            background: linear-gradient(90deg,#e5e7eb,#cbd5e1 60%,#94a3b8); 
+        .side.bottom {
+            height:var(--thk);
+            width:100%;
+            left:0;
+            bottom:0;
+            transform: rotateX(-90deg) translateZ(calc(50% - var(--thk)/2));
+            transform-origin:center bottom;
+            border-radius:8px;
+            background: linear-gradient(90deg,#e5e7eb,#cbd5e1 60%,#94a3b8);
         }
- 
-        /* Balloon (avatar) + Modal */
-        .float-badge { 
-            position:fixed; 
-            right:18px; 
-            bottom:22px; 
-            z-index:70; 
-            display:flex; 
-            align-items:center; 
-            gap:.5rem; 
-            animation:bob 2.6s ease-in-out infinite; 
+
+        /* === MODAL STYLES === */
+        #bc-overlay, #bc-modal, #zoomOverlay {
+            transition: opacity 0.3s ease;
         }
-        .speech { 
-            background:#0ea5e9; 
-            color:#fff; 
-            padding:.5rem .7rem; 
-            border-radius:9999px; 
-            font-size:.8rem; 
-            box-shadow:0 10px 20px rgba(14,165,233,.25); 
-            position:relative; 
+
+        #zoomImg.fit  {
+            max-width:92vw;
+            max-height:92vh;
+            object-fit:contain;
         }
-        .speech:after { 
-            content:""; 
-            position:absolute; 
-            right:-6px; 
-            bottom:10px; 
-            width:10px; 
-            height:10px; 
-            background:#0ea5e9; 
-            transform:rotate(45deg); 
+        #zoomImg.full {
+            max-width:none;
+            max-height:none;
         }
-        @keyframes bob { 
-            0%,100%{transform:translateY(0)} 
-            50%{transform:translateY(-6px)} 
+
+        /* === FOOTER STYLES === */
+        footer {
+            margin-top: 36px;
+            padding: 30px 20px;
+            color: var(--muted);
+            text-align: center;
+            font-size: 14px;
         }
-        .glass { 
-            background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.35)); 
-            backdrop-filter: blur(8px); 
-        }
- 
-        /* Zoom overlay */
-        #zoomImg.fit   { 
-            max-width:92vw; 
-            max-height:92vh; 
-            object-fit:contain; 
-        }
-        #zoomImg.full { 
-            max-width:none; 
-            max-height:none; 
-        }
- 
-        /* Latar */
-        body{background:linear-gradient(#f0f9ff,#ffffff)}
-        .card{box-shadow:0 20px 50px rgba(2,132,199,.12),0 8px 20px rgba(15,23,42,.08)}
-        
-        /* Plan highlight */
-        .plan-highlight { 
-            border-color: #0ea5e9; 
-            position: relative; 
-        }
-        .plan-highlight::before {
-            content: "Popular";
-            position: absolute;
-            top: -10px;
-            right: 15px;
-            background: #0ea5e9;
-            color: white;
-            padding: 2px 10px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
- 
-        /* Kalkulator Styles */
-        .calculator-section {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-        }
-        .calculator-section h2 {
-            color: #1a3a6b;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #374151;
-        }
-        .form-group select, .form-group input {
+
+        /* === PROMOTION STYLES === */
+        .promotion-section {
             width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 1rem;
+            margin-bottom: 30px;
         }
-        .plan-card {
-            border: 1px solid #e5e7eb;
+
+        .promotion-card {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 20px;
             border-radius: 12px;
-            padding: 1.5rem;
-            background: white;
+            text-align: center;
+            box-shadow: 0 6px 16px rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promotion-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .promotion-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd700, #ffed4e);
+        }
+
+        .promotion-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .promotion-subtitle {
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .price-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .old-price {
+            font-size: 18px;
+            text-decoration: line-through;
+            opacity: 0.8;
+        }
+
+        .new-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffd700;
+        }
+
+        .promotion-note {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+
+        /* Promotion Modal Styles */
+        #promo-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
             transition: all 0.3s ease;
         }
-        .plan-card:hover {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+        #promo-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
-        .plan-card.popular {
-            border: 2px solid #0ea5e9;
-            box-shadow: 0 0 20px rgba(14,165,233,0.15);
+
+        #promo-modal {
+            background: white;
+            border-radius: 12px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: auto;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
         }
-        .plan-card h3 {
-            color: #1a3a6b;
-            margin-bottom: 1rem;
+
+        #promo-overlay.active #promo-modal {
+            transform: scale(1);
         }
-        .plan-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #059669;
-            margin-bottom: 1rem;
-        }
-        .plan-features {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 1.5rem;
-        }
-        .plan-features li {
-            padding: 0.25rem 0;
-            display: flex;
-            align-items: center;
-        }
-        .plan-features li:before {
-            content: "✓";
-            color: #059669;
-            margin-right: 0.5rem;
-            font-weight: bold;
-        }
-        .select-btn {
-            width: 100%;
-            padding: 0.75rem;
-            background: #0ea5e9;
+
+        #promo-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        .select-btn:hover {
-            background: #0284c7;
-        }
-        .select-btn.popular-btn {
-            background: #059669;
-        }
-        .select-btn.popular-btn:hover {
-            background: #047857;
-        }
-        
-        /* Additional styles from original calculator */
-        .placeholder-text {
-            color: #777;
-            font-style: italic;
-            text-align: center;
-            padding: 20px;
-            background-color: #fafafa;
-            border-radius: 5px;
-        }
-        
-        /* ====== INI CSS BARU UNTUK MANFAAT ====== */
-        .benefit-card {
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: white; 
-        }
-        .benefit-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-        .benefit-header {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
             display: flex;
+            justify-content: center;
             align-items: center;
-            position: relative; /* Ditambah untuk ikon + */
-            width: 100%;
-        }
-        .benefit-icon {
-            font-size: 2.5rem;
-            margin-right: 1rem;
-        }
-        .benefit-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1a3a6b;
-            padding-right: 2rem; /* Ruang untuk ikon + */
-        }
-        .benefit-subtitle {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #0ea5e9;
-            margin-bottom: 1rem;
-        }
-        .benefit-description {
-            color: #4b5563;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        .benefit-list {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 1.5rem;
-        }
-        .benefit-list li {
-            padding: 0.5rem 0;
-            display: flex;
-            align-items: flex-start;
-        }
-        .benefit-list li:before {
-            content: "•";
-            color: #0ea5e9;
-            font-weight: bold;
-            margin-right: 0.75rem; 
-            font-size: 1.2rem;
-            line-height: 1.6; 
-        }
-        .benefit-function {
-            background: #f0f9ff;
-            border-left: 4px solid #0ea5e9;
-            padding: 1rem;
-            border-radius: 0 8px 8px 0;
-            margin-top: 1rem;
-        }
-        .benefit-function-title {
-            font-weight: 600;
-            color: #1a3a6b;
-            margin-bottom: 0.5rem;
-        }
-
-        /* ====== INI CSS BARU UNTUK ACCORDION/DROP ====== */
-        .benefit-card > summary {
             cursor: pointer;
-            outline: none; /* Buang outline bila klik */
-        }
-        
-        .benefit-card > summary {
-            list-style: none; /* Sembunyikan marker (Firefox) */
-        }
-        
-        .benefit-card > summary::-webkit-details-marker {
-            display: none; /* Sembunyikan marker (Chrome, Safari) */
+            z-index: 10;
         }
 
-        /* Tambah penunjuk (icon) buka/tutup */
-        .benefit-header::after {
-            content: '+';
+        .promo-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .promo-nav {
             position: absolute;
-            right: 0;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 2rem;
-            font-weight: 300;
-            color: #0ea5e9;
-            transition: transform 0.2s ease;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
         }
 
-        details[open] .benefit-header::after {
-            transform: translateY(-50%) rotate(45deg);
+        #promo-prev {
+            left: 10px;
         }
 
-        /* Wrapper untuk content */
-        .benefit-content-wrapper {
-            padding-top: 1rem; /* Jarak antara header dan content */
+        #promo-next {
+            right: 10px;
         }
 
+        .promo-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+            padding: 10px;
+        }
+
+        .promo-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+        }
+
+        .promo-indicator.active {
+            background: #ff6b6b;
+        }
     </style>
 </head>
-<body class="antialiased text-slate-800">
- 
-<header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-slate-100">
-    <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
-        <a href="#" class="flex items-center gap-3 font-semibold tracking-wide">
-            <img src="https://i.ibb.co/zTsc152b/unnamed.jpg" 
-                 alt="Logo Prudential" 
-                 class="w-[104px] h-16 object-contain" /> 
-            <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg"
-                 alt="Logo Shazay" 
-                 class="w-14 h-14 rounded-full object-cover" /> 
-            <span class="text-base lg:text-lg font-medium text-slate-800 whitespace-nowrap">
-                 Takaful Prudential
-            </span>
-        </a>
- 
-        <button id="menuBtn" class="lg:hidden p-2 rounded-lg border border-slate-200" aria-label="Menu">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
+<body style="margin:0;font-family:Poppins,Arial,sans-serif;background:#f7f7f7;color:#1a2b4c;">
+    
+    <div class="floating-clock" id="floatingClock">
+        <div class="clock-hand hour" data-hour-hand></div>
+        <div class="clock-hand minute" data-minute-hand></div>
+        <div class="clock-hand second" data-second-hand></div>
+
+        <div class="clock-marks-container" id="clockMarks"></div>
+
+        <div class="clock-number" style="--rotation: 30deg;"><span>1</span></div>
+        <div class="clock-number" style="--rotation: 60deg;"><span>2</span></div>
+        <div class="clock-number" style="--rotation: 90deg;"><span>3</span></div>
+        <div class="clock-number" style="--rotation: 120deg;"><span>4</span></div>
+        <div class="clock-number" style="--rotation: 150deg;"><span>5</span></div>
+        <div class="clock-number" style="--rotation: 180deg;"><span>6</span></div>
+        <div class="clock-number" style="--rotation: 210deg;"><span>7</span></div>
+        <div class="clock-number" style="--rotation: 240deg;"><span>8</span></div>
+        <div class="clock-number" style="--rotation: 270deg;"><span>9</span></div>
+        <div class="clock-number" style="--rotation: 300deg;"><span>10</span></div>
+        <div class="clock-number" style="--rotation: 330deg;"><span>11</span></div>
+        <div class="clock-number" style="--rotation: 360deg;"><span>12</span></div>
+    </div>
+
+    <div class="floating-calendar">
+        <div class="calendar-day" id="calendar-day"></div>
+        <div class="calendar-month" id="calendar-month"></div>
+    </div>
+
+    <header>
+        <div>
+            <div style="display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;">
+                <img src="https://i.ibb.co/zTsc152b/unnamed.jpg" alt="Logo Prudential" style="width:90px;height:50px;object-fit:contain;" />
+                <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Logo Shazay" style="width:60px;height:60px;border-radius:50%;object-fit:cover;" />
+            </div>
+            <h1 style="margin:10px 0 0 0;font-size:32px;font-weight:700;">Hafizul Takaful</h1>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="welcome-section">
+            <h2 style="font-size:24px;font-weight:600;margin-bottom:20px;color:#1a2b4c;">Selamat Datang</h2>
+            <p style="max-width:500px;margin:0 auto 40px auto;opacity:0.8;">Sila Pilih Perkhidmatan di bawah</p>
+        </div>
+
+        <!-- Promotion Card -->
+        <div class="promotion-section">
+            <div class="promotion-card" id="promotion-card">
+                <div class="promotion-title">Promotion Year End Sale</div>
+                <div class="promotion-subtitle">Cover Diturunkan</div>
+                <div class="price-container">
+                    <div class="old-price">Rm350,000</div>
+                    <div class="new-price">Rm250,000</div>
+                </div>
+                <div class="promotion-note">Klik untuk lihat butiran promosi</div>
+            </div>
+        </div>
+
+        <div class="button-grid">
+            <a href="https://qoutation.hafizulcheamid.com/" 
+                target="_blank" 
+                rel="noopener" 
+                class="service-button" 
+                style="background-color: #1a2b4c; color: white;">
+                Quick Quotation
+                <span>(Sebut Harga Pantas)</span>
+            </a>
+
+            <a href="https://linktr.ee/hafizulca" 
+                target="_blank" 
+                rel="noopener" 
+                class="service-button" 
+                style="background-color: #1a2b4c; color: white;">
+                Lain Lain Perkhidmatan
+                <span>(Linktree)</span>
+            </a>
+
+            <a href="https://wa.me/601125517767" 
+                target="_blank" 
+                rel="noopener" 
+                class="service-button" 
+                style="background-color: #25D366; color: white;">
+                WhatsApp Saya
+                <span>(Direct Mesej)</span>
+            </a>
+
+            <a href="tel:+601125517767" 
+                class="service-button" 
+                style="background-color: #6b7280; color: white;">
+                Call Saya
+                <span>(Direct Call)</span>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Hafizul Takaful. Hak Cipta Terpelihara.
+    </footer>
+
+    <!-- Promotion Modal -->
+    <div id="promo-overlay">
+        <div id="promo-modal">
+            <button id="promo-close">✕</button>
+            <button id="promo-prev" class="promo-nav">‹</button>
+            <button id="promo-next" class="promo-nav">›</button>
+            <img id="promo-image" class="promo-image" src="" alt="Promotion Image">
+            <div class="promo-indicators">
+                <div class="promo-indicator active" data-index="0"></div>
+                <div class="promo-indicator" data-index="1"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bc-badge" class="float-badge">
+        <div class="speech">Kad Bisnes Saya</div>
+        <button class="relative w-14 h-14 rounded-full ring-4 ring-white shadow-lg overflow-hidden focus:outline-none focus:ring-4 focus:ring-sky-300" aria-label="Buka kad bisnes">
+            <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Avatar" class="w-full h-full object-cover">
+            <span class="absolute inset-0 rounded-full animate-ping bg-sky-500/25"></span>
         </button>
- 
-        <ul id="menu" class="hidden lg:flex items-center gap-6 text-sm">
-            <li><a class="hover:text-sky-600" href="#sebutharga">Pelan</a></li>
-            <li><a class="hover:text-sky-600" href="#manfaat">Manfaat</a></li>
-            <li><a class="hover:text-sky-600" href="#soalan">FAQ</a></li>
-            <li><a class="hover:text-sky-600" href="#hubungi">Hubungi</a></li>
-            <li><a class="px-4 py-2 rounded-xl bg-sky-600 text-white hover:bg-sky-700" href="#sebutharga">Dapatkan Sebut Harga</a></li>
-        </ul>
-    </nav>
-</header>
- 
-<section class="relative">
-    <div class="absolute inset-0 -z-10"><div class="w-full h-full bg-gradient-to-b from-sky-200 to-white"></div></div>
-    <div class="container mx-auto px-4 py-20 md:py-28">
-        <div class="max-w-2xl">
-            <h1 class="text-3xl md:text-5xl font-bold leading-tight text-slate-900">Perlindungan perubatan & kewangan untuk keluarga — jelas, mudah, telus.</h1>
-            <p class="mt-4 text-slate-700 md:text-lg">Semak pelan terbaik ikut bajet dan keperluan. Kami bantu dari A sampai Z — dari penerangan, pendaftaran, hingga tuntutan.</p>
-            <div class="mt-6 flex flex-wrap gap-3">
-                 <a href="#sebutharga" class="px-5 py-3 rounded-xl bg-emerald-600 text-white hover:bg-emerald-700">Lihat Pelan</a>
-                 <a href="https://wa.me/601125517767" target="_blank" rel="noopener" class="px-5 py-3 rounded-xl border border-slate-300 hover:border-slate-400">WhatsApp Sekarang</a>
-            </div>
-        </div>
     </div>
-</section>
- 
-<section id="sebutharga" class="py-16 md:py-20 bg-slate-50">
-    <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-10">
-                 <h2 class="text-2xl md:text-3xl font-semibold text-slate-900">Pilih Pelan Takaful Anda</h2>
-                 <p class="mt-2 text-slate-600">Semak pelan terbaik ikut bajet dan keperluan anda</p>
-            </div>
+
+    <div id="bc-overlay" class="hidden fixed inset-0 z-[80] bg-black/40 backdrop-blur-sm"></div>
+
+    <div id="bc-modal" class="hidden fixed inset-0 z-[90] p-4 grid place-items-center">
+        <div class="glass rounded-2xl border border-white/30 shadow-2xl p-5 w-full max-w-xl relative">
             
-            <div class="calculator-section">
-                 <div class="grid md:grid-cols-3 gap-4 mb-6">
-                     <div class="form-group">
-                         <label for="plan-selector">1. Pilih Jenis Pelan:</label>
-                         <select id="plan-selector" class="w-full rounded-xl border border-slate-300 px-3 py-2">
-                             <option value="">-- Sila Pilih Jenis Pelan --</option>
-                             <option value="medikal-asas">Medical Card Sahaja</option>
-                             <option value="medikal-hibah">Medical Card + Hibah</option>
-                             <option value="hibah-sahaja">Hibah Sahaja</option>
-                         </select>
-                     </div>
- 
-                     <div class="form-group" id="plan-level-area" style="display: none;">
-                         <label for="plan-level-selector">2. Pilih Plan:</label>
-                         <select id="plan-level-selector" class="w-full rounded-xl border border-slate-300 px-3 py-2">
-                             <option value="">-- Sila Pilih Plan --</option>
-                             <option value="150">Plan 150</option>
-                             <option value="200">Plan 200</option>
-                             <option value="250">Plan 250</option>
-                             <option value="300">Plan 300</option>
-                             <option value="400">Plan 400</option>
-                         </select>
-                     </div>
- 
-                     <div class="form-group" id="hibah-type-area" style="display: none;">
-                         <label for="hibah-type-selector">2. Pilih Jenis Hibah:</label>
-                         <select id="hibah-type-selector" class="w-full rounded-xl border border-slate-300 px-3 py-2">
-                             <option value="">-- Sila Pilih Jenis --</option>
-                             <option value="biasa">Hibah Biasa</option>
-                             <option value="berganda">Hibah Berganda</option>
-                         </select>
-                     </div>
- 
-                     <div class="form-group" id="occupation-class-area" style="display: none;">
-                         <label for="occupation-class-selector">3. Pilih Kelas Pekerjaan:</label>
-                         <select id="occupation-class-selector" class="w-full rounded-xl border border-slate-300 px-3 py-2">
-                             <option value="">-- Sila Pilih Kelas --</option>
-                             <option value="1">Kelas 1 (Pejabat, Risiko Rendah)</option>
-                             <option value="2">Kelas 2 (Kerja Luar, Risiko Sederhana)</option>
-                             <option value="3">Kelas 3 (Kerja Manual, Risiko Tinggi)</option>
-                             <option value="4">Kelas 4 (Risiko Sangat Tinggi)</option>
-                         </select>
-                     </div>
-                 </div>
- 
-                 <div id="plan-details-output">
-                     <div class="placeholder-text">
-                         Sila buat pilihan anda dari menu di atas untuk melihat butiran penuh pelan dan harga.
-                     </div>
-                 </div>
-            </div>
-        </div>
-    </div>
-</section>
- 
-<section id="manfaat" class="py-16 md:py-20">
-    <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-12">
-                 <h2 class="text-2xl md:text-3xl font-semibold text-slate-900">Kenapa pilih Prudential Takaful?</h2>
-                 <p class="mt-3 text-slate-600">Fokus kami adalah untuk memastikan anda benar-benar memahami pelan yang dipilih, bukan sekadar mendaftar.</p>
-            </div>
+            <button id="bc-close" class="absolute top-3 right-3 p-2 rounded-lg hover:bg-white/60 text-slate-800" aria-label="Tutup">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
             
-            <details class="benefit-card">
-                <summary>
-                    <div class="benefit-header">
-                        <div class="benefit-icon">🏥</div>
-                        <h3 class="benefit-title">Manfaat 1: Perlindungan Kesihatan (Kad Medical)</h3>
+            <div id="scene" class="scene mx-auto">
+                <div id="card3d" class="card3d select-none">
+                    <div class="face front" id="frontFace">
+                        <img id="imgFront" src="https://i.ibb.co/kV8dVVS0/Scanned-Document-06-10-2025-at-22-20-01.jpg" alt="Kad Bisnes Depan">
                     </div>
-                </summary>
-                <div class="benefit-content-wrapper">
-                    <p class="benefit-subtitle">Pelan ini adalah payung kewangan peribadi anda.</p>
-                    <p class="benefit-description">
-                         Ia direka khusus untuk melindungi simpanan dan aset anda semasa anda masih hidup. Fokus utamanya adalah untuk membayar kos rawatan perubatan di hospital.
-                    </p>
-                    <p class="benefit-description font-medium">Apa yang anda dapat:</p>
-                    <ul class="benefit-list">
-                        <li><strong>Bayaran Bil Hospital:</strong> Menampung kos rawatan di hospital swasta, termasuk bayaran bilik, kos pembedahan, ubat-ubatan, dan caj rawatan rapi (ICU).</li>
-                        <li><strong>Akses Rawatan Pantas:</strong> Anda boleh mendapatkan rawatan pakar dengan segera tanpa perlu menunggu giliran yang lama.</li>
-                        <li><strong>Simpanan Terjamin:</strong> Wang simpanan, ASB, atau gaji anda tidak perlu 'bocor' atau habis semata-mata untuk membayar bil perubatan yang mahal.</li>
-                        <li><strong>Ketenangan Fikiran:</strong> Anda hanya perlu fokus pada proses penyembuhan, tanpa perlu bimbang memikirkan soal kos rawatan.</li>
-                    </ul>
-                    <div class="benefit-function">
-                        <div class="benefit-function-title">Fungsi Utama:</div>
-                        <p>Kad Medical menjaga <strong>DUIT ANDA</strong> semasa anda sakit.</p>
+                    <div class="face back" id="backFace">
+                        <img id="imgBack"  src="https://i.ibb.co/MD2DP338/Scanned-Document-06-10-2025-at-22-20-45.jpg" alt="Kad Bisnes Belakang">
                     </div>
+                    
+                    <div class="side left"></div>
+                    <div class="side right"></div>
+                    <div class="side top"></div>
+                    <div class="side bottom"></div>
                 </div>
-            </details>
-            
-            <details class="benefit-card">
-                <summary>
-                    <div class="benefit-header">
-                        <div class="benefit-icon">👨‍👩‍👧‍👦</div>
-                        <h3 class="benefit-title">Manfaat 2: Perlindungan Pendapatan (Hibah)</h3>
-                    </div>
-                </summary>
-                <div class="benefit-content-wrapper">
-                    <p class="benefit-subtitle">Pelan ini adalah hadiah tunai untuk keluarga anda.</p>
-                    <p class="benefit-description">
-                         Ia direka untuk melindungi masa depan kewangan keluarga yang anda tinggalkan sekiranya anda meninggal dunia atau mengalami lumpuh kekal (TPD).
-                    </p>
-                    <p class="benefit-description font-medium">Apa yang waris anda dapat:</p>
-                    <ul class="benefit-list">
-                        <li><strong>Bantuan Kewangan Segera:</strong> Waris (penama) akan menerima bayaran pampasan 100% dalam bentuk tunai (contoh: RM250,000).</li>
-                        <li><strong>Pantas & Tidak Dibekukan:</strong> Ini kelebihan terbesar. Wang hibah dibayar terus kepada penama dan tidak tertakluk kepada proses faraid atau pusaka yang rumit dan memakan masa.</li>
-                        <li><strong>Pengganti Gaji:</strong> Wang ini boleh digunakan oleh keluarga anda untuk meneruskan hidup, membayar komitmen bulanan (rumah, kereta), dan menampung perbelanjaan harian.</li>
-                        <li><strong>Penyelesai Hutang:</strong> Memastikan waris tidak terbeban dengan hutang-piutang yang anda tinggalkan.</li>
-                    </ul>
-                    <div class="benefit-function">
-                        <div class="benefit-function-title">Fungsi Utama:</div>
-                        <p>Hibah menjaga <strong>KELUARGA ANDA</strong> selepas anda tiada.</p>
-                    </div>
-                </div>
-            </details>
-            
-            <details class="benefit-card">
-                <summary>
-                    <div class="benefit-header">
-                        <div class="benefit-icon">✨</div>
-                        <h3 class="benefit-title">Manfaat 3: Perlindungan Komprehensif (Medical + Hibah)</h3>
-                    </div>
-                </summary>
-                <div class="benefit-content-wrapper">
-                    <p class="benefit-subtitle">Ini adalah strategi perlindungan kewangan yang paling lengkap dan bijak.</p>
-                    <p class="benefit-description">
-                         Ia menggabungkan kedua-dua manfaat untuk memberi perlindungan menyeluruh. Pelan gabungan ini memastikan anda dan keluarga dilindungi dari semua sudut, tidak kira apa yang berlaku.
-                    </p>
-                    <p class="benefit-description font-medium">Kenapa anda perlukan gabungan ini:</p>
-                    <ul class="benefit-list">
-                        <li><strong>Saling Melengkapi:</strong> Kedua-dua pelan ini menyelesaikan masalah yang berbeza.</li>
-                        <li><strong>Jika anda sakit:</strong> Kad Medical bayar bil hospital.</li>
-                        <li><strong>Jika anda tiada:</strong> Hibah beri duit tunai pada keluarga.</li>
-                        <li><strong>Tiada Jurang Perlindungan:</strong>
-                             <ul class="ml-6 mt-2" style="list-style-type: disc; padding-left: 1.5rem;">
-                                 <li style="padding: 0.25rem 0;">Jika ada Medical sahaja: Apa jadi pada keluarga jika anda tiada?</li>
-                                 <li style="padding: 0.25rem 0;">Jika ada Hibah sahaja: Bagaimana anda nak bayar bil hospital RM50,000 jika anda sakit?</li>
-                             </ul>
-                        </li>
-                        <li><strong>Ketenangan Fikiran Mutlak:</strong> Anda tahu bahawa kewangan anda terjaga semasa anda hidup, dan kebajikan keluarga anda juga terjamin jika anda sudah tiada.</li>
-                    </ul>
-                    <div class="benefit-function">
-                        <div class="benefit-function-title">Fungsi Utama:</div>
-                        <p>Melindungi <strong>ANDA</strong> hari ini, dan melindungi <strong>KELUARGA ANDA</strong> untuk selamanya.</p>
-                    </div>
-                </div>
-            </details>
- 
-        </div>
-    </div>
-</section>
-<section id="soalan" class="py-16 md:py-20 bg-slate-50">
-    <div class="container mx-auto px-4">
-        <div class="max-w-2xl mb-8">
-            <h2 class="text-2xl md:text-3xl font-semibold">Soalan Lazim</h2>
-            <p class="mt-2 text-slate-600">Ringkas dan terus kepada point.</p>
-        </div>
-        <div class="grid md:grid-cols-2 gap-6">
-            <details class="group bg-white border border-slate-200 rounded-xl p-5">
-                 <summary class="cursor-pointer font-medium">Berapa anggaran sumbangan bulanan?</summary>
-                 <div class="mt-3 text-slate-600">Bergantung pada umur, pekerjaan, dan manfaat dipilih. Gunakan kalkulator di atas untuk semakan percuma.</div>
-            </details>
-            <details class="group bg-white border border-slate-200 rounded-xl p-5">
-                 <summary class="cursor-pointer font-medium">Adakah boleh ubah pelan kemudian?</summary>
-                 <div class="mt-3 text-slate-600">Boleh, selagi mematuhi terma syarikat.</div>
-            </details>
-            <details class="group bg-white border border-slate-200 rounded-xl p-5">
-                 <summary class="cursor-pointer font-medium">Proses tuntutan macam mana?</summary>
-                 <div class="mt-3 text-slate-600">Kami sediakan senarai semak & pandu langkah demi langkah. Hubungi kami bila berlaku tuntutan.</div>
-            </details>
-            <details class="group bg-white border border-slate-200 rounded-xl p-5">
-                 <summary class="cursor-pointer font-medium">Panel hospital/klinik ada di mana?</summary>
-                 <div class="mt-3 text-slate-600">Senarai panel akan dikongsi semasa semakan pelan.</div>
-            </details>
-        </div>
-    </div>
-</section>
- 
-<section id="hubungi" class="py-16 md:py-20 bg-slate-900 text-white">
-    <div class="container mx-auto px-4">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-                 <h2 class="text-2xl md:text-3xl font-semibold">Dapatkan Sebut Harga Penuh</h2>
-                 <p class="mt-2 text-slate-300">Isi maklumat di bawah untuk hantar butiran anda terus ke WhatsApp kami.</p>
-                 <div class="mt-6 flex flex-wrap gap-3">
-                     <a href="https://wa.me/601125517767" target="_blank" rel="noopener" class="px-5 py-3 rounded-xl bg-emerald-500 text-white hover:bg-emerald-600">WhatsApp</a>
-                     <a href="https://linktr.ee/hafizulca" target="_blank" rel="noopener" class="px-5 py-3 rounded-xl border border-white/30 text-white hover:bg-white/10">Linktree</a>
-                 </div>
-                 <p class="mt-4 text-xs text-white/70">Waktu respons: 8.00 pagi – 12.00 malam. Kecemasan: <a class="underline" href="tel:+601125517767">011-2551 7767</a></p>
             </div>
- 
-            <form id="quickContactForm" class="bg-white text-slate-800 rounded-2xl p-6 shadow grid gap-4">
-                 <div>
-                     <label class="text-sm" for="fullName">Nama Penuh:</label>
-                     <input id="fullName" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2" type="text" required />
-                 </div>
-                 <div>
-                     <label class="text-sm" for="birthDate">Tarikh Lahir:</label>
-                     <input id="birthDate" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2" type="date" required />
-                 </div>
-                 <div>
-                     <label class="text-sm" for="occupation">Pekerjaan:</label>
-                     <input id="occupation" class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2" type="text" placeholder="Cth: Eksekutif Pemasaran" required />
-                 </div>
-                 <button type="submit" class="mt-2 px-5 py-3 rounded-xl bg-sky-600 text-white hover:bg-sky-700">Hantar ke WhatsApp</button>
-                 <p class="text-xs text-slate-500">Dengan menghantar, anda bersetuju untuk dihubungi melalui WhatsApp bagi tujuan semakan pelan.</p>
-            </form>
-        </div>
-    </div>
-</section>
- 
-<footer class="py-8 border-t border-slate-100 text-center text-slate-500">
-     © <span id="y"></span> Prudential Takaful. Hak cipta terpelihara.
-</footer>
- 
-<div id="plan-data-storage" style="display: none;">
- 
-    <div data-plan-key="medikal-asas-150-1" data-price="RM 120 - RM 150 / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 150,000</li>
-            <li>Bilik: RM 150/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-asas-200-1" data-price="RM 150 - RM 180 / bulan" data-popular="true">
-        <ul>
-            <li>Had Tahunan: RM 200,000</li>
-            <li>Bilik: RM 200/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-asas-250-1" data-price="RM 180 - RM 210 / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 250,000</li>
-            <li>Bilik: RM 250/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-asas-300-1" data-price="RM 210 - RM 240 / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 300,000</li>
-            <li>Bilik: RM 300/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-asas-400-1" data-price="RM 240 - RM 270 / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 400,000</li>
-            <li>Bilik: RM 400/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-        </ul>
-    </div>
- 
-    <div data-plan-key="medikal-asas-150-2" data-price="RM 140 - RM 170 / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 150,000</li>
-            <li>Bilik: RM 150/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-asas-200-2" data-price="RM 180 - RM 210 / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 200,000</li>
-            <li>Bilik: RM 200/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-asas-250-2" data-price="RM 210 - RM 240 / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 250,000</li>
-            <li>Bilik: RM 250/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-asas-300-2" data-price="RM 240 - RM 270 / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 300,000</li>
-            <li>Bilik: RM 300/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-asas-400-2" data-price="RM 270 - RM 300 / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 400,000</li>
-            <li>Bilik: RM 400/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-        </ul>
-    </div>
- 
-    <div data-plan-key="medikal-asas-150-3" data-price="RM 170 - RM 210 / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 150,000</li>
-            <li>Bilik: RM 150/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-asas-200-3" data-price="RM 210 - RM 250 / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 200,000</li>
-            <li>Bilik: RM 200/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-asas-250-3" data-price="RM 250 - RM 290 / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 250,000</li>
-            <li>Bilik: RM 250/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-asas-300-3" data-price="RM 290 - RM 330 / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 300,000</li>
-            <li>Bilik: RM 300/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-asas-400-3" data-price="RM 330 - RM 370 / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 400,000</li>
-            <li>Bilik: RM 400/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-        </ul>
-    </div>
- 
-    <div data-plan-key="medikal-asas-150-4" data-price="RM 220 - RM 270+ / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 150,000</li>
-            <li>Bilik: RM 150/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-            <li>(Anggaran untuk Kelas 4, Perlu Semakan)</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-asas-200-4" data-price="RM 260 - RM 310+ / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 200,000</li>
-            <li>Bilik: RM 200/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-            <li>(Anggaran untuk Kelas 4, Perlu Semakan)</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-asas-250-4" data-price="RM 300 - RM 360+ / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 250,000</li>
-            <li>Bilik: RM 250/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-            <li>(Anggaran untuk Kelas 4, Perlu Semakan)</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-asas-300-4" data-price="RM 350 - RM 410+ / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 300,000</li>
-            <li>Bilik: RM 300/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-            <li>(Anggaran untuk Kelas 4, Perlu Semakan)</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-asas-400-4" data-price="RM 400 - RM 470+ / bulan" data-popular="false">
-        <ul>
-            <li>Had Tahunan: RM 400,000</li>
-            <li>Bilik: RM 400/malam</li>
-            <li>Lifetime Limit: Unlimited</li>
-            <li>Medical Card Sahaja</li>
-            <li>Tiada Ko-Takaful</li>
-            <li>(Anggaran untuk Kelas 4, Perlu Semakan)</li>
-        </ul>
-    </div>
- 
-    <div data-plan-key="medikal-hibah-150-1" data-price="RM 200 - RM 240 / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 150,000)</li>
-            <li>Hibah RM 100,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-hibah-200-1" data-price="RM 240 - RM 280 / bulan" data-popular="true">
-        <ul>
-            <li>Medical Card (Had RM 200,000)</li>
-            <li>Hibah RM 150,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan + Elaun Hospital</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-hibah-250-1" data-price="RM 280 - RM 320 / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 250,000)</li>
-            <li>Hibah RM 200,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan + Elaun Hospital</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-hibah-300-1" data-price="RM 320 - RM 360 / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 300,000)</li>
-            <li>Hibah RM 250,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan + Elaun Hospital</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-hibah-400-1" data-price="RM 360 - RM 400 / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 400,000)</li>
-            <li>Hibah RM 300,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan + Elaun Hospital</li>
-        </ul>
-    </div>
- 
-    <div data-plan-key="medikal-hibah-150-2" data-price="RM 230 - RM 270 / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 150,000)</li>
-            <li>Hibah RM 100,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-hibah-200-2" data-price="RM 270 - RM 310 / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 200,000)</li>
-            <li>Hibah RM 150,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan + Elaun Hospital</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-hibah-250-2" data-price="RM 310 - RM 350 / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 250,000)</li>
-            <li>Hibah RM 200,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan + Elaun Hospital</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-hibah-300-2" data-price="RM 350 - RM 390 / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 300,000)</li>
-            <li>Hibah RM 250,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan + Elaun Hospital</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-hibah-400-2" data-price="RM 390 - RM 430 / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 400,000)</li>
-            <li>Hibah RM 300,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan + Elaun Hospital</li>
-        </ul>
-    </div>
- 
-    <div data-plan-key="medikal-hibah-150-3" data-price="RM 270 - RM 320 / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 150,000)</li>
-            <li>Hibah RM 100,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-hibah-200-3" data-price="RM 320 - RM 370 / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 200,000)</li>
-            <li>Hibah RM 150,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan + Elaun Hospital</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-hibah-250-3" data-price="RM 370 - RM 420 / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 250,000)</li>
-            <li>Hibah RM 200,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan + Elaun Hospital</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-hibah-300-3" data-price="RM 420 - RM 470 / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 300,000)</li>
-            <li>Hibah RM 250,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan + Elaun Hospital</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-hibah-400-3" data-price="RM 470 - RM 520 / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 400,000)</li>
-            <li>Hibah RM 300,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan + Elaun Hospital</li>
-        </ul>
-    </div>
-     
-    <div data-plan-key="medikal-hibah-150-4" data-price="RM 330 - RM 390+ / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 150,000)</li>
-            <li>Hibah RM 100,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan</li>
-            <li>(Anggaran untuk Kelas 4, Perlu Semakan)</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-hibah-200-4" data-price="RM 390 - RM 450+ / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 200,000)</li>
-            <li>Hibah RM 150,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan + Elaun Hospital</li>
-            <li>(Anggaran untuk Kelas 4, Perlu Semakan)</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-hibah-250-4" data-price="RM 450 - RM 520+ / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 250,000)</li>
-            <li>Hibah RM 200,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan + Elaun Hospital</li>
-            <li>(Anggaran untuk Kelas 4, Perlu Semakan)</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-hibah-300-4" data-price="RM 520 - RM 590+ / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 300,000)</li>
-            <li>Hibah RM 250,000</li>
-            <li>Manfaat Penyakit Kritikal</li>
-            <li>Kemalangan + Elaun Hospital</li>
-            <li>(Anggaran untuk Kelas 4, Perlu Semakan)</li>
-        </ul>
-    </div>
-    <div data-plan-key="medikal-hibah-400-4" data-price="RM 590 - RM 670+ / bulan" data-popular="false">
-        <ul>
-            <li>Medical Card (Had RM 400,000)</li>
-            <li>Hibah RM 300,000</li>
-            <li>Manfaat Penyakt Kritikal</li>
-            <li>Kemalangan + Elaun Hospital</li>
-            <li>(Anggaran untuk Kelas 4, Perlu Semakan)</li>
-        </ul>
-    </div>
- 
-    <div data-plan-key="hibah-sahaja-biasa-1" data-price="RM 80 - RM 120 / bulan" data-popular="false">
-        <ul>
-            <li>Perlindungan Hibah Biasa</li>
-            <li>Manfaat Kematian & Hilang Upaya Penuh (TPD)</li>
-            <li>Penyakit Kritikal</li>
-            <li>Kemalangan</li>
-            <li>(Anggaran untuk Kelas 1)</li>
-        </ul>
-    </div>
-    <div data-plan-key="hibah-sahaja-biasa-2" data-price="RM 100 - RM 140 / bulan" data-popular="false">
-        <ul>
-            <li>Perlindungan Hibah Biasa</li>
-            <li>Manfaat Kematian & Hilang Upaya Penuh (TPD)</li>
-            <li>Penyakit Kritikal</li>
-            <li>Kemalangan</li>
-            <li>(Anggaran untuk Kelas 2)</li>
-        </ul>
-    </div>
-    <div data-plan-key="hibah-sahaja-biasa-3" data-price="RM 130 - RM 170 / bulan" data-popular="false">
-        <ul>
-            <li>Perlindungan Hibah Biasa</li>
-            <li>Manfaat Kematian & Hilang Upaya Penuh (TPD)</li>
-            <li>Penyakit Kritikal</li>
-            <li>Kemalangan</li>
-            <li>(Anggaran untuk Kelas 3)</li>
-        </ul>
-    </div>
-    <div data-plan-key="hibah-sahaja-biasa-4" data-price="RM 200 - RM 250+ / bulan" data-popular="false">
-        <ul>
-            <li>Perlindungan Hibah Biasa</li>
-            <li>Manfaat Kematian & Hilang Upaya Penuh (TPD)</li>
-            <li>Penyakit Kritikal</li>
-            <li>Kemalangan</li>
-            <li>(Anggaran untuk Kelas 4, Perlu Semakan)</li>
-        </ul>
-    </div>
- 
-    <div data-plan-key="hibah-sahaja-berganda-1" data-price="RM 110 - RM 150 / bulan" data-popular="false">
-        <ul>
-            <li>Perlindungan Hibah Berganda</li>
-            <li>Manfaat Kematian & Hilang Upaya Penuh (TPD)</li>
-            <li>Penyakit Kritikal</li>
-            <li>Kemalangan (Manfaat Berganda)</li>
-            <li><b>Nota: Minimum RM250,000</b></li>
-            <li><b>Promosi Year End Sale!</b></li>
-            <li>(Anggaran untuk Kelas 1)</li>
-        </ul>
-    </div>
-    <div data-plan-key="hibah-sahaja-berganda-2" data-price="RM 140 - RM 180 / bulan" data-popular="false">
-        <ul>
-            <li>Perlindungan Hibah Berganda</li>
-            <li>Manfaat Kematian & Hilang Upaya Penuh (TPD)</li>
-            <li>Penyakit Kritikal</li>
-            <li>Kemalangan (Manfaat Berganda)</li>
-            <li><b>Nota: Minimum RM250,000</b></li>
-            <li><b>Promosi Year End Sale!</b></li>
-            <li>(Anggaran untuk Kelas 2)</li>
-        </ul>
-    </div>
-    <div data-plan-key="hibah-sahaja-berganda-3" data-price="RM 180 - RM 220 / bulan" data-popular="false">
-        <ul>
-            <li>Perlindungan Hibah Berganda</li>
-            <li>Manfaat Kematian & Hilang Upaya Penuh (TPD)</li>
-            <li>Penyakit Kritikal</li>
-            <li>Kemalangan (Manfaat Berganda)</li>
-            <li><b>Nota: Minimum RM250,000</b></li>
-            <li><b>Promosi Year End Sale!</b></li>
-            <li>(Anggaran untuk Kelas 3)</li>
-        </ul>
-    </div>
-    <div data-plan-key="hibah-sahaja-berganda-4" data-price="RM 250 - RM 300+ / bulan" data-popular="false">
-        <ul>
-            <li>Perlindungan Hibah Berganda</li>
-            <li>Manfaat Kematian & Hilang Upaya Penuh (TPD)</li>
-            <li>Penyakit Kritikal</li>
-            <li>Kemalangan (Manfaat Berganda)</li>
-            <li><b>Nota: Minimum RM250,000</b></li>
-            <li><b>Promosi Year End Sale!</b></li>
-            <li>(Anggaran untuk Kelas 4, Perlu Semakan)</li>
-        </ul>
-    </div>
-     
-</div>
- 
-<div id="bc-badge" class="float-badge" style="bottom:22px; right:18px;">
-    <div class="speech hidden sm:block">Tanya saya 🚀</div>
-    <button class="relative w-14 h-14 rounded-full ring-4 ring-white shadow-lg overflow-hidden focus:outline-none focus:ring-4 focus:ring-sky-300" aria-label="Buka kad bisnes">
-        <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Avatar" class="w-full h-full object-cover">
-        <span class="absolute inset-0 rounded-full animate-ping bg-sky-500/25"></span>
-    </button>
-</div>
- 
-<div id="bc-overlay" class="hidden fixed inset-0 z-[80] bg-black/40 backdrop-blur-sm"></div>
-<div id="bc-modal" class="hidden fixed inset-0 z-[90] p-4 grid place-items-center">
-    <div class="glass rounded-2xl border border-white/30 shadow-2xl p-5 w-full max-w-xl relative">
-        <button id="bc-close" class="absolute top-3 right-3 p-2 rounded-lg hover:bg-white/60 text-slate-800" aria-label="Tutup">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-        
-        <div id="scene" class="scene mx-auto">
-            <div id="card3d" class="card3d select-none">
-                 <div class="face front" id="frontFace"><img id="imgFront" src="https://i.ibb.co/kV8dVVS0/Scanned-Document-06-10-2025-at-22-20-01.jpg" alt="Kad Bisnes Depan"></div>
-                 <div class="face back" id="backFace"><img id="imgBack" src="https://i.ibb.co/MD2DP338/Scanned-Document-06-10-2025-at-22-20-45.jpg" alt="Kad Bisnes Belakang"></div>
-                 
-                 <div class="side left"></div><div class="side right"></div><div class="side top"></div><div class="side bottom"></div>
+            
+            <div class="mt-3 flex justify-between text-xs text-slate-600">
+                <button id="flip" class="px-3 py-1 rounded-lg border border-slate-300 bg-white/80 hover:bg-white">Flip</button>
+                <button id="reset" class="px-3 py-1 rounded-lg border border-slate-300 bg-white/80 hover:bg-white">Reset</button>
             </div>
         </div>
-        
-        <div class="mt-3 flex justify-between text-xs text-slate-600">
-            <button id="flip" class="px-3 py-1 rounded-lg border border-slate-300 bg-white/80 hover:bg-white">Flip</button>
-            <button id="reset" class="px-3 py-1 rounded-lg border border-slate-300 bg-white/80 hover:bg-white">Reset</button>
+    </div>
+
+    <div id="zoomOverlay" class="hidden fixed inset-0 z-[100] bg-black/80">
+        <div id="zoomScroll" class="w-full h-full overflow-auto flex items-center justify-center p-4">
+            <img id="zoomImg" class="fit select-none" src="" alt="Zoomed Image">
+        </div>
+        <div class="absolute top-3 right-3 flex gap-2">
+            <button id="zoomToggle" class="px-3 py-1 rounded-lg bg-white/90 text-slate-800 text-sm">100%</button>
+            <button id="zoomClose" class="px-3 py-1 rounded-lg bg-white/90 text-slate-800 text-sm">Close</button>
         </div>
     </div>
-</div>
- 
-<div id="zoomOverlay" class="hidden fixed inset-0 z-[100] bg-black/80">
-    <div id="zoomScroll" class="w-full h-full overflow-auto flex items-center justify-center p-4">
-        <img id="zoomImg" class="fit select-none" src="" alt="Zoomed Image">
-    </div>
-    <div class="absolute top-3 right-3 flex gap-2">
-        <button id="zoomToggle" class="px-3 py-1 rounded-lg bg-white/90 text-slate-800 text-sm">100%</button>
-        <button id="zoomClose" class="px-3 py-1 rounded-lg bg-white/90 text-slate-800 text-sm">Close</button>
-    </div>
-</div>
- 
-<script>
-    // Tahun footer
-    document.getElementById('y').textContent = new Date().getFullYear();
- 
-    // Menu mobile
-    const menuBtn = document.getElementById('menuBtn');
-    const menuEl  = document.getElementById('menu');
-    if (menuBtn && menuEl) {
-        menuBtn.addEventListener('click', () => menuEl.classList.toggle('hidden'));
-        menuEl.querySelectorAll('a').forEach(a =>
-            a.addEventListener('click', () => menuEl.classList.add('hidden'))
-        );
-     }
- 
-    // Kalkulator Functionality - Updated for new plan structure
-    function clearDetails() {
-        const outputArea = document.getElementById('plan-details-output');
-        outputArea.innerHTML = '<div class="placeholder-text">Sila buat pilihan anda dari menu di atas untuk melihat butiran penuh pelan dan harga.</div>';
-        outputArea.classList.remove('active', 'popular'); 
-     }
- 
-    function updateInputVisibility() {
-        const selectedPlan = document.getElementById('plan-selector').value;
-        const planLevelArea = document.getElementById('plan-level-area');
-        const hibahTypeArea = document.getElementById('hibah-type-area'); // New
-        const occArea = document.getElementById('occupation-class-area');
+    
+    <script>
+        // --- ANALOG CLOCK SCRIPT ---
+        const hourHand = document.querySelector('[data-hour-hand]');
+        const minuteHand = document.querySelector('[data-minute-hand]');
+        const secondHand = document.querySelector('[data-second-hand]');
+        const marksContainer = document.getElementById('clockMarks');
+
+        function setClock() {
+            const currentDate = new Date();
+            const seconds = currentDate.getSeconds();
+            const milliseconds = currentDate.getMilliseconds();
+            const minutes = currentDate.getMinutes();
+            const hours = currentDate.getHours();
+
+            const secondsRatio = (seconds + milliseconds / 1000) / 60;
+            const minutesRatio = (secondsRatio + minutes) / 60;
+            const hoursRatio = (minutesRatio + hours) / 12;
+
+            setRotation(secondHand, secondsRatio);
+            setRotation(minuteHand, minutesRatio);
+            setRotation(hourHand, hoursRatio);
+        }
+
+        function setRotation(element, rotationRatio) {
+            if (element) {
+                const rotation = rotationRatio * 360;
+                element.style.transform = `rotate(${rotation + 90}deg)`;
+            }
+        }
+
+        function createMarks() {
+            if (!marksContainer) return;
+            marksContainer.innerHTML = '';
+
+            for (let i = 0; i < 60; i++) {
+                const mark = document.createElement('div');
+                mark.classList.add('clock-mark');
+                
+                if (i % 5 === 0) {
+                    mark.classList.add('hour-mark');
+                } else {
+                    mark.classList.add('minute-mark');
+                }
+                
+                mark.style.transform = `rotate(${i * 6}deg)`;
+                
+                const markLine = document.createElement('span');
+                mark.appendChild(markLine);
+                
+                marksContainer.appendChild(mark);
+            }
+        }
+
+        createMarks();
+
+        function animateClock() {
+            setClock();
+            requestAnimationFrame(animateClock);
+        }
+
+        animateClock();
+
+        // --- CALENDAR SCRIPT ---
+        const monthNames = [
+            'Januari', 'Februari', 'Mac', 'April', 'Mei', 'Jun',
+            'Julai', 'Ogos', 'September', 'Oktober', 'November', 'Disember'
+        ];
         
-        // Reset all secondary dropdowns
-        document.getElementById('plan-level-selector').value = '';
-        document.getElementById('hibah-type-selector').value = ''; // New
-        document.getElementById('occupation-class-selector').value = '';
-        
-        planLevelArea.style.display = 'none';
-        hibahTypeArea.style.display = 'none'; // New
-        occArea.style.display = 'none';
- 
-        if (selectedPlan) {
-            occArea.style.display = 'block'; // Occupation always shows if a plan is selected
+        function updateCalendar() {
+            const currentDate = new Date();
+            const day = currentDate.getDate();
+            const month = currentDate.getMonth();
             
-            if (selectedPlan === 'hibah-sahaja') {
-                 planLevelArea.style.display = 'none';
-                 hibahTypeArea.style.display = 'block'; // Show Hibah Type
-            } else {
-                 planLevelArea.style.display = 'block'; // Show Plan Level
-                 hibahTypeArea.style.display = 'none';
-            }
+            document.getElementById('calendar-day').textContent = day;
+            document.getElementById('calendar-month').textContent = monthNames[month];
         }
         
-        clearDetails();
-     }
- 
-    function displayPlanDetails() {
-        const selectedPlan = document.getElementById('plan-selector').value;
-        const selectedPlanLevel = document.getElementById('plan-level-selector').value;
-        const selectedHibahType = document.getElementById('hibah-type-selector').value; // New
-        const selectedOccClass = document.getElementById('occupation-class-selector').value;
-        const outputArea = document.getElementById('plan-details-output');
-        
-        clearDetails();
- 
-        let dataKey = "";
-        let fullPlanName = "";
-        let planNameOption = null;
- 
-        if (!selectedPlan) { return; }
-        
-        planNameOption = document.querySelector(`#plan-selector option[value="${selectedPlan}"]`).textContent;
- 
-        if (!selectedOccClass) {
-            outputArea.innerHTML = `<div class="placeholder-text">Sila pilih Kelas Pekerjaan anda.</div>`;
-            return;
+        updateCalendar();
+
+        // --- PROMOTION MODAL FUNCTIONALITY ---
+        const promotionCard = document.getElementById('promotion-card');
+        const promoOverlay = document.getElementById('promo-overlay');
+        const promoModal = document.getElementById('promo-modal');
+        const promoImage = document.getElementById('promo-image');
+        const promoClose = document.getElementById('promo-close');
+        const promoPrev = document.getElementById('promo-prev');
+        const promoNext = document.getElementById('promo-next');
+        const promoIndicators = document.querySelectorAll('.promo-indicator');
+
+        const promoImages = [
+            'https://i.ibb.co/kt9czYT/photo-1-2025-11-17-23-51-40.jpg',
+            'https://i.ibb.co/q3M4TKh7/photo-2-2025-11-17-23-51-40.jpg'
+        ];
+
+        let currentImageIndex = 0;
+
+        function openPromoModal() {
+            promoOverlay.classList.add('active');
+            showImage(currentImageIndex);
         }
- 
-        if (selectedPlan === 'hibah-sahaja') {
-            if (!selectedHibahType) { // New check
-                 outputArea.innerHTML = `<div class="placeholder-text">Sila pilih Jenis Hibah anda.</div>`;
-                 return;
-            }
-            dataKey = `${selectedPlan}-${selectedHibahType}-${selectedOccClass}`; // Updated dataKey
-            const hibahTypeOption = document.querySelector(`#hibah-type-selector option[value="${selectedHibahType}"]`).textContent;
-            fullPlanName = `${planNameOption} - ${hibahTypeOption} (Kelas ${selectedOccClass})`; // Updated name
- 
-        } else {
-            if (!selectedPlanLevel) {
-                 outputArea.innerHTML = `<div class="placeholder-text">Sila pilih plan untuk melihat butiran.</div>`;
-                 return;
-            }
-            dataKey = `${selectedPlan}-${selectedPlanLevel}-${selectedOccClass}`;
-            fullPlanName = `${planNameOption} - Plan ${selectedPlanLevel} (Kelas ${selectedOccClass})`;
+
+        function closePromoModal() {
+            promoOverlay.classList.remove('active');
         }
- 
-        const planDataContainer = document.querySelector(`div[data-plan-key="${dataKey}"]`);
- 
-        if (planDataContainer) {
-            const price = planDataContainer.getAttribute('data-price');
-            const isPopular = planDataContainer.getAttribute('data-popular') === 'true';
- 
-            let content = `
-                 <div class="plan-card ${isPopular ? 'popular' : ''}">
-                     <h3 class="text-xl font-semibold">${fullPlanName}</h3>
-                     <div class="plan-price">${price}</div>
-                     <ul class="plan-features">
-                        ${planDataContainer.querySelector('ul').innerHTML}
-                     </ul>
-                     <p class="text-xs text-slate-500 italic mt-4 mb-4">
-                         *Harga yang dipaparkan adalah anggaran sahaja. Sebut harga rasmi akan disediakan oleh ejen.
-                     </p>
-                     <button class="select-btn ${isPopular ? 'popular-btn' : ''}" onclick="selectPlan('${dataKey}')">Pilih Pelan Ini</button>
-                 </div>
-            `;
- 
-            outputArea.innerHTML = content;
-            outputArea.classList.add('active');
-            if (isPopular) {
-                 outputArea.classList.add('popular');
-            }
-        } else {
-            outputArea.innerHTML = `<div class="placeholder-text">Butiran Pelan untuk kombinasi ini belum tersedia. Sila hubungi ejen.</div>`;
-        }
-     }
- 
-    function selectPlan(planKey) {
-        const planDataContainer = document.querySelector(`div[data-plan-key="${planKey}"]`);
-        if (planDataContainer) {
-            // Scroll to contact form
-            document.getElementById('hubungi').scrollIntoView({behavior: 'smooth'});
+
+        function showImage(index) {
+            currentImageIndex = index;
+            promoImage.src = promoImages[index];
             
-            // Store selected plan for WhatsApp message
-            sessionStorage.setItem('selectedPlan', planKey);
+            // Update indicators
+            promoIndicators.forEach((indicator, i) => {
+                if (i === index) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
         }
-     }
- 
-    // Initialize calculator
-    document.addEventListener('DOMContentLoaded', () => {
-        const contactForm = document.getElementById('quickContactForm');
-        
-        const planSelector = document.getElementById('plan-selector');
-        const planLevelSelector = document.getElementById('plan-level-selector');
-        const hibahTypeSelector = document.getElementById('hibah-type-selector'); // New
-        const occClassSelector = document.getElementById('occupation-class-selector');
- 
-        planSelector.addEventListener('change', () => {
-            updateInputVisibility();
-            displayPlanDetails(); 
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % promoImages.length;
+            showImage(currentImageIndex);
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + promoImages.length) % promoImages.length;
+            showImage(currentImageIndex);
+        }
+
+        // Event listeners for promotion
+        promotionCard.addEventListener('click', openPromoModal);
+        promoClose.addEventListener('click', closePromoModal);
+        promoNext.addEventListener('click', nextImage);
+        promoPrev.addEventListener('click', prevImage);
+
+        // Close modal when clicking outside the image
+        promoOverlay.addEventListener('click', (e) => {
+            if (e.target === promoOverlay) {
+                closePromoModal();
+            }
         });
- 
-        planLevelSelector.addEventListener('change', displayPlanDetails);
-        hibahTypeSelector.addEventListener('change', displayPlanDetails); // New
-        occClassSelector.addEventListener('change', displayPlanDetails);
- 
-        const myWhatsAppNumber = '601125517767';
- 
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
- 
-            const name = document.getElementById('fullName').value;
-            const dob = document.getElementById('birthDate').value;
-            const occupation = document.getElementById('occupation').value;
-            
-            const selectedOccClass = occClassSelector.value;
-            const selectedPlan = planSelector.value;
-            const selectedPlanLevel = planLevelSelector.value;
-            const selectedHibahType = hibahTypeSelector.value; // New
- 
-            let planDetails = "Tiada pilihan pelan dibuat.";
-            
-            if (selectedPlan) {
-                 const planNameOption = document.querySelector(`#plan-selector option[value="${selectedPlan}"]`).textContent;
-                 
-                 if (!selectedOccClass) {
-                     planDetails = `Pelan: ${planNameOption} (Kelas Pekerjaan belum dipilih)`;
-                 }
-                 else if (selectedPlan === 'hibah-sahaja') {
-                     if (!selectedHibahType) {
-                         planDetails = `Pilihan Pelan: ${planNameOption} (Kelas ${selectedOccClass}) - (Jenis Hibah belum dipilih)`;
-                     } else {
-                         const hibahTypeOption = document.querySelector(`#hibah-type-selector option[value="${selectedHibahType}"]`).textContent;
-                         planDetails = `Pilihan Pelan: ${planNameOption} - ${hibahTypeOption} (Kelas ${selectedOccClass})`; // Updated
-                     }
-                 } 
-                 else if (selectedPlanLevel) {
-                     planDetails = `Pilihan Pelan: ${planNameOption} - Plan ${selectedPlanLevel} (Kelas ${selectedOccClass})`;
-                 }
-                 else {
-                     planDetails = `Pilihan Pelan: ${planNameOption} (Kelas ${selectedOccClass}) - (Plan belum dipilih)`;
-                 }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (promoOverlay.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closePromoModal();
+                } else if (e.key === 'ArrowRight') {
+                    nextImage();
+                } else if (e.key === 'ArrowLeft') {
+                    prevImage();
+                }
             }
-            
-            const message = `Salam.
- 
-Saya *${name}* berminat dengan pelan Takaful.
- 
-*Maklumat Saya:*
-Tarikh Lahir: ${dob}
-Pekerjaan: ${occupation}
- 
-*Pelan Dipilih:*
-${planDetails}
- 
-Harap dapat hubungi saya segera. Terima kasih.`;
- 
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://wa.me/${myWhatsAppNumber}?text=${encodedMessage}`;
-            window.open(whatsappURL, '_blank');
- 
-            contactForm.reset();
-            planSelector.value = '';
-            updateInputVisibility();
-            clearDetails();
         });
-    });
- 
-    // 3D Card Functionality
-    const badge    = document.getElementById('bc-badge');
-    const overlay = document.getElementById('bc-overlay');
-    const modal   = document.getElementById('bc-modal');
-    const closeX  = document.getElementById('bc-close');
- 
-    function openModal(){ 
-        if (overlay) overlay.classList.remove('hidden'); 
-        if (modal) modal.classList.remove('hidden'); 
-        autoSpin(true);
-     }
-    function closeModal(){ 
-        if (modal) modal.classList.add('hidden'); 
-        if (overlay) overlay.classList.add('hidden'); 
-        autoSpin(false);
-     }
- 
-    if (badge) badge.addEventListener('click', openModal);
-    if (overlay) overlay.addEventListener('click', closeModal);
-    if (closeX) closeX.addEventListener('click', closeModal);
-    document.addEventListener('keydown', e => { 
-        if(e.key==='Escape' && modal && !modal.classList.contains('hidden')) {
-            closeModal();
-        }
-    });
- 
-    const scene   = document.getElementById('scene');
-    const card    = document.getElementById('card3d');
-    const imgF    = document.getElementById('imgFront');
-    const imgB    = document.getElementById('imgBack');
-    const frontEl = document.getElementById('frontFace');
-    const backEl  = document.getElementById('backFace');
-    const btnR    = document.getElementById('reset');
-    const btnFlip = document.getElementById('flip');
- 
-    let rotX=0, rotY=0, dragging=false, lastX=0, lastY=0, spinTimer=null, flipped=false;
- 
-    function render(){ 
-        if (!card) return;
-        const viewY = flipped ? rotY + 180 : rotY; 
-        card.style.transform = `rotateX(${rotX}deg) rotateY(${viewY}deg)`; 
-     }
-    function autoSpin(run){ 
-        if(spinTimer){ clearInterval(spinTimer); spinTimer=null; } 
-        if(run){ 
-            spinTimer=setInterval(()=>{ rotY += 0.6; render(); }, 30); 
-        } 
-     }
-    function pos(e){ 
-        return e.touches? {x:e.touches[0].clientX, y:e.touches[0].clientY} : {x:e.clientX, y:e.clientY}; 
-     }
-    function down(e){ 
-        if (!card) return;
-        dragging=true; 
-        card.classList.add('is-dragging'); 
-        const p=pos(e); 
-        lastX=p.x; lastY=p.y; 
-        autoSpin(false);
-     }
-    function move(e){ 
-        if(!dragging || !card) return; 
-        const p=pos(e); 
-        const dx=p.x-lastX, dy=p.y-lastY; 
-        rotY += dx * 0.4; 
-        rotX -= dy * 0.4; 
-        rotX = Math.max(-60, Math.min(60, rotX));
-        lastX=p.x; lastY=p.y; 
-        render(); 
-     }
-    function up(){ 
-        if (!card) return;
-        dragging=false; 
-        card.classList.remove('is-dragging'); 
-     }
-     
-    if (card) {
-        card.addEventListener('mousedown', down); 
-        card.addEventListener('touchstart', down, {passive:true});
-     }
-    window.addEventListener('mousemove', move); 
-    window.addEventListener('touchmove', move, {passive:true});
-    window.addEventListener('mouseup', up);  
-    window.addEventListener('touchend', up);
- 
-    if (btnFlip) btnFlip.addEventListener('click', ()=>{ flipped=!flipped; render(); });
-    if (btnR) btnR.addEventListener('click', ()=>{ rotX=0; rotY=0; flipped=false; render(); autoSpin(true); });
- 
-    function fitToImage(){
-        if (!imgF || !scene || !card) return;
-        const nw = imgF.naturalWidth, nh = imgF.naturalHeight;
-        if(!nw || !nh) return;
-        
-        const ratio = nh / nw;
-        const maxW = Math.min(360, window.innerWidth - 48);
-        const maxH = Math.min(560, window.innerHeight - 200);
-        
-        let w = maxW, h = w * ratio;
-        if (h > maxH){ h = maxH; w = h / ratio; }
-        
-        scene.style.width = w + 'px';
-        scene.style.height = h + 'px';
-        card.style.width  = w + 'px';
-        card.style.height = h + 'px';
-     }
-     
-    function initCard(){ 
-        fitToImage(); 
-        render(); 
-     }
-     
-    if (_imgF_) {
-        if (_imgF_.complete) initCard();
-        else _imgF_.addEventListener('load', initCard);
-     }
-    window.addEventListener('resize', fitToImage);
- 
-    // Zoom functionality
-    const zoomOverlay = document.getElementById('zoomOverlay');
-    const zoomImg     = document.getElementById('zoomImg');
-    const zoomScroll  = document.getElementById('zoomScroll');
-    const zoomClose   = document.getElementById('zoomClose');
-    const zoomToggle  = document.getElementById('zoomToggle');
-    let zoomMode='fit';
- 
-    function openZoom(src){ 
-        if (!zoomImg || !zoomOverlay || !zoomScroll) return;
-        _zoomImg_.src = src; 
-        zoomMode='fit'; 
-        _zoomImg_.classList.remove('full'); 
-        _zoomImg_.classList.add('fit'); 
-        _zoomOverlay_.classList.remove('hidden'); 
-        autoSpin(false);
-        _zoomScroll_.scrollTop=0; 
-        _zoomScroll_.scrollLeft=0; 
-     }
-    function closeZoom(){ 
-        if (!zoomOverlay) return;
-        _zoomOverlay_.classList.add('hidden'); 
-        if (modal && !modal.classList.contains('hidden')) {
+
+        // Indicator clicks
+        promoIndicators.forEach((indicator) => {
+            indicator.addEventListener('click', () => {
+                const index = parseInt(indicator.getAttribute('data-index'));
+                showImage(index);
+            });
+        });
+
+        // --- BUSINESS CARD FUNCTIONALITY ---
+        const badge = document.getElementById('bc-badge');
+        const overlay = document.getElementById('bc-overlay');
+        const modal = document.getElementById('bc-modal');
+        const closeX = document.getElementById('bc-close');
+
+        function openModal(){ 
+            overlay.classList.remove('hidden');
+            modal.classList.remove('hidden');
             autoSpin(true);
         }
-     }
-    function toggleZoom(){ 
-        if (!zoomImg || !zoomToggle || !zoomScroll) return;
-        if(zoomMode==='fit'){ 
-            zoomMode='full'; 
-            _zoomImg_.classList.remove('fit'); 
-            _zoomImg_.classList.add('full'); 
-            _zoomToggle_.textContent='Fit'; 
-        } else { 
-            zoomMode='fit'; 
-            _zoomImg_.classList.remove('full'); 
-            _zoomImg_.classList.add('fit'); 
-            _zoomToggle_.textContent='100%'; 
-            _zoomScroll_.scrollTop=0; 
-            _zoomScroll_.scrollLeft=0; 
-        } 
-     }
- 
-    if (frontEl) frontEl.addEventListener('click', ()=>{ if(!dragging) openZoom(_imgF_.src); });
-    if (backEl) backEl.addEventListener('click', ()=>{ if(!dragging) openZoom(_imgB_.src); });
-    if (zoomClose) _zoomClose_.addEventListener('click', closeZoom);
-    if (zoomToggle) _zoomToggle_.addEventListener('click', toggleZoom);
-     
-    document.addEventListener('keydown', (e)=>{ 
-        if(zoomOverlay && !zoomOverlay.classList.contains('hidden') && e.key==='Escape') {
-            closeZoom();
+
+        function closeModal(){ 
+            modal.classList.add('hidden');
+            overlay.classList.add('hidden');
+            autoSpin(false);
         }
-    });
-    if (zoomOverlay) _zoomOverlay_.addEventListener('click', (e)=>{ 
-        if(e.target === zoomOverlay) closeZoom(); 
-    });
-</script>
+
+        badge.addEventListener('click', openModal);
+        overlay.addEventListener('click', closeModal);
+        closeX.addEventListener('click', closeModal);
+        
+        document.addEventListener('keydown', e => { 
+            if(e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        // 3D Card Controls
+        const scene = document.getElementById('scene');
+        const card = document.getElementById('card3d');
+        const imgF = document.getElementById('imgFront');
+        const imgB = document.getElementById('imgBack');
+        const frontEl = document.getElementById('frontFace');
+        const backEl = document.getElementById('backFace');
+        const btnR = document.getElementById('reset');
+        const btnFlip = document.getElementById('flip');
+
+        let rotX = 0, rotY = 0, dragging = false, lastX = 0, lastY = 0, spinTimer = null, flipped = false;
+
+        function render(){ 
+            const viewY = flipped ? rotY + 180 : rotY; 
+            card.style.transform = `rotateX(${rotX}deg) rotateY(${viewY}deg)`; 
+        }
+
+        function autoSpin(run){ 
+            if(spinTimer){ clearInterval(spinTimer); spinTimer = null; } 
+            if(run){ 
+                spinTimer = setInterval(() => { rotY += 0.6; render(); }, 30); 
+            } 
+        }
+
+        function pos(e){ 
+            return e.touches ? {x: e.touches[0].clientX, y: e.touches[0].clientY} : {x: e.clientX, y: e.clientY}; 
+        }
+
+        function down(e){ 
+            dragging = true; 
+            card.classList.add('is-dragging'); 
+            const p = pos(e); 
+            lastX = p.x; lastY = p.y; 
+            autoSpin(false);
+        }
+
+        function move(e){ 
+            if(!dragging) return; 
+            const p = pos(e); 
+            const dx = p.x - lastX, dy = p.y - lastY; 
+            rotY += dx * 0.4; 
+            rotX -= dy * 0.4; 
+            rotX = Math.max(-60, Math.min(60, rotX));
+            lastX = p.x; lastY = p.y; 
+            render(); 
+        }
+
+        function up(){ 
+            dragging = false; 
+            card.classList.remove('is-dragging'); 
+        }
+        
+        if (card) {
+            card.addEventListener('mousedown', down); 
+            card.addEventListener('touchstart', down, {passive:true});
+        }
+        window.addEventListener('mousemove', move); 
+        window.addEventListener('touchmove', move, {passive:true});
+        window.addEventListener('mouseup', up);    
+        window.addEventListener('touchend', up);
+
+        if (btnFlip) btnFlip.addEventListener('click', () => { flipped = !flipped; render(); });
+        if (btnR) btnR.addEventListener('click', () => { rotX = 0; rotY = 0; flipped = false; render(); autoSpin(true); });
+
+        function fitToImage(){
+            if (!imgF || !scene || !card) return;
+            const nw = imgF.naturalWidth, nh = imgF.naturalHeight;
+            if(!nw || !nh) return;
+            
+            const ratio = nh / nw;
+            const maxW = Math.min(360, window.innerWidth - 48);
+            const maxH = Math.min(560, window.innerHeight - 200);
+            
+            let w = maxW, h = w * ratio;
+            if (h > maxH){ h = maxH; w = h / ratio; }
+            
+            scene.style.width = w + 'px';
+            scene.style.height = h + 'px';
+            card.style.width = w + 'px';
+            card.style.height = h + 'px';
+        }
+        
+        function initCard(){ 
+            fitToImage(); 
+            render(); 
+        }
+        
+        if (imgF) {
+            if (imgF.complete) initCard();
+            else imgF.addEventListener('load', initCard);
+        }
+        
+        window.addEventListener('resize', fitToImage);
+
+        // Zoom functionality
+        const zoomOverlay = document.getElementById('zoomOverlay');
+        const zoomImg = document.getElementById('zoomImg');
+        const zoomScroll = document.getElementById('zoomScroll');
+        const zoomClose = document.getElementById('zoomClose');
+        const zoomToggle = document.getElementById('zoomToggle');
+        let zoomMode = 'fit';
+
+        function openZoom(src){ 
+            zoomImg.src = src; 
+            zoomMode = 'fit'; 
+            zoomImg.classList.remove('full'); 
+            zoomImg.classList.add('fit'); 
+            zoomOverlay.classList.remove('hidden'); 
+            autoSpin(false);
+            zoomScroll.scrollTop = 0; 
+            zoomScroll.scrollLeft = 0; 
+        }
+
+        function closeZoom(){ 
+            zoomOverlay.classList.add('hidden'); 
+            if (!modal.classList.contains('hidden')) {
+                autoSpin(true);
+            }
+        }
+
+        function toggleZoom(){ 
+            if(zoomMode === 'fit'){ 
+                zoomMode = 'full'; 
+                zoomImg.classList.remove('fit'); 
+                zoomImg.classList.add('full'); 
+                zoomToggle.textContent = 'Fit'; 
+            } else { 
+                zoomMode = 'fit'; 
+                zoomImg.classList.remove('full'); 
+                zoomImg.classList.add('fit'); 
+                zoomToggle.textContent = '100%'; 
+                zoomScroll.scrollTop = 0; 
+                zoomScroll.scrollLeft = 0; 
+            } 
+        }
+
+        if (frontEl) frontEl.addEventListener('click', () => { if(!dragging) openZoom(imgF.src); });
+        if (backEl) backEl.addEventListener('click', () => { if(!dragging) openZoom(imgB.src); });
+        if (zoomClose) zoomClose.addEventListener('click', closeZoom);
+        if (zoomToggle) zoomToggle.addEventListener('click', toggleZoom);
+        
+        document.addEventListener('keydown', (e) => { 
+            if(!zoomOverlay.classList.contains('hidden') && e.key === 'Escape') {
+                closeZoom();
+            }
+        });
+        
+        if (zoomOverlay) zoomOverlay.addEventListener('click', (e) => { 
+            if(e.target === zoomOverlay) closeZoom(); 
+        });
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded successfully');
+        });
+    </script>
 </body>
 </html>
