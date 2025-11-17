@@ -1,98 +1,495 @@
 <!doctype html>
 <html lang="ms">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hafizul Takaful Solutions</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --navy: #1a2b4c;
-      --gold: #d4a73a;
-      --muted:#6b7280;
-      --bg:#f7f8fb;
-      --card:#ffffff;
-      --radius:14px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--navy)}
-    a{color:inherit;text-decoration:none}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hafizul Takaful Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    /* Container */
-    .container{max-width:1100px;margin:0 auto;padding:32px}
+    <style>
+        :root{
+            --navy: #1a2b4c;
+            --gold: #d4a73a;
+            --muted:#6b7280;
+            --bg:#f7f8fb;
+            --card:#ffffff;
+            --radius:14px;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--navy)}
+        a{color:inherit;text-decoration:none}
 
-    /* Header */
-    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--navy),#2a3f6b);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-family:Poppins}
-    nav{display:flex;gap:18px;align-items:center}
-    .btn{background:var(--navy);color:white;padding:10px 16px;border-radius:10px;font-weight:600}
-    .btn-ghost{background:transparent;border:1px solid rgba(26,43,76,0.08);padding:8px 12px;border-radius:10px}
+        /* Container */
+        .container{max-width:1100px;margin:0 auto;padding:32px}
 
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:36px 0}
-    .hero h1{font-family:Poppins;font-size:36px;margin:0;line-height:1.05}
-    .hero p{color:var(--muted);margin-top:12px}
-    .ctas{margin-top:20px;display:flex;gap:12px}
-    .card{background:var(--card);border-radius:var(--radius);box-shadow:0 8px 30px rgba(16,24,40,0.06);padding:20px}
+        /* Header */
+        header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+        .brand{display:flex;align-items:center;gap:12px}
+        .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--navy),#2a3f6b);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-family:Poppins}
+        nav{display:flex;gap:18px;align-items:center}
+        .btn{background:var(--navy);color:white;padding:10px 16px;border-radius:10px;font-weight:600}
+        .btn-ghost{background:transparent;border:1px solid rgba(26,43,76,0.08);padding:8px 12px;border-radius:10px}
 
-    /* Feature boxes */
-    .features{display:flex;gap:14px;margin-top:20px}
-    .feature{flex:1;padding:18px;border-radius:12px;background:linear-gradient(180deg,#ffffff,#fbfcff);border:1px solid rgba(26,43,76,0.04)}
-    .feature h3{margin:0 0 8px 0;font-size:16px}
-    .feature p{margin:0;color:var(--muted);font-size:14px}
+        /* Hero */
+        .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:36px 0}
+        .hero h1{font-family:Poppins;font-size:36px;margin:0;line-height:1.05}
+        .hero p{color:var(--muted);margin-top:12px}
+        .ctas{margin-top:20px;display:flex;gap:12px}
+        .card{background:var(--card);border-radius:var(--radius);box-shadow:0 8px 30px rgba(16,24,40,0.06);padding:20px}
 
-    /* Subpages grid */
-    .subpages{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
-    .sub{padding:16px;border-radius:12px;background:linear-gradient(180deg,#fff,#fcfdff);display:flex;flex-direction:column;gap:8px;border:1px solid rgba(26,43,76,0.04)}
-    .sub small{color:var(--muted)}
+        /* Feature boxes */
+        .features{display:flex;gap:14px;margin-top:20px}
+        .feature{flex:1;padding:18px;border-radius:12px;background:linear-gradient(180deg,#ffffff,#fbfcff);border:1px solid rgba(26,43,76,0.04)}
+        .feature h3{margin:0 0 8px 0;font-size:16px}
+        .feature p{margin:0;color:var(--muted);font-size:14px}
 
-    /* Why choose */
-    .why{display:flex;gap:16px;margin-top:28px}
-    .why .left{flex:1}
-    .why .right{flex:1}
-    .list{display:flex;flex-direction:column;gap:12px}
+        /* Subpages grid */
+        .subpages{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+        .sub{padding:16px;border-radius:12px;background:linear-gradient(180deg,#fff,#fcfdff);display:flex;flex-direction:column;gap:8px;border:1px solid rgba(26,43,76,0.04)}
+        .sub small{color:var(--muted)}
 
-    /* Testimoni */
-    .testimoni{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
-    .testimonial{padding:16px;border-radius:12px;background:linear-gradient(180deg,#fff,#fcfdff)}
+        /* Why choose */
+        .why{display:flex;gap:16px;margin-top:28px}
+        .why .left{flex:1}
+        .why .right{flex:1}
+        .list{display:flex;flex-direction:column;gap:12px}
 
-    /* Footer */
-    footer{margin-top:36px;padding:22px 0;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+        /* Testimoni */
+        .testimoni{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+        .testimonial{padding:16px;border-radius:12px;background:linear-gradient(180deg,#fff,#fcfdff)}
 
-    /* Responsive */
-    @media (max-width:960px){
-      .hero{grid-template-columns:1fr;}
-      .subpages{grid-template-columns:repeat(2,1fr)}
-      .testimoni{grid-template-columns:repeat(2,1fr)}
-    }
-    @media (max-width:560px){
-      .subpages{grid-template-columns:1fr}
-      .testimoni{grid-template-columns:1fr}
-      .hero h1{font-size:28px}
-    }
+        /* Footer --- INI BAHAGIAN YANG DI BETULKAN --- */
+        footer{
+            margin-top: 36px;
+            padding: 30px 20px; /* Tambah padding atas bawah */
+            color: var(--muted);
+            text-align: center; /* Tengahkan teks */
+            font-size: 14px;
+        }
 
-    /* small helpers */
-    .muted{color:var(--muted)}
-    .kicker{font-size:13px;color:var(--muted);font-weight:600}
-    .pill{background:rgba(26,43,76,0.06);padding:6px 10px;border-radius:999px;font-weight:600;font-size:13px}
-  </style>
+        /* Responsive */
+        @media (max-width:960px){
+            .hero{grid-template-columns:1fr;}
+            .subpages{grid-template-columns:repeat(2,1fr)}
+            .testimoni{grid-template-columns:repeat(2,1fr)}
+        }
+        @media (max-width:560px){
+            .subpages{grid-template-columns:1fr}
+            .testimoni{grid-template-columns:1fr}
+            .hero h1{font-size:28px}
+        }
+
+        /* small helpers */
+        .muted{color:var(--muted)}
+        .kicker{font-size:13px;color:var(--muted);font-weight:600}
+        .pill{background:rgba(26,43,76,0.06);padding:6px 10px;border-radius:999px;font-weight:600;font-size:13px}
+
+
+        /* BAHAGIAN TAMBAHAN 2: CSS UNTUK KAD BISNES
+          Ini adalah CSS daripada fail sebelum ini.
+        */
+        
+        /* ================= Kad 3D berisi (extruded) ================= */
+        :root { --thk: 14px; }
+        .scene { perspective: 1400px; }
+        .card3d { 
+            position: relative; 
+            transform-style: preserve-3d; 
+            transform: rotateX(0) rotateY(0); 
+            transition: transform 80ms linear, box-shadow .2s; 
+            border-radius: 12px; 
+            background: #fff; 
+            overflow: visible; 
+            box-shadow: 0 24px 40px -20px rgba(2,132,199,.35), 0 18px 36px -18px rgba(15,23,42,.30), 0 6px 14px rgba(0,0,0,.18); 
+        }
+        .card3d.is-dragging { cursor: grabbing; }
+        .face { 
+            position:absolute; 
+            inset:0; 
+            backface-visibility:hidden; 
+            border-radius:12px; 
+            overflow:hidden; 
+        }
+        .face img { 
+            width:100%; 
+            height:100%; 
+            object-fit:fill; 
+        }
+        .front { transform: translateZ(calc(var(--thk)/2)); }
+        .back  { transform: rotateY(180deg) translateZ(calc(var(--thk)/2)); }
+        .side { 
+            position:absolute; 
+            background: linear-gradient(180deg,#e5e7eb,#cbd5e1 60%,#94a3b8); 
+            box-shadow: inset 0 0 6px rgba(0,0,0,.12); 
+        }
+        .side.left    { 
+            width:var(--thk); 
+            height:100%; 
+            left:0;  
+            top:0; 
+            transform: rotateY(-90deg) translateZ(calc(50% - var(--thk)/2)); 
+            transform-origin:left center;  
+            border-radius:8px; 
+        }
+        .side.right  { 
+            width:var(--thk); 
+            height:100%; 
+            right:0; 
+            top:0; 
+            transform: rotateY( 90deg) translateZ(calc(50% - var(--thk)/2)); 
+            transform-origin:right center; 
+            border-radius:8px; 
+        }
+        .side.top     { 
+            height:var(--thk); 
+            width:100%; 
+            left:0;  
+            top:0; 
+            transform: rotateX( 90deg) translateZ(calc(50% - var(--thk)/2)); 
+            transform-origin:center top;   
+            border-radius:8px; 
+            background: linear-gradient(90deg,#e5e7eb,#cbd5e1 60%,#94a3b8); 
+        }
+        .side.bottom { 
+            height:var(--thk); 
+            width:100%; 
+            left:0;  
+            bottom:0; 
+            transform: rotateX(-90deg) translateZ(calc(50% - var(--thk)/2)); 
+            transform-origin:center bottom; 
+            border-radius:8px; 
+            background: linear-gradient(90deg,#e5e7eb,#cbd5e1 60%,#94a3b8); 
+        }
+
+        /* Balloon (avatar) + Modal */
+        .float-badge { 
+            position:fixed; 
+            right:18px; 
+            bottom:22px; 
+            z-index:70; 
+            display:flex; 
+            align-items:center; 
+            gap:.5rem; 
+            animation:bob 2.6s ease-in-out infinite; 
+        }
+        .speech { 
+            background:#0ea5e9; 
+            color:#fff; 
+            padding:.5rem .7rem; 
+            border-radius:9999px; 
+            font-size:.8rem; 
+            box-shadow:0 10px 20px rgba(14,165,233,.25); 
+            position:relative; 
+        }
+        .speech:after { 
+            content:""; 
+            position:absolute; 
+            right:-6px; 
+            bottom:10px; 
+            width:10px; 
+            height:10px; 
+            background:#0ea5e9; 
+            transform:rotate(45deg); 
+        }
+        @keyframes bob { 
+            0%,100%{transform:translateY(0)} 
+            50%{transform:translateY(-6px)} 
+        }
+        .glass { 
+            background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.35)); 
+            backdrop-filter: blur(8px); 
+        }
+
+        /* Zoom overlay */
+        #zoomImg.fit  { 
+            max-width:92vw; 
+            max-height:92vh; 
+            object-fit:contain; 
+        }
+        #zoomImg.full { 
+            max-width:none; 
+            max-height:none; 
+        }
+
+    </style>
 </head>
 <body style="margin:0;font-family:Poppins,Arial,sans-serif;background:#f7f7f7;color:#1a2b4c;">
     <header style="padding:40px 20px;text-align:center;background:#1a2b4c;color:white;">
-        <h1 style="margin:0;font-size:32px;font-weight:700;">Hafizul Takaful</h1>
-        <p style="margin-top:10px;font-size:16px;opacity:0.9;">Perlindungan yang jelas & mudah</p>
+        <div style="display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;">
+            <img src="https://i.ibb.co/zTsc152b/unnamed.jpg" alt="Logo Prudential" style="width:90px;height:50px;object-fit:contain;" />
+            <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Logo Shazay" style="width:60px;height:60px;border-radius:50%;object-fit:cover;" />
+        </div>
+        <h1 style="margin:10px 0 0 0;font-size:32px;font-weight:700;">Hafizul Takaful</h1>
     </header>
 
-    <section style="padding:80px 20px;text-align:center;">
+    <section style="padding:80px 20px 40px 20px;text-align:center;">
         <h2 style="font-size:24px;font-weight:600;margin-bottom:20px;color:#1a2b4c;">Selamat Datang</h2>
         <p style="max-width:500px;margin:0 auto 40px auto;opacity:0.8;">Laman utama ringkas untuk memudahkan anda pilih perkhidmatan takaful yang diperlukan.</p>
 
-        <div style="margin-top:40px;padding:40px;border:2px dashed #d4a73a;border-radius:12px;max-width:600px;margin-left:auto;margin-right:auto;color:#555;">
-            Ruang untuk butang / link sub-page (quotation, medical card, hibah, dsb.)
+        <div style="margin-top: 30px; display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; max-width: 400px; margin-left: auto; margin-right: auto;">
+
+            <a href="https://qoutation.hafizulcheamid.com/" 
+               target="_blank" 
+               rel="noopener" 
+               style="display: block; width: 100%; background-color: #1a2b4c; color: white; padding: 16px 28px; border-radius: 12px; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 0 4px 12px rgba(26,43,76,0.15); transition: all 0.2s ease;">
+                Quick Quotation
+                <span style="display: block; font-size: 12px; font-weight: 400; opacity: 0.8; margin-top: 4px;">(Sebut Harga Pantas)</span>
+            </a>
+
+            <a href="https://linktr.ee/hafizulca" 
+               target="_blank" 
+               rel="noopener" 
+               style="display: block; width: 100%; background-color: #1a2b4c; color: white; padding: 16px 28px; border-radius: 12px; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 0 4px 12px rgba(26,43,76,0.15); transition: all 0.2s ease;">
+                Lain Lain Perkhidmatan
+                <span style="display: block; font-size: 12px; font-weight: 400; opacity: 0.8; margin-top: 4px;">(Linktree)</span>
+            </a>
+
+            <a href="https://wa.me/601125517767" 
+               target="_blank" 
+               rel="noopener" 
+               style="display: block; width: 100%; background-color: #25D366; color: white; padding: 16px 28px; border-radius: 12px; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 0 4px 12px rgba(37,211,102,0.2); transition: all 0.2s ease;">
+                WhatsApp Saya
+                <span style="display: block; font-size: 12px; font-weight: 400; opacity: 0.8; margin-top: 4px;">(Direct Mesej)</span>
+            </a>
+
+            <a href="tel:+601125517767" 
+               style="display: block; width: 100%; background-color: #6b7280; color: white; padding: 16px 28px; border-radius: 12px; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 0 4px 12px rgba(107,114,128,0.2); transition: all 0.2s ease;">
+                Call Saya
+                <span style="display: block; font-size: 12px; font-weight: 400; opacity: 0.8; margin-top: 4px;">(Direct Call)</span>
+            </a>
+
         </div>
     </section>
+
+    <footer>
+        &copy; 2025 Hafizul Takaful. Hak Cipta Terpelihara.
+    </footer>
+
+    
+    <div id="bc-badge" class="float-badge" style="bottom:22px; right:18px;">
+        <div class="speech hidden sm:block">Tanya saya 🚀</div>
+        <button class="relative w-14 h-14 rounded-full ring-4 ring-white shadow-lg overflow-hidden focus:outline-none focus:ring-4 focus:ring-sky-300" aria-label="Buka kad bisnes">
+            <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Avatar" class="w-full h-full object-cover">
+            <span class="absolute inset-0 rounded-full animate-ping bg-sky-500/25"></span>
+        </button>
+    </div>
+
+    <div id="bc-overlay" class="hidden fixed inset-0 z-[80] bg-black/40 backdrop-blur-sm"></div>
+
+    <div id="bc-modal" class="hidden fixed inset-0 z-[90] p-4 grid place-items-center">
+        <div class="glass rounded-2xl border border-white/30 shadow-2xl p-5 w-full max-w-xl relative">
+            
+            <button id="bc-close" class="absolute top-3 right-3 p-2 rounded-lg hover:bg-white/60 text-slate-800" aria-label="Tutup">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div id="scene" class="scene mx-auto">
+                <div id="card3d" class="card3d select-none">
+                    <div class="face front" id="frontFace">
+                        <img id="imgFront" src="https://i.ibb.co/kV8dVVS0/Scanned-Document-06-10-2025-at-22-20-01.jpg" alt="Kad Bisnes Depan">
+                    </div>
+                    <div class="face back" id="backFace">
+                        <img id="imgBack"  src="https://i.ibb.co/MD2DP338/Scanned-Document-06-10-2025-at-22-20-45.jpg" alt="Kad Bisnes Belakang">
+                    </div>
+                    
+                    <div class="side left"></div><div class="side right"></div><div class="side top"></div><div class="side bottom"></div>
+                </div>
+            </div>
+            
+            <div class="mt-3 flex justify-between text-xs text-slate-600">
+                <button id="flip"  class="px-3 py-1 rounded-lg border border-slate-300 bg-white/80 hover:bg-white">Flip</button>
+                <button id="reset" class="px-3 py-1 rounded-lg border border-slate-300 bg-white/80 hover:bg-white">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="zoomOverlay" class="hidden fixed inset-0 z-[100] bg-black/80">
+        <div id="zoomScroll" class="w-full h-full overflow-auto flex items-center justify-center p-4">
+            <img id="zoomImg" class="fit select-none" src="" alt="Zoomed Image">
+        </div>
+        <div class="absolute top-3 right-3 flex gap-2">
+            <button id="zoomToggle" class="px-3 py-1 rounded-lg bg-white/90 text-slate-800 text-sm">100%</button>
+            <button id="zoomClose"  class="px-3 py-1 rounded-lg bg-white/90 text-slate-800 text-sm">Close</button>
+        </div>
+    </div>
+    
+    <script>
+        // 3D Card Functionality
+        const badge     = document.getElementById('bc-badge');
+        const overlay   = document.getElementById('bc-overlay');
+        const modal     = document.getElementById('bc-modal');
+        const closeX    = document.getElementById('bc-close');
+
+        function openModal(){ 
+            if (overlay) overlay.classList.remove('hidden'); 
+            if (modal) modal.classList.remove('hidden'); 
+            autoSpin(true);
+        }
+        function closeModal(){ 
+            if (modal) modal.classList.add('hidden'); 
+            if (overlay) overlay.classList.add('hidden'); 
+            autoSpin(false);
+        }
+
+        if (badge) badge.addEventListener('click', openModal);
+        if (overlay) overlay.addEventListener('click', closeModal);
+        if (closeX) closeX.addEventListener('click', closeModal);
+        document.addEventListener('keydown', e => { 
+            if(e.key==='Escape' && modal && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        const scene     = document.getElementById('scene');
+        const card      = document.getElementById('card3d');
+        const imgF      = document.getElementById('imgFront');
+        const imgB      = document.getElementById('imgBack');
+        const frontEl   = document.getElementById('frontFace');
+        const backEl    = document.getElementById('backFace');
+        const btnR      = document.getElementById('reset');
+        const btnFlip   = document.getElementById('flip');
+
+        let rotX=0, rotY=0, dragging=false, lastX=0, lastY=0, spinTimer=null, flipped=false;
+
+        function render(){ 
+            if (!card) return;
+            const viewY = flipped ? rotY + 180 : rotY; 
+            card.style.transform = `rotateX(${rotX}deg) rotateY(${viewY}deg)`; 
+        }
+        function autoSpin(run){ 
+            if(spinTimer){ clearInterval(spinTimer); spinTimer=null; } 
+            if(run){ 
+                spinTimer=setInterval(()=>{ rotY += 0.6; render(); }, 30); 
+            } 
+        }
+        function pos(e){ 
+            return e.touches? {x:e.touches[0].clientX, y:e.touches[0].clientY} : {x:e.clientX, y:e.clientY}; 
+        }
+        function down(e){ 
+            if (!card) return;
+            dragging=true; 
+            card.classList.add('is-dragging'); 
+            const p=pos(e); 
+            lastX=p.x; lastY=p.y; 
+            autoSpin(false);
+        }
+        function move(e){ 
+            if(!dragging || !card) return; 
+            const p=pos(e); 
+            const dx=p.x-lastX, dy=p.y-lastY; 
+            rotY += dx * 0.4; 
+            rotX -= dy * 0.4; 
+            rotX = Math.max(-60, Math.min(60, rotX));
+            lastX=p.x; lastY=p.y; 
+            render(); 
+        }
+        function up(){ 
+            if (!card) return;
+            dragging=false; 
+            card.classList.remove('is-dragging'); 
+        }
+        
+        if (card) {
+            card.addEventListener('mousedown', down); 
+            card.addEventListener('touchstart', down, {passive:true});
+        }
+        window.addEventListener('mousemove', move); 
+        window.addEventListener('touchmove', move, {passive:true});
+        window.addEventListener('mouseup', up);    
+        window.addEventListener('touchend', up);
+
+        if (btnFlip) btnFlip.addEventListener('click', ()=>{ flipped=!flipped; render(); });
+        if (btnR) btnR.addEventListener('click', ()=>{ rotX=0; rotY=0; flipped=false; render(); autoSpin(true); });
+
+        function fitToImage(){
+            if (!imgF || !scene || !card) return;
+            const nw = imgF.naturalWidth, nh = imgF.naturalHeight;
+            if(!nw || !nh) return;
+            
+            const ratio = nh / nw;
+            const maxW = Math.min(360, window.innerWidth - 48);
+            const maxH = Math.min(560, window.innerHeight - 200);
+            
+            let w = maxW, h = w * ratio;
+            if (h > maxH){ h = maxH; w = h / ratio; }
+            
+            scene.style.width = w + 'px';
+            scene.style.height = h + 'px';
+            card.style.width  = w + 'px';
+            card.style.height = h + 'px';
+        }
+        
+        function initCard(){ 
+            fitToImage(); 
+            render(); 
+        }
+        
+        if (imgF) {
+            if (imgF.complete) initCard();
+            else imgF.addEventListener('load', initCard);
+        }
+        window.addEventListener('resize', fitToImage);
+
+        // Zoom functionality
+        const zoomOverlay = document.getElementById('zoomOverlay');
+        const zoomImg     = document.getElementById('zoomImg');
+        const zoomScroll  = document.getElementById('zoomScroll');
+        const zoomClose   = document.getElementById('zoomClose');
+        const zoomToggle  = document.getElementById('zoomToggle');
+        let zoomMode='fit';
+
+        function openZoom(src){ 
+            if (!zoomImg || !zoomOverlay || !zoomScroll) return;
+            zoomImg.src = src; 
+            zoomMode='fit'; 
+            zoomImg.classList.remove('full'); 
+            zoomImg.classList.add('fit'); 
+            zoomOverlay.classList.remove('hidden'); 
+            autoSpin(false);
+            zoomScroll.scrollTop=0; 
+            zoomScroll.scrollLeft=0; 
+        }
+        function closeZoom(){ 
+            if (!zoomOverlay) return;
+            zoomOverlay.classList.add('hidden'); 
+            if (modal && !modal.classList.contains('hidden')) {
+                autoSpin(true);
+            }
+        }
+        function toggleZoom(){ 
+            if (!zoomImg || !zoomToggle || !zoomScroll) return;
+            if(zoomMode==='fit'){ 
+                zoomMode='full'; 
+                zoomImg.classList.remove('fit'); 
+                zoomImg.classList.add('full'); 
+                zoomToggle.textContent='Fit'; 
+            } else { 
+                zoomMode='fit'; 
+                zoomImg.classList.remove('full'); 
+                zoomImg.classList.add('fit'); 
+                zoomToggle.textContent='100%'; 
+                zoomScroll.scrollTop=0; 
+                zoomScroll.scrollLeft=0; 
+            } 
+        }
+
+        if (frontEl) frontEl.addEventListener('click', ()=>{ if(!dragging) openZoom(imgF.src); });
+        if (backEl) backEl.addEventListener('click', ()=>{ if(!dragging) openZoom(imgB.src); });
+        if (zoomClose) zoomClose.addEventListener('click', closeZoom);
+        if (zoomToggle) zoomToggle.addEventListener('click', toggleZoom);
+        
+        document.addEventListener('keydown', (e)=>{ 
+            if(zoomOverlay && !zoomOverlay.classList.contains('hidden') && e.key==='Escape') {
+                closeZoom();
+            }
+        });
+        if (zoomOverlay) zoomOverlay.addEventListener('click', (e)=>{ 
+            if(e.target === zoomOverlay) closeZoom(); 
+        });
+    </script>
 </body>
 </html>
