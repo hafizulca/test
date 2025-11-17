@@ -36,6 +36,7 @@
             background-color: #ffffff;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(0, 0, 0, 0.05);
             font-family: 'Inter', sans-serif;
+            display: block; /* Default display */
         }
 
         .floating-clock::after {
@@ -156,7 +157,7 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             font-family: 'Inter', sans-serif;
             overflow: hidden;
-            display: flex;
+            display: flex; /* Default display */
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -270,6 +271,14 @@
 
             #bc-modal .glass {
                 padding: 12px; /* Reduce padding on modal */
+            }
+        }
+
+        /* === HIDE ON PORTRAIT === */
+        @media (orientation: portrait) {
+            .floating-clock,
+            .floating-calendar {
+                display: none;
             }
         }
 
@@ -875,9 +884,6 @@
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Page loaded successfully');
-            console.log('Clock element:', document.getElementById('floatingClock'));
-            console.log('Calendar element:', document.querySelector('.floating-calendar'));
-            console.log('Business card button:', document.getElementById('bc-badge'));
         });
     </script>
 </body>
