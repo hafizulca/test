@@ -259,6 +259,11 @@
                 font-size: 16px;
                 padding: 18px 15px;
             }
+            
+            /* Position new promo badge above business card */
+            #promo-badge {
+                bottom: 90px !important; /* 10px (bottom) + 70px (bc height) + 10px (gap) */
+            }
 
             .float-badge {
                 right: 10px;
@@ -348,20 +353,29 @@
             position: relative;
         }
 
-        /* === FLOATING BUSINESS CARD STYLES === */
+        /* === FLOATING BADGE STYLES (SHARED) === */
         .float-badge {
             position: fixed;
             right: 18px;
-            bottom: 22px;
             z-index: 70;
             display: flex;
             align-items: center;
             gap: .5rem;
             animation: bob 2.6s ease-in-out infinite;
         }
+        
+        /* Business Card Badge */
+        #bc-badge {
+             bottom: 22px;
+        }
+        
+        /* Promotion Badge - Positioned above BC Badge */
+        #promo-badge {
+            bottom: 100px; /* 22px (bottom) + 56px (bc height) + 22px (gap) */
+        }
 
         .speech {
-            background: #0ea5e9;
+            background: #0ea5e9; /* sky-500 */
             color: #fff;
             padding: .5rem .7rem;
             border-radius: 9999px;
@@ -377,9 +391,20 @@
             bottom: 10px;
             width: 10px;
             height: 10px;
-            background: #0ea5e9;
+            background: #0ea5e9; /* sky-500 */
             transform: rotate(45deg);
         }
+        
+        /* Promo Speech Bubble Style (Red) */
+        .speech.speech-promo {
+            background: #ef4444; /* red-500 */
+            box-shadow: 0 10px 20px rgba(239,68,68,.25);
+        }
+        
+        .speech.speech-promo:after {
+            background: #ef4444; /* red-500 */
+        }
+
 
         @keyframes bob {
             0%,100%{transform:translateY(0)}
@@ -424,7 +449,7 @@
             background: linear-gradient(180deg,#e5e7eb,#cbd5e1 60%,#94a3b8);
             box-shadow: inset 0 0 6px rgba(0,0,0,.12);
         }
-        .side.left     {
+        .side.left    {
             width:var(--thk);
             height:100%;
             left:0;
@@ -442,7 +467,7 @@
             transform-origin:right center;
             border-radius:8px;
         }
-        .side.top      {
+        .side.top     {
             height:var(--thk);
             width:100%;
             left:0;
@@ -464,7 +489,7 @@
         }
 
         /* === MODAL STYLES === */
-        #bc-overlay, #bc-modal, #zoomOverlay {
+        #bc-overlay, #bc-modal, #zoomOverlay, #promo-overlay {
             transition: opacity 0.3s ease;
         }
 
@@ -477,91 +502,8 @@
             max-width:none;
             max-height:none;
         }
-
-        /* === FOOTER STYLES === */
-        footer {
-            margin-top: 36px;
-            padding: 30px 20px;
-            color: var(--muted);
-            text-align: center;
-            font-size: 14px;
-        }
-
-        /* === PROMOTION STYLES === */
-        .promotion-section {
-            width: 100%;
-            margin-bottom: 30px;
-        }
-
-        .promotion-card {
-            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-            color: white;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 6px 16px rgba(255, 107, 107, 0.3);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .promotion-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
-        }
-
-        .promotion-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ffd700, #ffed4e);
-        }
-
-        .promotion-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .promotion-subtitle {
-            font-size: 16px;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .price-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 8px;
-        }
-
-        .old-price {
-            font-size: 18px;
-            text-decoration: line-through;
-            opacity: 0.8;
-        }
-
-        .new-price {
-            font-size: 24px;
-            font-weight: 700;
-            color: #ffd700;
-        }
-
-        .promotion-note {
-            font-size: 12px;
-            opacity: 0.9;
-            margin-top: 8px;
-        }
-
-        /* Promotion Modal Styles */
+        
+        /* === PROMOTION MODAL STYLES (BARU) === */
         #promo-overlay {
             position: fixed;
             top: 0;
@@ -666,6 +608,15 @@
         .promo-indicator.active {
             background: #ff6b6b;
         }
+        
+        /* === FOOTER STYLES === */
+        footer {
+            margin-top: 36px;
+            padding: 30px 20px;
+            color: var(--muted);
+            text-align: center;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body style="margin:0;font-family:Poppins,Arial,sans-serif;background:#f7f7f7;color:#1a2b4c;">
@@ -712,19 +663,6 @@
             <p style="max-width:500px;margin:0 auto 40px auto;opacity:0.8;">Sila Pilih Perkhidmatan di bawah</p>
         </div>
 
-        <!-- Promotion Card -->
-        <div class="promotion-section">
-            <div class="promotion-card" id="promotion-card">
-                <div class="promotion-title">Promotion Year End Sale</div>
-                <div class="promotion-subtitle">Cover Diturunkan</div>
-                <div class="price-container">
-                    <div class="old-price">Rm350,000</div>
-                    <div class="new-price">Rm250,000</div>
-                </div>
-                <div class="promotion-note">Klik untuk lihat butiran promosi</div>
-            </div>
-        </div>
-
         <div class="button-grid">
             <a href="https://qoutation.hafizulcheamid.com/" 
                 target="_blank" 
@@ -766,7 +704,6 @@
         &copy; 2025 Hafizul Takaful. Hak Cipta Terpelihara.
     </footer>
 
-    <!-- Promotion Modal -->
     <div id="promo-overlay">
         <div id="promo-modal">
             <button id="promo-close">✕</button>
@@ -778,6 +715,14 @@
                 <div class="promo-indicator" data-index="1"></div>
             </div>
         </div>
+    </div>
+
+    <div id="promo-badge" class="float-badge">
+        <div class="speech speech-promo">Year End Sale</div>
+        <button class="relative w-14 h-14 rounded-full ring-4 ring-white shadow-lg overflow-hidden focus:outline-none focus:ring-4 focus:ring-red-300 bg-red-500 text-white flex items-center justify-center" aria-label="Buka Promosi">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 0 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 1 0-5C13 2 12 7 12 7z"/></svg>
+            <span class="absolute inset-0 rounded-full animate-ping bg-red-500/25"></span>
+        </button>
     </div>
 
     <div id="bc-badge" class="float-badge">
@@ -832,345 +777,356 @@
     
     <script>
         // --- ANALOG CLOCK SCRIPT ---
-        const hourHand = document.querySelector('[data-hour-hand]');
-        const minuteHand = document.querySelector('[data-minute-hand]');
-        const secondHand = document.querySelector('[data-second-hand]');
-        const marksContainer = document.getElementById('clockMarks');
+        (function() {
+            const hourHand = document.querySelector('[data-hour-hand]');
+            const minuteHand = document.querySelector('[data-minute-hand]');
+            const secondHand = document.querySelector('[data-second-hand]');
+            const marksContainer = document.getElementById('clockMarks');
 
-        function setClock() {
-            const currentDate = new Date();
-            const seconds = currentDate.getSeconds();
-            const milliseconds = currentDate.getMilliseconds();
-            const minutes = currentDate.getMinutes();
-            const hours = currentDate.getHours();
+            function setClock() {
+                const currentDate = new Date();
+                const seconds = currentDate.getSeconds();
+                const milliseconds = currentDate.getMilliseconds();
+                const minutes = currentDate.getMinutes();
+                const hours = currentDate.getHours();
 
-            const secondsRatio = (seconds + milliseconds / 1000) / 60;
-            const minutesRatio = (secondsRatio + minutes) / 60;
-            const hoursRatio = (minutesRatio + hours) / 12;
+                const secondsRatio = (seconds + milliseconds / 1000) / 60;
+                const minutesRatio = (secondsRatio + minutes) / 60;
+                const hoursRatio = (minutesRatio + hours) / 12;
 
-            setRotation(secondHand, secondsRatio);
-            setRotation(minuteHand, minutesRatio);
-            setRotation(hourHand, hoursRatio);
-        }
-
-        function setRotation(element, rotationRatio) {
-            if (element) {
-                const rotation = rotationRatio * 360;
-                element.style.transform = `rotate(${rotation + 90}deg)`;
+                setRotation(secondHand, secondsRatio);
+                setRotation(minuteHand, minutesRatio);
+                setRotation(hourHand, hoursRatio);
             }
-        }
 
-        function createMarks() {
-            if (!marksContainer) return;
-            marksContainer.innerHTML = '';
-
-            for (let i = 0; i < 60; i++) {
-                const mark = document.createElement('div');
-                mark.classList.add('clock-mark');
-                
-                if (i % 5 === 0) {
-                    mark.classList.add('hour-mark');
-                } else {
-                    mark.classList.add('minute-mark');
+            function setRotation(element, rotationRatio) {
+                if (element) {
+                    const rotation = rotationRatio * 360;
+                    element.style.transform = `rotate(${rotation + 90}deg)`;
                 }
-                
-                mark.style.transform = `rotate(${i * 6}deg)`;
-                
-                const markLine = document.createElement('span');
-                mark.appendChild(markLine);
-                
-                marksContainer.appendChild(mark);
             }
-        }
 
-        createMarks();
-
-        function animateClock() {
-            setClock();
-            requestAnimationFrame(animateClock);
-        }
-
-        animateClock();
+            function createMarks() {
+                if (!marksContainer) return;
+                marksContainer.innerHTML = '';
+                for (let i = 0; i < 60; i++) {
+                    const mark = document.createElement('div');
+                    mark.classList.add('clock-mark');
+                    mark.classList.add(i % 5 === 0 ? 'hour-mark' : 'minute-mark');
+                    mark.style.transform = `rotate(${i * 6}deg)`;
+                    mark.appendChild(document.createElement('span'));
+                    marksContainer.appendChild(mark);
+                }
+            }
+            createMarks();
+            
+            function animateClock() {
+                setClock();
+                requestAnimationFrame(animateClock);
+            }
+            animateClock();
+        })();
 
         // --- CALENDAR SCRIPT ---
-        const monthNames = [
-            'Januari', 'Februari', 'Mac', 'April', 'Mei', 'Jun',
-            'Julai', 'Ogos', 'September', 'Oktober', 'November', 'Disember'
-        ];
-        
-        function updateCalendar() {
-            const currentDate = new Date();
-            const day = currentDate.getDate();
-            const month = currentDate.getMonth();
+        (function() {
+            const monthNames = [
+                'Januari', 'Februari', 'Mac', 'April', 'Mei', 'Jun',
+                'Julai', 'Ogos', 'September', 'Oktober', 'November', 'Disember'
+            ];
             
-            document.getElementById('calendar-day').textContent = day;
-            document.getElementById('calendar-month').textContent = monthNames[month];
-        }
-        
-        updateCalendar();
-
-        // --- PROMOTION MODAL FUNCTIONALITY ---
-        const promotionCard = document.getElementById('promotion-card');
-        const promoOverlay = document.getElementById('promo-overlay');
-        const promoModal = document.getElementById('promo-modal');
-        const promoImage = document.getElementById('promo-image');
-        const promoClose = document.getElementById('promo-close');
-        const promoPrev = document.getElementById('promo-prev');
-        const promoNext = document.getElementById('promo-next');
-        const promoIndicators = document.querySelectorAll('.promo-indicator');
-
-        const promoImages = [
-            'https://i.ibb.co/kt9czYT/photo-1-2025-11-17-23-51-40.jpg',
-            'https://i.ibb.co/q3M4TKh7/photo-2-2025-11-17-23-51-40.jpg'
-        ];
-
-        let currentImageIndex = 0;
-
-        function openPromoModal() {
-            promoOverlay.classList.add('active');
-            showImage(currentImageIndex);
-        }
-
-        function closePromoModal() {
-            promoOverlay.classList.remove('active');
-        }
-
-        function showImage(index) {
-            currentImageIndex = index;
-            promoImage.src = promoImages[index];
-            
-            // Update indicators
-            promoIndicators.forEach((indicator, i) => {
-                if (i === index) {
-                    indicator.classList.add('active');
-                } else {
-                    indicator.classList.remove('active');
-                }
-            });
-        }
-
-        function nextImage() {
-            currentImageIndex = (currentImageIndex + 1) % promoImages.length;
-            showImage(currentImageIndex);
-        }
-
-        function prevImage() {
-            currentImageIndex = (currentImageIndex - 1 + promoImages.length) % promoImages.length;
-            showImage(currentImageIndex);
-        }
-
-        // Event listeners for promotion
-        promotionCard.addEventListener('click', openPromoModal);
-        promoClose.addEventListener('click', closePromoModal);
-        promoNext.addEventListener('click', nextImage);
-        promoPrev.addEventListener('click', prevImage);
-
-        // Close modal when clicking outside the image
-        promoOverlay.addEventListener('click', (e) => {
-            if (e.target === promoOverlay) {
-                closePromoModal();
+            function updateCalendar() {
+                const currentDate = new Date();
+                const dayEl = document.getElementById('calendar-day');
+                const monthEl = document.getElementById('calendar-month');
+                
+                if (dayEl) dayEl.textContent = currentDate.getDate();
+                if (monthEl) monthEl.textContent = monthNames[currentDate.getMonth()];
             }
-        });
+            
+            updateCalendar();
+            // Update sekali setiap minit
+            setInterval(updateCalendar, 60000); 
+        })();
 
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (promoOverlay.classList.contains('active')) {
-                if (e.key === 'Escape') {
-                    closePromoModal();
-                } else if (e.key === 'ArrowRight') {
-                    nextImage();
-                } else if (e.key === 'ArrowLeft') {
-                    prevImage();
+        // --- PROMOTION MODAL FUNCTIONALITY (BARU) ---
+        (function() {
+            const promoBadge = document.getElementById('promo-badge');
+            const promoOverlay = document.getElementById('promo-overlay');
+            const promoModal = document.getElementById('promo-modal');
+            const promoImage = document.getElementById('promo-image');
+            const promoClose = document.getElementById('promo-close');
+            const promoPrev = document.getElementById('promo-prev');
+            const promoNext = document.getElementById('promo-next');
+            const promoIndicators = document.querySelectorAll('.promo-indicator');
+
+            // --- LINK FLYER ANDA ---
+            const promoImages = [
+                'https://i.ibb.co/kt9czYT/photo-1-2025-11-17-23-51-40.jpg',
+                'https://i.ibb.co/q3M4TKh7/photo-2-2025-11-17-23-51-40.jpg'
+            ];
+
+            let currentImageIndex = 0;
+
+            function openPromoModal() {
+                if (promoOverlay) {
+                    promoOverlay.classList.add('active');
+                    showImage(currentImageIndex);
                 }
             }
-        });
 
-        // Indicator clicks
-        promoIndicators.forEach((indicator) => {
-            indicator.addEventListener('click', () => {
-                const index = parseInt(indicator.getAttribute('data-index'));
-                showImage(index);
+            function closePromoModal() {
+                if (promoOverlay) {
+                    promoOverlay.classList.remove('active');
+                }
+            }
+
+            function showImage(index) {
+                if (index < 0 || index >= promoImages.length) return;
+                
+                currentImageIndex = index;
+                if (promoImage) {
+                    promoImage.src = promoImages[index];
+                }
+                
+                promoIndicators.forEach((indicator, i) => {
+                    if (indicator) {
+                        indicator.classList.toggle('active', i === index);
+                    }
+                });
+            }
+
+            function nextImage() {
+                currentImageIndex = (currentImageIndex + 1) % promoImages.length;
+                showImage(currentImageIndex);
+            }
+
+            function prevImage() {
+                currentImageIndex = (currentImageIndex - 1 + promoImages.length) % promoImages.length;
+                showImage(currentImageIndex);
+            }
+
+            // Event listeners
+            if (promoBadge) promoBadge.addEventListener('click', openPromoModal);
+            if (promoClose) promoClose.addEventListener('click', closePromoModal);
+            if (promoNext) promoNext.addEventListener('click', nextImage);
+            if (promoPrev) promoPrev.addEventListener('click', prevImage);
+
+            if (promoOverlay) {
+                promoOverlay.addEventListener('click', (e) => {
+                    if (e.target === promoOverlay) {
+                        closePromoModal();
+                    }
+                });
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (promoOverlay && promoOverlay.classList.contains('active')) {
+                    if (e.key === 'Escape') closePromoModal();
+                    else if (e.key === 'ArrowRight') nextImage();
+                    else if (e.key === 'ArrowLeft') prevImage();
+                }
             });
-        });
+
+            promoIndicators.forEach((indicator) => {
+                if (indicator) {
+                    indicator.addEventListener('click', () => {
+                        const index = parseInt(indicator.getAttribute('data-index'));
+                        if (!isNaN(index)) {
+                            showImage(index);
+                        }
+                    });
+                }
+            });
+
+            // Set imej pertama
+            if (promoImages.length > 0) {
+                showImage(0);
+            }
+        })();
+
 
         // --- BUSINESS CARD FUNCTIONALITY ---
-        const badge = document.getElementById('bc-badge');
-        const overlay = document.getElementById('bc-overlay');
-        const modal = document.getElementById('bc-modal');
-        const closeX = document.getElementById('bc-close');
-
-        function openModal(){ 
-            overlay.classList.remove('hidden');
-            modal.classList.remove('hidden');
-            autoSpin(true);
-        }
-
-        function closeModal(){ 
-            modal.classList.add('hidden');
-            overlay.classList.add('hidden');
-            autoSpin(false);
-        }
-
-        badge.addEventListener('click', openModal);
-        overlay.addEventListener('click', closeModal);
-        closeX.addEventListener('click', closeModal);
-        
-        document.addEventListener('keydown', e => { 
-            if(e.key === 'Escape' && !modal.classList.contains('hidden')) {
-                closeModal();
-            }
-        });
-
-        // 3D Card Controls
-        const scene = document.getElementById('scene');
-        const card = document.getElementById('card3d');
-        const imgF = document.getElementById('imgFront');
-        const imgB = document.getElementById('imgBack');
-        const frontEl = document.getElementById('frontFace');
-        const backEl = document.getElementById('backFace');
-        const btnR = document.getElementById('reset');
-        const btnFlip = document.getElementById('flip');
-
-        let rotX = 0, rotY = 0, dragging = false, lastX = 0, lastY = 0, spinTimer = null, flipped = false;
-
-        function render(){ 
-            const viewY = flipped ? rotY + 180 : rotY; 
-            card.style.transform = `rotateX(${rotX}deg) rotateY(${viewY}deg)`; 
-        }
-
-        function autoSpin(run){ 
-            if(spinTimer){ clearInterval(spinTimer); spinTimer = null; } 
-            if(run){ 
-                spinTimer = setInterval(() => { rotY += 0.6; render(); }, 30); 
-            } 
-        }
-
-        function pos(e){ 
-            return e.touches ? {x: e.touches[0].clientX, y: e.touches[0].clientY} : {x: e.clientX, y: e.clientY}; 
-        }
-
-        function down(e){ 
-            dragging = true; 
-            card.classList.add('is-dragging'); 
-            const p = pos(e); 
-            lastX = p.x; lastY = p.y; 
-            autoSpin(false);
-        }
-
-        function move(e){ 
-            if(!dragging) return; 
-            const p = pos(e); 
-            const dx = p.x - lastX, dy = p.y - lastY; 
-            rotY += dx * 0.4; 
-            rotX -= dy * 0.4; 
-            rotX = Math.max(-60, Math.min(60, rotX));
-            lastX = p.x; lastY = p.y; 
-            render(); 
-        }
-
-        function up(){ 
-            dragging = false; 
-            card.classList.remove('is-dragging'); 
-        }
-        
-        if (card) {
-            card.addEventListener('mousedown', down); 
-            card.addEventListener('touchstart', down, {passive:true});
-        }
-        window.addEventListener('mousemove', move); 
-        window.addEventListener('touchmove', move, {passive:true});
-        window.addEventListener('mouseup', up);    
-        window.addEventListener('touchend', up);
-
-        if (btnFlip) btnFlip.addEventListener('click', () => { flipped = !flipped; render(); });
-        if (btnR) btnR.addEventListener('click', () => { rotX = 0; rotY = 0; flipped = false; render(); autoSpin(true); });
-
-        function fitToImage(){
-            if (!imgF || !scene || !card) return;
-            const nw = imgF.naturalWidth, nh = imgF.naturalHeight;
-            if(!nw || !nh) return;
+        (function() {
+            const badge = document.getElementById('bc-badge');
+            const overlay = document.getElementById('bc-overlay');
+            const modal = document.getElementById('bc-modal');
+            const closeX = document.getElementById('bc-close');
             
-            const ratio = nh / nw;
-            const maxW = Math.min(360, window.innerWidth - 48);
-            const maxH = Math.min(560, window.innerHeight - 200);
+            const scene = document.getElementById('scene');
+            const card = document.getElementById('card3d');
+            const imgF = document.getElementById('imgFront');
+            const imgB = document.getElementById('imgBack');
+            const frontEl = document.getElementById('frontFace');
+            const backEl = document.getElementById('backFace');
+            const btnR = document.getElementById('reset');
+            const btnFlip = document.getElementById('flip');
             
-            let w = maxW, h = w * ratio;
-            if (h > maxH){ h = maxH; w = h / ratio; }
-            
-            scene.style.width = w + 'px';
-            scene.style.height = h + 'px';
-            card.style.width = w + 'px';
-            card.style.height = h + 'px';
-        }
-        
-        function initCard(){ 
-            fitToImage(); 
-            render(); 
-        }
-        
-        if (imgF) {
-            if (imgF.complete) initCard();
-            else imgF.addEventListener('load', initCard);
-        }
-        
-        window.addEventListener('resize', fitToImage);
+            const zoomOverlay = document.getElementById('zoomOverlay');
+            const zoomImg = document.getElementById('zoomImg');
+            const zoomScroll = document.getElementById('zoomScroll');
+            const zoomClose = document.getElementById('zoomClose');
+            const zoomToggle = document.getElementById('zoomToggle');
 
-        // Zoom functionality
-        const zoomOverlay = document.getElementById('zoomOverlay');
-        const zoomImg = document.getElementById('zoomImg');
-        const zoomScroll = document.getElementById('zoomScroll');
-        const zoomClose = document.getElementById('zoomClose');
-        const zoomToggle = document.getElementById('zoomToggle');
-        let zoomMode = 'fit';
+            let rotX = 0, rotY = 0, dragging = false, lastX = 0, lastY = 0, spinTimer = null, flipped = false;
+            let zoomMode = 'fit';
 
-        function openZoom(src){ 
-            zoomImg.src = src; 
-            zoomMode = 'fit'; 
-            zoomImg.classList.remove('full'); 
-            zoomImg.classList.add('fit'); 
-            zoomOverlay.classList.remove('hidden'); 
-            autoSpin(false);
-            zoomScroll.scrollTop = 0; 
-            zoomScroll.scrollLeft = 0; 
-        }
-
-        function closeZoom(){ 
-            zoomOverlay.classList.add('hidden'); 
-            if (!modal.classList.contains('hidden')) {
+            function openModal(){  
+                if(overlay) overlay.classList.remove('hidden');
+                if(modal) modal.classList.remove('hidden');
                 autoSpin(true);
             }
-        }
 
-        function toggleZoom(){ 
-            if(zoomMode === 'fit'){ 
-                zoomMode = 'full'; 
-                zoomImg.classList.remove('fit'); 
-                zoomImg.classList.add('full'); 
-                zoomToggle.textContent = 'Fit'; 
-            } else { 
-                zoomMode = 'fit'; 
-                zoomImg.classList.remove('full'); 
-                zoomImg.classList.add('fit'); 
-                zoomToggle.textContent = '100%'; 
-                zoomScroll.scrollTop = 0; 
-                zoomScroll.scrollLeft = 0; 
-            } 
-        }
-
-        if (frontEl) frontEl.addEventListener('click', () => { if(!dragging) openZoom(imgF.src); });
-        if (backEl) backEl.addEventListener('click', () => { if(!dragging) openZoom(imgB.src); });
-        if (zoomClose) zoomClose.addEventListener('click', closeZoom);
-        if (zoomToggle) zoomToggle.addEventListener('click', toggleZoom);
-        
-        document.addEventListener('keydown', (e) => { 
-            if(!zoomOverlay.classList.contains('hidden') && e.key === 'Escape') {
-                closeZoom();
+            function closeModal(){  
+                if(modal) modal.classList.add('hidden');
+                if(overlay) overlay.classList.add('hidden');
+                autoSpin(false);
             }
-        });
-        
-        if (zoomOverlay) zoomOverlay.addEventListener('click', (e) => { 
-            if(e.target === zoomOverlay) closeZoom(); 
-        });
+
+            function render(){  
+                if (!card) return;
+                const viewY = flipped ? rotY + 180 : rotY;  
+                card.style.transform = `rotateX(${rotX}deg) rotateY(${viewY}deg)`;  
+            }
+
+            function autoSpin(run){  
+                if(spinTimer){ clearInterval(spinTimer); spinTimer = null; }  
+                if(run){  
+                    spinTimer = setInterval(() => { rotY += 0.6; render(); }, 30);  
+                }  
+            }
+
+            function pos(e){  
+                return e.touches ? {x: e.touches[0].clientX, y: e.touches[0].clientY} : {x: e.clientX, y: e.clientY};  
+            }
+
+            function down(e){  
+                dragging = true;  
+                if (card) card.classList.add('is-dragging');  
+                const p = pos(e);  
+                lastX = p.x; lastY = p.y;  
+                autoSpin(false);
+            }
+
+            function move(e){  
+                if(!dragging) return;  
+                const p = pos(e);  
+                const dx = p.x - lastX, dy = p.y - lastY;  
+                rotY += dx * 0.4;  
+                rotX -= dy * 0.4;  
+                rotX = Math.max(-60, Math.min(60, rotX));
+                lastX = p.x; lastY = p.y;  
+                render();  
+            }
+
+            function up(){  
+                dragging = false;  
+                if (card) card.classList.remove('is-dragging');  
+            }
+            
+            function fitToImage(){
+                if (!imgF || !scene || !card) return;
+                const nw = imgF.naturalWidth, nh = imgF.naturalHeight;
+                if(!nw || !nh) return;
+                
+                const ratio = nh / nw;
+                const maxW = Math.min(360, window.innerWidth - 48);
+                const maxH = Math.min(560, window.innerHeight - 200);
+                
+                let w = maxW, h = w * ratio;
+                if (h > maxH){ h = maxH; w = h / ratio; }
+                
+                scene.style.width = w + 'px';
+                scene.style.height = h + 'px';
+                card.style.width = w + 'px';
+                card.style.height = h + 'px';
+            }
+            
+            function initCard(){  
+                fitToImage();  
+                render();  
+            }
+            
+            function openZoom(src){  
+                if (!zoomImg || !zoomOverlay || !zoomScroll) return;
+                zoomImg.src = src;  
+                zoomMode = 'fit';  
+                zoomImg.classList.remove('full');  
+                zoomImg.classList.add('fit');  
+                zoomOverlay.classList.remove('hidden');  
+                autoSpin(false);
+                zoomScroll.scrollTop = 0;  
+                zoomScroll.scrollLeft = 0;  
+            }
+
+            function closeZoom(){  
+                if (zoomOverlay) zoomOverlay.classList.add('hidden');  
+                if (modal && !modal.classList.contains('hidden')) {
+                    autoSpin(true);
+                }
+            }
+
+            function toggleZoom(){  
+                if (!zoomImg || !zoomToggle || !zoomScroll) return;
+                if(zoomMode === 'fit'){  
+                    zoomMode = 'full';  
+                    zoomImg.classList.remove('fit');  
+                    zoomImg.classList.add('full');  
+                    zoomToggle.textContent = 'Fit';  
+                } else {  
+                    zoomMode = 'fit';  
+                    zoomImg.classList.remove('full');  
+                    zoomImg.classList.add('fit');  
+                    zoomToggle.textContent = '100%';  
+                    zoomScroll.scrollTop = 0;  
+                    zoomScroll.scrollLeft = 0;  
+                }  
+            }
+
+            // --- Business Card Listeners ---
+            if (badge) badge.addEventListener('click', openModal);
+            if (overlay) overlay.addEventListener('click', closeModal);
+            if (closeX) closeX.addEventListener('click', closeModal);
+            
+            document.addEventListener('keydown', e => {  
+                if(e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+
+            if (card) {
+                card.addEventListener('mousedown', down);  
+                card.addEventListener('touchstart', down, {passive:true});
+            }
+            window.addEventListener('mousemove', move);  
+            window.addEventListener('touchmove', move, {passive:true});
+            window.addEventListener('mouseup', up);    
+            window.addEventListener('touchend', up);
+
+            if (btnFlip) btnFlip.addEventListener('click', () => { flipped = !flipped; render(); });
+            if (btnR) btnR.addEventListener('click', () => { rotX = 0; rotY = 0; flipped = false; render(); autoSpin(true); });
+
+            if (imgF) {
+                if (imgF.complete) initCard();
+                else imgF.addEventListener('load', initCard);
+            }
+            window.addEventListener('resize', fitToImage);
+
+            // --- Zoom Listeners ---
+            if (frontEl) frontEl.addEventListener('click', () => { if(!dragging) openZoom(imgF.src); });
+            if (backEl) backEl.addEventListener('click', () => { if(!dragging) openZoom(imgB.src); });
+            if (zoomClose) zoomClose.addEventListener('click', closeZoom);
+            if (zoomToggle) zoomToggle.addEventListener('click', toggleZoom);
+            
+            document.addEventListener('keydown', (e) => {  
+                if(zoomOverlay && !zoomOverlay.classList.contains('hidden') && e.key === 'Escape') {
+                    closeZoom();
+                }
+            });
+            
+            if (zoomOverlay) zoomOverlay.addEventListener('click', (e) => {  
+                if(e.target === zoomOverlay) closeZoom();  
+            });
+        })();
 
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
