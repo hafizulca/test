@@ -6,1291 +6,638 @@
     <title>Hafizul Takaful Solutions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
         :root{
-            --navy: #1a2b4c;
-            --gold: #d4a73a;
-            --muted:#6b7280;
-            --bg:#f7f8fb;
-            --card:#ffffff;
-            --radius:14px;
+            --bg-color: #f0f4f8;
+            --text-main: #1e293b;
         }
+        
         *{box-sizing:border-box}
-        html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--navy)}
-        a{color:inherit;text-decoration:none}
+        
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            background-size: 100% 600px;
+            background-repeat: no-repeat;
+            color: var(--text-main);
+            -webkit-tap-highlight-color: transparent;
+        }
 
-        /* === FLOATING CLOCK STYLES === */
-        .floating-clock {
+        /* === FLOATING WIDGETS (CLOCK & CALENDAR) === */
+        /* Make them look like glass cards */
+        .floating-clock, .floating-calendar {
             position: fixed;
+            z-index: 70;
+            width: 100px;
+            height: 100px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            font-family: 'Outfit', sans-serif;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .floating-clock:hover, .floating-calendar:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .floating-clock {
             top: 20px;
             left: 20px;
-            z-index: 70;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid #333;
-            background-color: #ffffff;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(0, 0, 0, 0.05);
-            font-family: 'Inter', sans-serif;
-            display: block; /* Default display */
+            border-radius: 50%; /* Keep clock round */
         }
 
-        .floating-clock::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 6px;
-            height: 6px;
-            background-color: #333;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 12;
-        }
-
-        .clock-number {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #333;
-            transform: rotate(var(--rotation));
-            padding-top: 8px;
-            box-sizing: border-box;
-        }
-
-        .clock-number span {
-            display: inline-block;
-            transform: rotate(calc(-1 * var(--rotation)));
-        }
-
-        .clock-hand {
-            width: 50%;
-            height: 3px;
-            background-color: #333;
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform-origin: 100%;
-            transform: rotate(90deg);
-            border-radius: 2px;
-        }
-
-        .clock-hand.hour {
-            width: 35%;
-            height: 4px;
-            left: 15%;
-            background-color: #333;
-            z-index: 8;
-        }
-
-        .clock-hand.minute {
-            width: 45%;
-            height: 3px;
-            left: 5%;
-            background-color: #555;
-            z-index: 9;
-        }
-
-        .clock-hand.second {
-            width: 48%;
-            height: 2px;
-            left: 2%;
-            background-color: #e74c3c;
-            z-index: 10;
-        }
-
-        .clock-marks-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-
-        .clock-mark {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-        }
-
-        .clock-mark span {
-            display: block;
-            position: absolute;
-            background-color: #333;
-            top: 1px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .clock-mark.minute-mark span {
-            width: 1px;
-            height: 4px;
-            background-color: #999;
-        }
-
-        .clock-mark.hour-mark span {
-            width: 2px;
-            height: 7px;
-            background-color: #333;
-        }
-
-        /* === FLOATING CALENDAR STYLES === */
         .floating-calendar {
-            position: fixed;
             top: 20px;
-            left: 160px;
-            z-index: 70;
-            width: 120px;
-            height: 120px;
-            border-radius: 12px;
-            background-color: #ffffff;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            font-family: 'Inter', sans-serif;
-            overflow: hidden;
-            display: flex; /* Default display */
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
-
-        .calendar-day {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: #1a2b4c;
-            line-height: 1;
-            margin-bottom: 5px;
-        }
-
-        .calendar-month {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #6b7280;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* === RESPONSIVE STYLES (TABLET) === */
-        @media (max-width: 768px) {
-            .floating-clock {
-                width: 80px;
-                height: 80px;
-                top: 15px;
-                left: 15px;
-            }
-            
-            .floating-calendar {
-                width: 80px;
-                height: 80px;
-                top: 15px;
-                left: 110px;
-                padding: 10px;
-            }
-            
-            .calendar-day {
-                font-size: 2.2rem;
-                margin-bottom: 3px;
-            }
-            
-            .calendar-month {
-                font-size: 0.8rem;
-                letter-spacing: 0.5px;
-            }
-            
-            .clock-number {
-                font-size: 0.7rem;
-                padding-top: 5px;
-            }
-            
-            .clock-hand.hour { width: 35%; height: 3px; left: 15%; }
-            .clock-hand.minute { width: 45%; height: 2px; left: 5%; }
-            .clock-hand.second { width: 48%; height: 1px; left: 2%; }
-        }
-
-        /* === PHONE-SPECIFIC STYLES === */
-        @media (max-width: 480px) {
-            .floating-clock {
-                width: 70px;
-                height: 70px;
-                top: 10px;
-                left: 10px;
-            }
-            
-            .floating-calendar {
-                width: 70px;
-                height: 70px;
-                top: 90px; /* 10px (top) + 70px (clock height) + 10px (gap) */
-                left: 10px; /* Align with clock */
-                padding: 8px;
-            }
-            
-            .calendar-day {
-                font-size: 1.8rem;
-            }
-            
-            .calendar-month {
-                font-size: 0.7rem;
-            }
-
-            header h1 {
-                font-size: 24px;
-            }
-            
-            /* Target the flex container inside header */
-            header > div > div {
-                gap: 12px;
-            }
-
-            .main-content {
-                padding: 24px 15px;
-            }
-            
-            .service-button {
-                font-size: 16px;
-                padding: 18px 15px;
-            }
-
-            .float-badge {
-                right: 10px;
-                bottom: 10px;
-            }
-
-            .promo-float-badge {
-                right: 10px;
-                bottom: 90px;
-            }
-
-            .float-badge .speech,
-            .promo-float-badge .speech {
-                display: none; /* Hide speech bubble on small screens */
-            }
-
-            #bc-modal .glass {
-                padding: 12px; /* Reduce padding on modal */
-            }
-        }
-
-        /* === HIDE ON PORTRAIT === */
-        @media (orientation: portrait) {
-            .floating-clock,
-            .floating-calendar {
-                display: none;
-            }
-        }
-
-
-        /* === MAIN CONTENT STYLES === */
-        .main-content {
+            left: 140px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        /* Clock Hands Styling */
+        .floating-clock::after {
+            content: ''; position: absolute; top: 50%; left: 50%; width: 8px; height: 8px;
+            background-color: #334155; border-radius: 50%; transform: translate(-50%, -50%); z-index: 12;
+        }
+        .clock-number {
+            position: absolute; width: 100%; height: 100%; text-align: center;
+            font-size: 0.75rem; font-weight: 700; color: #64748b;
+            transform: rotate(var(--rotation)); padding-top: 6px;
+        }
+        .clock-number span { display: inline-block; transform: rotate(calc(-1 * var(--rotation))); }
+        .clock-hand {
+            position: absolute; top: 50%; left: 0; transform-origin: 100%; transform: rotate(90deg); border-radius: 10px;
+        }
+        .clock-hand.hour { width: 30%; height: 4px; left: 20%; background-color: #334155; z-index: 8; }
+        .clock-hand.minute { width: 40%; height: 3px; left: 10%; background-color: #475569; z-index: 9; }
+        .clock-hand.second { width: 45%; height: 2px; left: 5%; background-color: #ef4444; z-index: 10; }
+        .clock-marks-container { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
+        .clock-mark { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
+        .clock-mark span { display: block; position: absolute; background-color: #cbd5e1; top: 2px; left: 50%; transform: translateX(-50%); }
+        .clock-mark.minute-mark span { width: 1px; height: 3px; }
+        .clock-mark.hour-mark span { width: 2px; height: 6px; background-color: #94a3b8; }
+
+        /* Calendar Styling */
+        .calendar-day { font-size: 2.8rem; font-weight: 800; color: #1e293b; line-height: 1; letter-spacing: -1px; }
+        .calendar-month { font-size: 0.75rem; font-weight: 700; color: #ef4444; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+        /* === RESPONSIVE FLOATING === */
+        @media (max-width: 1024px) {
+            .floating-clock, .floating-calendar { display: none; }
+        }
+
+        /* === LAYOUT === */
+        .main-container {
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
             margin: 0 auto;
-            padding: 40px 20px;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
         }
 
-        .welcome-section {
+        /* === HEADER === */
+        header {
             text-align: center;
-            margin-bottom: 40px;
-            width: 100%;
+            padding: 40px 0 20px;
+            color: white;
+            animation: fadeInDown 0.8s ease-out;
         }
 
+        .profile-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .profile-img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.8);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .brand-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(8px);
+            padding: 6px 16px;
+            border-radius: 100px;
+            border: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 12px;
+        }
+
+        .brand-pill img { height: 20px; width: auto; }
+        
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 6px;
+            font-weight: 300;
+        }
+
+        /* === MODERN BUTTON CARDS === */
         .button-grid {
             display: flex;
             flex-direction: column;
             gap: 16px;
-            width: 100%;
+            margin-top: 20px;
         }
 
-        .service-button {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 20px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 18px;
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            text-align: center;
-        }
-
-        .service-button span {
-            display: block;
-            font-size: 12px;
-            font-weight: 400;
-            opacity: 0.8;
-            margin-top: 6px;
-        }
-
-        .service-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-        }
-
-        /* === HEADER STYLES === */
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            text-align: center;
-            background: #1a2b4c;
-            color: white;
+        .card-btn {
             position: relative;
-        }
-
-        /* === FLOATING BUSINESS CARD STYLES === */
-        .float-badge {
-            position: fixed;
-            right: 18px;
-            bottom: 22px;
-            z-index: 70;
             display: flex;
             align-items: center;
-            gap: .5rem;
-            animation: bob 2.6s ease-in-out infinite;
-        }
-
-        .promo-float-badge {
-            position: fixed;
-            right: 18px;
-            bottom: 90px;
-            z-index: 70;
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-            animation: bob 2.6s ease-in-out infinite;
-        }
-
-        .speech {
-            background: #0ea5e9;
-            color: #fff;
-            padding: .5rem .7rem;
-            border-radius: 9999px;
-            font-size: .8rem;
-            box-shadow: 0 10px 20px rgba(14,165,233,.25);
-            position: relative;
-        }
-
-        .promo-speech {
-            background: #ff6b6b;
-            color: #fff;
-            padding: .5rem .7rem;
-            border-radius: 9999px;
-            font-size: .8rem;
-            box-shadow: 0 10px 20px rgba(255,107,107,.25);
-            position: relative;
-            animation: blink 2s infinite, glow 1.5s ease-in-out infinite alternate;
-        }
-
-        .speech:after {
-            content: "";
-            position: absolute;
-            right: -6px;
-            bottom: 10px;
-            width: 10px;
-            height: 10px;
-            background: #0ea5e9;
-            transform: rotate(45deg);
-        }
-
-        .promo-speech:after {
-            content: "";
-            position: absolute;
-            right: -6px;
-            bottom: 10px;
-            width: 10px;
-            height: 10px;
-            background: #ff6b6b;
-            transform: rotate(45deg);
-        }
-
-        @keyframes bob {
-            0%,100%{transform:translateY(0)}
-            50%{transform:translateY(-6px)}
-        }
-
-        /* NEW ANIMATIONS FOR PROMOTION */
-        @keyframes blink {
-            0%, 50% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            25%, 75% {
-                opacity: 0.7;
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes glow {
-            from {
-                box-shadow: 0 10px 20px rgba(255,107,107,.25),
-                            0 0 10px rgba(255,107,107,.5);
-            }
-            to {
-                box-shadow: 0 10px 20px rgba(255,107,107,.25),
-                            0 0 20px rgba(255,107,107,.8),
-                            0 0 30px rgba(255,107,107,.6);
-            }
-        }
-
-        @keyframes pulse-glow {
-            0% {
-                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 15px rgba(255, 107, 107, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
-            }
-        }
-
-        @keyframes flash {
-            0%, 50%, 100% {
-                opacity: 1;
-            }
-            25%, 75% {
-                opacity: 0.3;
-            }
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
-            20%, 40%, 60%, 80% { transform: translateX(2px); }
-        }
-
-        .promo-avatar {
-            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 14px;
-            position: relative;
-            animation: flash 2s infinite, shake 3s ease-in-out infinite;
-        }
-
-        .promo-avatar::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffd700, #ff6b6b);
-            background-size: 400% 400%;
-            animation: gradientShift 3s ease infinite;
-            z-index: -1;
-        }
-
-        .promo-avatar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 50%;
-            animation: pulse-glow 2s infinite;
-        }
-
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #fff;
-            border-radius: 50%;
-            animation: sparkle 2s linear infinite;
-        }
-
-        @keyframes sparkle {
-            0% {
-                transform: translate(0, 0) scale(0);
-                opacity: 0;
-            }
-            50% {
-                transform: translate(var(--tx), var(--ty)) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--tx), var(--ty)) scale(0);
-                opacity: 0;
-            }
-        }
-
-        .glass {
-            background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.35));
-            backdrop-filter: blur(8px);
-        }
-
-        /* === 3D CARD STYLES === */
-        :root { --thk: 14px; }
-        .scene { perspective: 1400px; }
-        .card3d {
-            position: relative;
-            transform-style: preserve-3d;
-            transform: rotateX(0) rotateY(0);
-            transition: transform 80ms linear, box-shadow .2s;
-            border-radius: 12px;
-            background: #fff;
-            overflow: visible;
-            box-shadow: 0 24px 40px -20px rgba(2,132,199,.35), 0 18px 36px -18px rgba(15,23,42,.30), 0 6px 14px rgba(0,0,0,.18);
-        }
-        .card3d.is-dragging { cursor: grabbing; }
-        .face {
-            position:absolute;
-            inset:0;
-            backface-visibility:hidden;
-            border-radius:12px;
-            overflow:hidden;
-        }
-        .face img {
-            width:100%;
-            height:100%;
-            object-fit:fill;
-        }
-        .front { transform: translateZ(calc(var(--thk)/2)); }
-        .back  { transform: rotateY(180deg) translateZ(calc(var(--thk)/2)); }
-        .side {
-            position:absolute;
-            background: linear-gradient(180deg,#e5e7eb,#cbd5e1 60%,#94a3b8);
-            box-shadow: inset 0 0 6px rgba(0,0,0,.12);
-        }
-        .side.left      {
-            width:var(--thk);
-            height:100%;
-            left:0;
-            top:0;
-            transform: rotateY(-90deg) translateZ(calc(50% - var(--thk)/2));
-            transform-origin:left center;
-            border-radius:8px;
-        }
-        .side.right    {
-            width:var(--thk);
-            height:100%;
-            right:0;
-            top:0;
-            transform: rotateY( 90deg) translateZ(calc(50% - var(--thk)/2));
-            transform-origin:right center;
-            border-radius:8px;
-        }
-        .side.top      {
-            height:var(--thk);
-            width:100%;
-            left:0;
-            top:0;
-            transform: rotateX( 90deg) translateZ(calc(50% - var(--thk)/2));
-            transform-origin:center top;
-            border-radius:8px;
-            background: linear-gradient(90deg,#e5e7eb,#cbd5e1 60%,#94a3b8);
-        }
-        .side.bottom {
-            height:var(--thk);
-            width:100%;
-            left:0;
-            bottom:0;
-            transform: rotateX(-90deg) translateZ(calc(50% - var(--thk)/2));
-            transform-origin:center bottom;
-            border-radius:8px;
-            background: linear-gradient(90deg,#e5e7eb,#cbd5e1 60%,#94a3b8);
-        }
-
-        /* === MODAL STYLES === */
-        #bc-overlay, #bc-modal, #zoomOverlay, #promo-overlay, #promo-modal {
-            transition: opacity 0.3s ease;
-        }
-
-        #zoomImg.fit  {
-            max-width:92vw;
-            max-height:92vh;
-            object-fit:contain;
-        }
-        #zoomImg.full {
-            max-width:none;
-            max-height:none;
-        }
-
-        /* === FOOTER STYLES === */
-        footer {
-            margin-top: 36px;
-            padding: 30px 20px;
-            color: var(--muted);
-            text-align: center;
-            font-size: 14px;
-        }
-
-        /* === PROMOTION MODAL STYLES === */
-        #promo-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        #promo-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        #promo-modal {
+            padding: 16px 20px;
             background: white;
-            border-radius: 12px;
-            max-width: 90%;
-            max-height: 90%;
-            overflow: auto;
-            position: relative;
-            transform: scale(0.9);
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            animation: fadeInUp 0.5s ease-out backwards;
+        }
+
+        /* Glass Shine Effect */
+        .card-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: skewX(-20deg);
+            transition: 0.5s;
+        }
+
+        .card-btn:hover::before { left: 150%; transition: 0.7s; }
+        .card-btn:hover {
+            transform: scale(1.02) translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .card-btn:active { transform: scale(0.98); }
+
+        /* Icon Container */
+        .icon-box {
+            width: 54px;
+            height: 54px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 18px;
+            flex-shrink: 0;
+            backdrop-filter: blur(4px);
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.2);
+        }
+
+        .icon-box img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1));
             transition: transform 0.3s ease;
         }
+        
+        .card-btn:hover .icon-box img { transform: scale(1.15) rotate(5deg); }
 
-        #promo-overlay.active #promo-modal {
-            transform: scale(1);
+        /* Text Container */
+        .text-content { flex-grow: 1; }
+        .btn-title { display: block; font-weight: 700; font-size: 17px; font-family: 'Outfit', sans-serif; line-height: 1.2; margin-bottom: 2px;}
+        .btn-desc { display: block; font-size: 11px; font-weight: 500; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Arrow Icon */
+        .arrow-icon { opacity: 0.6; transform: translateX(0); transition: transform 0.3s ease; }
+        .card-btn:hover .arrow-icon { transform: translateX(4px); opacity: 1; }
+
+        /* --- THEMES FOR BUTTONS --- */
+        
+        /* 1. Quick Quotation (Blue Deep Ocean) */
+        .theme-quote {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+        }
+        
+        /* 2. Lain Lain (Purple/Pink Creative) */
+        .theme-link {
+            background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+        }
+        
+        /* 3. WhatsApp (Emerald Green) */
+        .theme-whatsapp {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
+        
+        /* 4. Call (Slate/Professional) */
+        .theme-call {
+            background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
         }
 
-        #promo-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 10;
+        /* Staggered Animation Delays */
+        .card-btn:nth-child(1) { animation-delay: 0.1s; }
+        .card-btn:nth-child(2) { animation-delay: 0.2s; }
+        .card-btn:nth-child(3) { animation-delay: 0.3s; }
+        .card-btn:nth-child(4) { animation-delay: 0.4s; }
+
+        /* === FOOTER === */
+        footer {
+            margin-top: auto;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 500;
         }
 
-        .promo-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 12px;
+        /* === ANIMATIONS === */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* === FLOATING BADGES (Business Card & Promo) === */
+        .float-badge, .promo-float-badge {
+            position: fixed; right: 20px; z-index: 80;
+            display: flex; align-items: center; gap: 8px;
+            cursor: pointer; transition: transform 0.2s;
+        }
+        .float-badge { bottom: 25px; }
+        .promo-float-badge { bottom: 95px; }
+        
+        .float-badge:hover, .promo-float-badge:hover { transform: scale(1.05); }
+
+        .badge-icon {
+            width: 56px; height: 56px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            border: 3px solid white;
+            position: relative; overflow: hidden;
         }
 
-        .promo-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 10;
+        .badge-label {
+            background: white; padding: 6px 14px; border-radius: 20px;
+            font-size: 12px; font-weight: 700; color: #334155;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: none; /* Hidden on mobile by default */
         }
 
-        #promo-prev {
-            left: 10px;
-        }
+        @media(min-width: 640px) { .badge-label { display: block; } }
 
-        #promo-next {
-            right: 10px;
-        }
+        .bc-avatar { width: 100%; height: 100%; object-fit: cover; }
+        .promo-bg { background: linear-gradient(135deg, #f43f5e, #fb7185); color: white; font-weight: 800; font-size: 12px; }
 
-        .promo-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 10px;
-            padding: 10px;
-        }
+        /* Ping Animations */
+        .ping { position: absolute; inset: 0; border-radius: 50%; animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite; opacity: 0.5; z-index: -1; }
+        @keyframes ping { 75%, 100% { transform: scale(1.6); opacity: 0; } }
 
-        .promo-indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #ccc;
-            cursor: pointer;
+        /* === MODALS (Glass & 3D) === */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px);
+            z-index: 90; opacity: 0; visibility: hidden; transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: center; padding: 20px;
         }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
 
-        .promo-indicator.active {
-            background: #ff6b6b;
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            width: 100%; max-width: 450px;
+            padding: 24px;
+            transform: scale(0.95); transition: transform 0.3s ease;
+            position: relative;
         }
+        .modal-overlay.active .glass-panel { transform: scale(1); }
+
+        .close-btn {
+            position: absolute; top: 16px; right: 16px; width: 32px; height: 32px;
+            background: #f1f5f9; border-radius: 50%; border: none;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; color: #64748b; transition: all 0.2s;
+        }
+        .close-btn:hover { background: #e2e8f0; color: #0f172a; }
+
+        /* 3D Card Scene */
+        .scene { perspective: 1200px; width: 100%; height: 240px; display:flex; justify-content:center; align-items:center; margin: 20px 0; }
+        .card3d {
+            width: 100%; max-width: 340px; aspect-ratio: 1.75/1; /* Typical business card ratio */
+            position: relative; transform-style: preserve-3d; transition: transform 0.5s;
+            cursor: grab;
+        }
+        .face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .face img { width: 100%; height: 100%; object-fit: cover; }
+        .face.back { transform: rotateY(180deg); }
+
+        /* Promo Modal specific */
+        .promo-content img { width: 100%; border-radius: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .nav-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 36px; height: 36px; border-radius: 50%; background: white;
+            border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            color: #1e293b; transition: all 0.2s;
+        }
+        .nav-btn:hover { background: #f8fafc; transform: translateY(-50%) scale(1.1); }
+        .prev-btn { left: 10px; } .next-btn { right: 10px; }
+
+        /* Zoom */
+        .zoom-overlay { position: fixed; inset: 0; background: black; z-index: 100; display: none; align-items: center; justify-content: center; }
+        .zoom-overlay.active { display: flex; }
+        .zoom-img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
     </style>
 </head>
-<body style="margin:0;font-family:Poppins,Arial,sans-serif;background:#f7f7f7;color:#1a2b4c;">
-    
+<body>
+
     <div class="floating-clock" id="floatingClock">
         <div class="clock-hand hour" data-hour-hand></div>
         <div class="clock-hand minute" data-minute-hand></div>
         <div class="clock-hand second" data-second-hand></div>
-
         <div class="clock-marks-container" id="clockMarks"></div>
-
-        <div class="clock-number" style="--rotation: 30deg;"><span>1</span></div>
-        <div class="clock-number" style="--rotation: 60deg;"><span>2</span></div>
-        <div class="clock-number" style="--rotation: 90deg;"><span>3</span></div>
-        <div class="clock-number" style="--rotation: 120deg;"><span>4</span></div>
-        <div class="clock-number" style="--rotation: 150deg;"><span>5</span></div>
-        <div class="clock-number" style="--rotation: 180deg;"><span>6</span></div>
-        <div class="clock-number" style="--rotation: 210deg;"><span>7</span></div>
-        <div class="clock-number" style="--rotation: 240deg;"><span>8</span></div>
-        <div class="clock-number" style="--rotation: 270deg;"><span>9</span></div>
-        <div class="clock-number" style="--rotation: 300deg;"><span>10</span></div>
-        <div class="clock-number" style="--rotation: 330deg;"><span>11</span></div>
-        <div class="clock-number" style="--rotation: 360deg;"><span>12</span></div>
-    </div>
+        </div>
 
     <div class="floating-calendar">
-        <div class="calendar-day" id="calendar-day"></div>
-        <div class="calendar-month" id="calendar-month"></div>
+        <div class="calendar-day" id="calendar-day">--</div>
+        <div class="calendar-month" id="calendar-month">---</div>
     </div>
 
-    <header>
-        <div>
-            <div style="display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;">
-                <img src="https://i.ibb.co/zTsc152b/unnamed.jpg" alt="Logo Prudential" style="width:90px;height:50px;object-fit:contain;" />
-                <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Logo Shazay" style="width:60px;height:60px;border-radius:50%;object-fit:cover;" />
+    <div class="main-container">
+        
+        <header>
+            <div class="brand-pill">
+                <img src="https://i.ibb.co/zTsc152b/unnamed.jpg" alt="Prudential">
+                <span style="opacity: 0.3">|</span>
+                <span>Takaful Solutions</span>
             </div>
-            <h1 style="margin:10px 0 0 0;font-size:32px;font-weight:700;">Hafizul Takaful</h1>
-        </div>
-    </header>
-
-    <div class="main-content">
-        <div class="welcome-section">
-            <h2 style="font-size:24px;font-weight:600;margin-bottom:20px;color:#1a2b4c;">Selamat Datang</h2>
-            <p style="max-width:500px;margin:0 auto 40px auto;opacity:0.8;">Sila Pilih Perkhidmatan di bawah</p>
-        </div>
+            
+            <div class="profile-container">
+                <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Hafizul" class="profile-img">
+            </div>
+            
+            <h1>Hafizul Takaful</h1>
+            <p class="subtitle">Professional Takaful Advisor & Planner</p>
+        </header>
 
         <div class="button-grid">
-            <a href="https://qoutation.hafizulcheamid.com/" 
-                target="_blank" 
-                rel="noopener" 
-                class="service-button" 
-                style="background-color: #1a2b4c; color: white;">
-                Quick Quotation
-                <span>(Sebut Harga Pantas)</span>
+            
+            <a href="https://qoutation.hafizulcheamid.com/" target="_blank" class="card-btn theme-quote">
+                <div class="icon-box">
+                    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Memo.png" alt="Quote">
+                </div>
+                <div class="text-content">
+                    <span class="btn-title">Quick Quotation</span>
+                    <span class="btn-desc">Dapatkan Sebut Harga Pantas</span>
+                </div>
+                <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
 
-            <a href="https://linktr.ee/hafizulca" 
-                target="_blank" 
-                rel="noopener" 
-                class="service-button" 
-                style="background-color: #1a2b4c; color: white;">
-                Lain Lain Perkhidmatan
-                <span>(Linktree)</span>
+            <a href="https://linktr.ee/hafizulca" target="_blank" class="card-btn theme-link">
+                <div class="icon-box">
+                    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Rocket.png" alt="Rocket">
+                </div>
+                <div class="text-content">
+                    <span class="btn-title">Lain Lain Servis</span>
+                    <span class="btn-desc">Linktree & Info Lanjut</span>
+                </div>
+                <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
 
-            <a href="https://api.whatsapp.com/send?phone=601125517767&text=assalamualaikum%2C%20saya%20nk%20tanya%20berkenaan%20medical%20card%20%2F%20hibah." 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="service-button" 
-                style="background-color: #25D366; color: white;">
-                WhatsApp Saya
-                <span>(Direct Mesej)</span>
+            <a href="https://api.whatsapp.com/send?phone=601125517767&text=assalamualaikum%2C%20saya%20nk%20tanya%20berkenaan%20medical%20card%20%2F%20hibah." target="_blank" class="card-btn theme-whatsapp">
+                <div class="icon-box">
+                    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Symbols/Speech%20Balloon.png" alt="Chat">
+                </div>
+                <div class="text-content">
+                    <span class="btn-title">WhatsApp Saya</span>
+                    <span class="btn-desc">Direct Message Sekarang</span>
+                </div>
+                <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
 
-            <a href="tel:+601125517767" 
-                class="service-button" 
-                style="background-color: #6b7280; color: white;">
-                Call Saya
-                <span>(Direct Call)</span>
+            <a href="tel:+601125517767" class="card-btn theme-call">
+                <div class="icon-box">
+                    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Telephone%20Receiver.png" alt="Phone">
+                </div>
+                <div class="text-content">
+                    <span class="btn-title">Call Saya</span>
+                    <span class="btn-desc">Panggilan Terus</span>
+                </div>
+                <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
+
         </div>
+
+        <footer>
+            &copy; 2025 Hafizul Takaful. <br>All Rights Reserved.
+        </footer>
     </div>
 
-    <footer>
-        &copy; 2025 Hafizul Takaful. Hak Cipta Terpelihara.
-    </footer>
-
-    <div id="promo-float-badge" class="promo-float-badge">
-        <div class="promo-speech">Year End Sale Promotion</div>
-        <button class="relative w-14 h-14 rounded-full ring-4 ring-white shadow-lg overflow-hidden focus:outline-none focus:ring-4 focus:ring-red-300 promo-avatar" aria-label="Buka promosi" id="promo-button">
-            <span>SALE</span>
-            <span class="absolute inset-0 rounded-full animate-ping bg-red-500/25"></span>
-        </button>
+    <div id="promo-badge" class="promo-float-badge">
+        <span class="badge-label">Year End Sale!</span>
+        <div class="badge-icon promo-bg">
+            <span style="position:relative; z-index:2">SALE</span>
+            <div class="ping bg-rose-500"></div>
+        </div>
     </div>
 
     <div id="bc-badge" class="float-badge">
-        <div class="speech">Kad Bisnes Saya</div>
-        <button class="relative w-14 h-14 rounded-full ring-4 ring-white shadow-lg overflow-hidden focus:outline-none focus:ring-4 focus:ring-sky-300" aria-label="Buka kad bisnes">
-            <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Avatar" class="w-full h-full object-cover">
-            <span class="absolute inset-0 rounded-full animate-ping bg-sky-500/25"></span>
-        </button>
+        <span class="badge-label">My Business Card</span>
+        <div class="badge-icon">
+            <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" class="bc-avatar">
+            <div class="ping bg-sky-500"></div>
+        </div>
     </div>
 
-    <div id="promo-overlay">
-        <div id="promo-modal">
-            <button id="promo-close">✕</button>
-            <button id="promo-prev" class="promo-nav">‹</button>
-            <button id="promo-next" class="promo-nav">›</button>
-            <img id="promo-image" class="promo-image" src="" alt="Promotion Image">
-            <div class="promo-indicators">
-                <div class="promo-indicator active" data-index="0"></div>
-                <div class="promo-indicator" data-index="1"></div>
+    <div id="promo-overlay" class="modal-overlay">
+        <div class="glass-panel">
+            <button class="close-btn" id="promo-close">✕</button>
+            <div class="promo-content">
+                <button class="nav-btn prev-btn" id="promo-prev">‹</button>
+                <button class="nav-btn next-btn" id="promo-next">›</button>
+                <img id="promo-image" src="" alt="Promo">
+                <div style="display:flex; justify-content:center; gap:6px; margin-top:12px;">
+                    <div class="p-dot" style="width:8px; height:8px; background:#e2e8f0; border-radius:50%"></div>
+                    <div class="p-dot" style="width:8px; height:8px; background:#e2e8f0; border-radius:50%"></div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="bc-overlay" class="hidden fixed inset-0 z-[80] bg-black/40 backdrop-blur-sm"></div>
-
-    <div id="bc-modal" class="hidden fixed inset-0 z-[90] p-4 grid place-items-center">
-        <div class="glass rounded-2xl border border-white/30 shadow-2xl p-5 w-full max-w-xl relative">
+    <div id="bc-overlay" class="modal-overlay">
+        <div class="glass-panel">
+            <button class="close-btn" id="bc-close">✕</button>
+            <h3 style="text-align:center; font-weight:700; margin-bottom:10px; color:#334155;">Digital Card</h3>
             
-            <button id="bc-close" class="absolute top-3 right-3 p-2 rounded-lg hover:bg-white/60 text-slate-800" aria-label="Tutup">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-            
-            <div id="scene" class="scene mx-auto">
-                <div id="card3d" class="card3d select-none">
-                    <div class="face front" id="frontFace">
-                        <img id="imgFront" src="https://i.ibb.co/kV8dVVS0/Scanned-Document-06-10-2025-at-22-20-01.jpg" alt="Kad Bisnes Depan">
+            <div class="scene">
+                <div id="card3d" class="card3d">
+                    <div class="face front">
+                        <img id="imgFront" src="https://i.ibb.co/kV8dVVS0/Scanned-Document-06-10-2025-at-22-20-01.jpg" alt="Front">
                     </div>
-                    <div class="face back" id="backFace">
-                        <img id="imgBack"  src="https://i.ibb.co/MD2DP338/Scanned-Document-06-10-2025-at-22-20-45.jpg" alt="Kad Bisnes Belakang">
+                    <div class="face back">
+                        <img id="imgBack" src="https://i.ibb.co/MD2DP338/Scanned-Document-06-10-2025-at-22-20-45.jpg" alt="Back">
                     </div>
-                    
-                    <div class="side left"></div>
-                    <div class="side right"></div>
-                    <div class="side top"></div>
-                    <div class="side bottom"></div>
                 </div>
             </div>
             
-            <div class="mt-3 flex justify-between text-xs text-slate-600">
-                <button id="flip" class="px-3 py-1 rounded-lg border border-slate-300 bg-white/80 hover:bg-white">Flip</button>
-                <button id="reset" class="px-3 py-1 rounded-lg border border-slate-300 bg-white/80 hover:bg-white">Reset</button>
+            <div style="display:flex; justify-content:center; gap:10px;">
+                <button id="flip" class="px-4 py-2 rounded-lg bg-slate-100 font-bold text-sm text-slate-700 hover:bg-slate-200">Flip Card</button>
             </div>
         </div>
     </div>
 
-    <div id="zoomOverlay" class="hidden fixed inset-0 z-[100] bg-black/80">
-        <div id="zoomScroll" class="w-full h-full overflow-auto flex items-center justify-center p-4">
-            <img id="zoomImg" class="fit select-none" src="" alt="Zoomed Image">
-        </div>
-        <div class="absolute top-3 right-3 flex gap-2">
-            <button id="zoomToggle" class="px-3 py-1 rounded-lg bg-white/90 text-slate-800 text-sm">100%</button>
-            <button id="zoomClose" class="px-3 py-1 rounded-lg bg-white/90 text-slate-800 text-sm">Close</button>
-        </div>
+    <div id="zoomOverlay" class="zoom-overlay">
+        <img id="zoomImg" class="zoom-img">
+        <button id="zoomClose" class="close-btn" style="position:fixed; top:20px; right:20px; background:white;">✕</button>
     </div>
-    
+
     <script>
-        // --- ANALOG CLOCK SCRIPT ---
+        // === 1. TIME LOGIC (GMT+8) ===
+        function getMalaysiaDate() {
+            const d = new Date();
+            const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+            return new Date(utc + 28800000);
+        }
+
+        // Clock
         const hourHand = document.querySelector('[data-hour-hand]');
         const minuteHand = document.querySelector('[data-minute-hand]');
         const secondHand = document.querySelector('[data-second-hand]');
-        const marksContainer = document.getElementById('clockMarks');
-
+        
         function setClock() {
-            const currentDate = new Date();
-            const seconds = currentDate.getSeconds();
-            const milliseconds = currentDate.getMilliseconds();
-            const minutes = currentDate.getMinutes();
-            const hours = currentDate.getHours();
-
-            const secondsRatio = (seconds + milliseconds / 1000) / 60;
-            const minutesRatio = (secondsRatio + minutes) / 60;
-            const hoursRatio = (minutesRatio + hours) / 12;
-
-            setRotation(secondHand, secondsRatio);
-            setRotation(minuteHand, minutesRatio);
-            setRotation(hourHand, hoursRatio);
-        }
-
-        function setRotation(element, rotationRatio) {
-            if (element) {
-                const rotation = rotationRatio * 360;
-                element.style.transform = `rotate(${rotation + 90}deg)`;
-            }
-        }
-
-        function createMarks() {
-            if (!marksContainer) return;
-            marksContainer.innerHTML = '';
-
-            for (let i = 0; i < 60; i++) {
-                const mark = document.createElement('div');
-                mark.classList.add('clock-mark');
-                
-                if (i % 5 === 0) {
-                    mark.classList.add('hour-mark');
-                } else {
-                    mark.classList.add('minute-mark');
-                }
-                
-                mark.style.transform = `rotate(${i * 6}deg)`;
-                
-                const markLine = document.createElement('span');
-                mark.appendChild(markLine);
-                
-                marksContainer.appendChild(mark);
-            }
-        }
-
-        createMarks();
-
-        function animateClock() {
-            setClock();
-            requestAnimationFrame(animateClock);
-        }
-
-        animateClock();
-
-        // --- CALENDAR SCRIPT ---
-        const monthNames = [
-            'Januari', 'Februari', 'Mac', 'April', 'Mei', 'Jun',
-            'Julai', 'Ogos', 'September', 'Oktober', 'November', 'Disember'
-        ];
-        
-        function updateCalendar() {
-            const currentDate = new Date();
-            const day = currentDate.getDate();
-            const month = currentDate.getMonth();
+            const d = getMalaysiaDate();
+            const s = d.getSeconds();
+            const m = d.getMinutes();
+            const h = d.getHours();
             
-            document.getElementById('calendar-day').textContent = day;
-            document.getElementById('calendar-month').textContent = monthNames[month];
+            const sRatio = s / 60;
+            const mRatio = (m + sRatio) / 60;
+            const hRatio = (h + mRatio) / 12;
+
+            setRot(secondHand, sRatio);
+            setRot(minuteHand, mRatio);
+            setRot(hourHand, hRatio);
         }
+
+        function setRot(el, ratio) {
+            el.style.transform = `rotate(${ratio * 360 + 90}deg)`;
+        }
+
+        setInterval(setClock, 1000);
+        setClock();
+
+        // Clock Numbers
+        const marksContainer = document.getElementById('clockMarks');
+        const clockEl = document.getElementById('floatingClock');
         
-        updateCalendar();
-
-        // --- SPARKLE ANIMATION FOR PROMOTION ---
-        function createSparkles() {
-            const promoButton = document.getElementById('promo-button');
-            if (!promoButton) return;
-
-            // Remove existing sparkles
-            const existingSparkles = promoButton.querySelectorAll('.sparkle');
-            existingSparkles.forEach(sparkle => sparkle.remove());
-
-            // Create new sparkles
-            for (let i = 0; i < 8; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.classList.add('sparkle');
-                
-                const angle = (i / 8) * Math.PI * 2;
-                const distance = 25;
-                const tx = Math.cos(angle) * distance;
-                const ty = Math.sin(angle) * distance;
-                
-                sparkle.style.setProperty('--tx', `${tx}px`);
-                sparkle.style.setProperty('--ty', `${ty}px`);
-                sparkle.style.animationDelay = `${i * 0.25}s`;
-                
-                promoButton.appendChild(sparkle);
-            }
+        for(let i=1; i<=12; i++){
+            let num = document.createElement('div');
+            num.className = 'clock-number';
+            num.style.setProperty('--rotation', `${i * 30}deg`);
+            num.innerHTML = `<span>${i}</span>`;
+            clockEl.appendChild(num);
         }
 
-        // Initialize sparkles
-        createSparkles();
-        // Refresh sparkles every 5 seconds
-        setInterval(createSparkles, 5000);
+        // Calendar
+        const months = ['JAN', 'FEB', 'MAC', 'APR', 'MEI', 'JUN', 'JUL', 'OGO', 'SEP', 'OKT', 'NOV', 'DIS'];
+        function updateCal() {
+            const d = getMalaysiaDate();
+            document.getElementById('calendar-day').innerText = d.getDate();
+            document.getElementById('calendar-month').innerText = months[d.getMonth()];
+        }
+        updateCal();
 
-        // --- PROMOTION MODAL FUNCTIONALITY ---
-        const promoFloatBadge = document.getElementById('promo-float-badge');
+        // === 2. PROMO LOGIC ===
+        const promoBadge = document.getElementById('promo-badge');
         const promoOverlay = document.getElementById('promo-overlay');
-        const promoModal = document.getElementById('promo-modal');
-        const promoImage = document.getElementById('promo-image');
-        const promoClose = document.getElementById('promo-close');
-        const promoPrev = document.getElementById('promo-prev');
-        const promoNext = document.getElementById('promo-next');
-        const promoIndicators = document.querySelectorAll('.promo-indicator');
+        const promoImg = document.getElementById('promo-image');
+        const images = ['https://i.ibb.co/kt9czYT/photo-1-2025-11-17-23-51-40.jpg', 'https://i.ibb.co/q3M4TKh7/photo-2-2025-11-17-23-51-40.jpg'];
+        let idx = 0;
 
-        const promoImages = [
-            'https://i.ibb.co/kt9czYT/photo-1-2025-11-17-23-51-40.jpg',
-            'https://i.ibb.co/q3M4TKh7/photo-2-2025-11-17-23-51-40.jpg'
-        ];
-
-        let currentImageIndex = 0;
-
-        function openPromoModal() {
-            promoOverlay.classList.add('active');
-            showImage(currentImageIndex);
+        function showPromo(i) {
+            idx = i;
+            if(idx < 0) idx = images.length - 1;
+            if(idx >= images.length) idx = 0;
+            promoImg.src = images[idx];
+            // dots update could go here
         }
 
-        function closePromoModal() {
-            promoOverlay.classList.remove('active');
-        }
+        promoBadge.onclick = () => { promoOverlay.classList.add('active'); showPromo(0); };
+        document.getElementById('promo-close').onclick = () => promoOverlay.classList.remove('active');
+        document.getElementById('promo-prev').onclick = () => showPromo(idx - 1);
+        document.getElementById('promo-next').onclick = () => showPromo(idx + 1);
+        
+        // === 3. BUSINESS CARD LOGIC ===
+        const bcBadge = document.getElementById('bc-badge');
+        const bcOverlay = document.getElementById('bc-overlay');
+        const card3d = document.getElementById('card3d');
+        let isFlipped = false;
 
-        function showImage(index) {
-            currentImageIndex = index;
-            promoImage.src = promoImages[index];
-            
-            // Update indicators
-            promoIndicators.forEach((indicator, i) => {
-                if (i === index) {
-                    indicator.classList.add('active');
-                } else {
-                    indicator.classList.remove('active');
-                }
-            });
-        }
+        bcBadge.onclick = () => bcOverlay.classList.add('active');
+        document.getElementById('bc-close').onclick = () => bcOverlay.classList.remove('active');
+        
+        document.getElementById('flip').onclick = () => {
+            isFlipped = !isFlipped;
+            card3d.querySelector('.front').style.transform = isFlipped ? 'rotateY(180deg)' : 'translateZ(1px)';
+            card3d.querySelector('.back').style.transform = isFlipped ? 'translateZ(1px)' : 'rotateY(180deg)';
+            card3d.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+        };
 
-        function nextImage() {
-            currentImageIndex = (currentImageIndex + 1) % promoImages.length;
-            showImage(currentImageIndex);
-        }
+        // Simple 3D sway effect on mouse move for the card
+        const scene = document.querySelector('.scene');
+        scene.addEventListener('mousemove', (e) => {
+            const box = scene.getBoundingClientRect();
+            const x = (e.clientX - box.left) / box.width - 0.5;
+            const y = (e.clientY - box.top) / box.height - 0.5;
+            if(!isFlipped) card3d.style.transform = `rotateY(${x * 20}deg) rotateX(${-y * 20}deg)`;
+            else card3d.style.transform = `rotateY(${180 + x * 20}deg) rotateX(${-y * 20}deg)`;
+        });
+        scene.addEventListener('mouseleave', () => {
+             card3d.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+        });
 
-        function prevImage() {
-            currentImageIndex = (currentImageIndex - 1 + promoImages.length) % promoImages.length;
-            showImage(currentImageIndex);
-        }
-
-        // Event listeners for promotion
-        promoFloatBadge.addEventListener('click', openPromoModal);
-        promoClose.addEventListener('click', closePromoModal);
-        promoNext.addEventListener('click', nextImage);
-        promoPrev.addEventListener('click', prevImage);
-
-        // Close modal when clicking outside the image
-        promoOverlay.addEventListener('click', (e) => {
-            if (e.target === promoOverlay) {
-                closePromoModal();
+        // === 4. ZOOM LOGIC ===
+        const zoomOv = document.getElementById('zoomOverlay');
+        const zoomI = document.getElementById('zoomImg');
+        
+        document.querySelectorAll('.face img').forEach(img => {
+            img.onclick = (e) => {
+                e.stopPropagation();
+                zoomI.src = img.src;
+                zoomOv.classList.add('active');
             }
         });
+        document.getElementById('zoomClose').onclick = () => zoomOv.classList.remove('active');
+        zoomOv.onclick = () => zoomOv.classList.remove('active');
 
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (promoOverlay.classList.contains('active')) {
-                if (e.key === 'Escape') {
-                    closePromoModal();
-                } else if (e.key === 'ArrowRight') {
-                    nextImage();
-                } else if (e.key === 'ArrowLeft') {
-                    prevImage();
-                }
-            }
-        });
-
-        // Indicator clicks
-        promoIndicators.forEach((indicator) => {
-            indicator.addEventListener('click', () => {
-                const index = parseInt(indicator.getAttribute('data-index'));
-                showImage(index);
-            });
-        });
-
-        // --- BUSINESS CARD FUNCTIONALITY ---
-        const badge = document.getElementById('bc-badge');
-        const overlay = document.getElementById('bc-overlay');
-        const modal = document.getElementById('bc-modal');
-        const closeX = document.getElementById('bc-close');
-
-        function openModal(){ 
-            overlay.classList.remove('hidden');
-            modal.classList.remove('hidden');
-            autoSpin(true);
-        }
-
-        function closeModal(){ 
-            modal.classList.add('hidden');
-            overlay.classList.add('hidden');
-            autoSpin(false);
-        }
-
-        badge.addEventListener('click', openModal);
-        overlay.addEventListener('click', closeModal);
-        closeX.addEventListener('click', closeModal);
-        
-        document.addEventListener('keydown', e => { 
-            if(e.key === 'Escape' && !modal.classList.contains('hidden')) {
-                closeModal();
-            }
-        });
-
-        // 3D Card Controls
-        const scene = document.getElementById('scene');
-        const card = document.getElementById('card3d');
-        const imgF = document.getElementById('imgFront');
-        const imgB = document.getElementById('imgBack');
-        const frontEl = document.getElementById('frontFace');
-        const backEl = document.getElementById('backFace');
-        const btnR = document.getElementById('reset');
-        const btnFlip = document.getElementById('flip');
-
-        let rotX = 0, rotY = 0, dragging = false, lastX = 0, lastY = 0, spinTimer = null, flipped = false;
-
-        function render(){ 
-            const viewY = flipped ? rotY + 180 : rotY; 
-            card.style.transform = `rotateX(${rotX}deg) rotateY(${viewY}deg)`; 
-        }
-
-        function autoSpin(run){ 
-            if(spinTimer){ clearInterval(spinTimer); spinTimer = null; } 
-            if(run){ 
-                spinTimer = setInterval(() => { rotY += 0.6; render(); }, 30); 
-            } 
-        }
-
-        function pos(e){ 
-            return e.touches ? {x: e.touches[0].clientX, y: e.touches[0].clientY} : {x: e.clientX, y: e.clientY}; 
-        }
-
-        function down(e){ 
-            dragging = true; 
-            card.classList.add('is-dragging'); 
-            const p = pos(e); 
-            lastX = p.x; lastY = p.y; 
-            autoSpin(false);
-        }
-
-        function move(e){ 
-            if(!dragging) return; 
-            const p = pos(e); 
-            const dx = p.x - lastX, dy = p.y - lastY; 
-            rotY += dx * 0.4; 
-            rotX -= dy * 0.4; 
-            rotX = Math.max(-60, Math.min(60, rotX));
-            lastX = p.x; lastY = p.y; 
-            render(); 
-        }
-
-        function up(){ 
-            dragging = false; 
-            card.classList.remove('is-dragging'); 
-        }
-        
-        if (card) {
-            card.addEventListener('mousedown', down); 
-            card.addEventListener('touchstart', down, {passive:true});
-        }
-        window.addEventListener('mousemove', move); 
-        window.addEventListener('touchmove', move, {passive:true});
-        window.addEventListener('mouseup', up);    
-        window.addEventListener('touchend', up);
-
-        if (btnFlip) btnFlip.addEventListener('click', () => { flipped = !flipped; render(); });
-        if (btnR) btnR.addEventListener('click', () => { rotX = 0; rotY = 0; flipped = false; render(); autoSpin(true); });
-
-        function fitToImage(){
-            if (!imgF || !scene || !card) return;
-            const nw = imgF.naturalWidth, nh = imgF.naturalHeight;
-            if(!nw || !nh) return;
-            
-            const ratio = nh / nw;
-            const maxW = Math.min(360, window.innerWidth - 48);
-            const maxH = Math.min(560, window.innerHeight - 200);
-            
-            let w = maxW, h = w * ratio;
-            if (h > maxH){ h = maxH; w = h / ratio; }
-            
-            scene.style.width = w + 'px';
-            scene.style.height = h + 'px';
-            card.style.width = w + 'px';
-            card.style.height = h + 'px';
-        }
-        
-        function initCard(){ 
-            fitToImage(); 
-            render(); 
-        }
-        
-        if (imgF) {
-            if (imgF.complete) initCard();
-            else imgF.addEventListener('load', initCard);
-        }
-        
-        window.addEventListener('resize', fitToImage);
-
-        // Zoom functionality
-        const zoomOverlay = document.getElementById('zoomOverlay');
-        const zoomImg = document.getElementById('zoomImg');
-        const zoomScroll = document.getElementById('zoomScroll');
-        const zoomClose = document.getElementById('zoomClose');
-        const zoomToggle = document.getElementById('zoomToggle');
-        let zoomMode = 'fit';
-
-        function openZoom(src){ 
-            zoomImg.src = src; 
-            zoomMode = 'fit'; 
-            zoomImg.classList.remove('full'); 
-            zoomImg.classList.add('fit'); 
-            zoomOverlay.classList.remove('hidden'); 
-            autoSpin(false);
-            zoomScroll.scrollTop = 0; 
-            zoomScroll.scrollLeft = 0; 
-        }
-
-        function closeZoom(){ 
-            zoomOverlay.classList.add('hidden'); 
-            if (!modal.classList.contains('hidden')) {
-                autoSpin(true);
-            }
-        }
-
-        function toggleZoom(){ 
-            if(zoomMode === 'fit'){ 
-                zoomMode = 'full'; 
-                zoomImg.classList.remove('fit'); 
-                zoomImg.classList.add('full'); 
-                zoomToggle.textContent = 'Fit'; 
-            } else { 
-                zoomMode = 'fit'; 
-                zoomImg.classList.remove('full'); 
-                zoomImg.classList.add('fit'); 
-                zoomToggle.textContent = '100%'; 
-                zoomScroll.scrollTop = 0; 
-                zoomScroll.scrollLeft = 0; 
-            } 
-        }
-
-        if (frontEl) frontEl.addEventListener('click', () => { if(!dragging) openZoom(imgF.src); });
-        if (backEl) backEl.addEventListener('click', () => { if(!dragging) openZoom(imgB.src); });
-        if (zoomClose) zoomClose.addEventListener('click', closeZoom);
-        if (zoomToggle) zoomToggle.addEventListener('click', toggleZoom);
-        
-        document.addEventListener('keydown', (e) => { 
-            if(!zoomOverlay.classList.contains('hidden') && e.key === 'Escape') {
-                closeZoom();
-            }
-        });
-        
-        if (zoomOverlay) zoomOverlay.addEventListener('click', (e) => { 
-            if(e.target === zoomOverlay) closeZoom(); 
-        });
-
-        // Initialize everything
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Page loaded successfully');
-        });
     </script>
 </body>
 </html>
