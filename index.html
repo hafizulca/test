@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perkhidmatan Takaful - PruBSN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         :root {
@@ -21,12 +22,14 @@
             --text-dark: #2d3748;
             --text-light: #718096;
             --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
         
         body {
             background-color: #fff;
             color: var(--text-dark);
             overflow-x: hidden;
+            line-height: 1.6;
         }
         
         /* Navigation */
@@ -49,6 +52,11 @@
             padding: 15px 20px;
         }
         
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
         .logo {
             display: flex;
             align-items: center;
@@ -57,9 +65,28 @@
             color: var(--primary-color);
         }
         
-        .logo i {
+        .logo img {
+            height: 40px;
             margin-right: 10px;
-            color: var(--accent-color);
+        }
+        
+        .partner-logo {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+            padding-left: 20px;
+            border-left: 1px solid #e2e8f0;
+        }
+        
+        .partner-logo img {
+            height: 35px;
+        }
+        
+        .partner-logo span {
+            font-size: 0.9rem;
+            margin-left: 8px;
+            color: var(--text-light);
+            font-weight: 500;
         }
         
         .nav-links {
@@ -76,6 +103,22 @@
             color: var(--text-dark);
             font-weight: 500;
             transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
         }
         
         .nav-links a:hover {
@@ -92,7 +135,7 @@
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 120px 20px 80px;
+            padding: 150px 20px 100px;
             text-align: center;
             color: white;
             position: relative;
@@ -106,10 +149,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://picsum.photos/seed/takaful/1920/1080.jpg');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.1;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><circle cx="50" cy="50" r="2" fill="white"/></svg>');
             z-index: 0;
         }
         
@@ -142,13 +182,16 @@
         }
         
         .cta-button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             padding: 15px 30px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
             font-size: 1rem;
+            gap: 8px;
         }
         
         .cta-primary {
@@ -218,6 +261,7 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            border: 1px solid rgba(0,0,0,0.05);
         }
         
         .service-card::before {
@@ -252,6 +296,7 @@
             margin-bottom: 20px;
             font-size: 2rem;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .service-card:hover .service-icon {
@@ -298,7 +343,9 @@
         }
         
         .service-action {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             padding: 12px 25px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
@@ -307,6 +354,7 @@
             font-weight: 500;
             transition: all 0.3s ease;
             font-size: 0.9rem;
+            gap: 8px;
         }
         
         .service-action:hover {
@@ -332,6 +380,15 @@
             display: flex;
             align-items: flex-start;
             gap: 20px;
+            padding: 25px;
+            border-radius: 12px;
+            transition: var(--transition);
+            background: var(--light-bg);
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow);
         }
         
         .feature-icon {
@@ -437,6 +494,54 @@
             background-color: var(--accent-color);
         }
         
+        /* FAQ Section */
+        .faq {
+            padding: 80px 20px;
+            background-color: white;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background: var(--light-bg);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 300px;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
         /* CTA Section */
         .cta-section {
             padding: 80px 20px;
@@ -533,6 +638,7 @@
         
         .footer-column ul li a:hover {
             color: white;
+            padding-left: 5px;
         }
         
         .social-links {
@@ -593,6 +699,22 @@
         @media (max-width: 992px) {
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
             }
             
             .mobile-menu-toggle {
@@ -619,7 +741,7 @@
         
         @media (max-width: 768px) {
             .hero {
-                padding: 100px 20px 60px;
+                padding: 120px 20px 80px;
             }
             
             .hero h1 {
@@ -704,6 +826,18 @@
                 font-size: 1rem;
                 padding: 12px 25px;
             }
+            
+            .logo-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .partner-logo {
+                margin-left: 0;
+                padding-left: 0;
+                border-left: none;
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
@@ -711,15 +845,22 @@
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <div class="logo">
-                <i class="fas fa-shield-alt"></i>
-                <span>PruBSN Takaful</span>
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="https://i.ibb.co/zTsc152b/unnamed.jpg" alt="PruBSN Takaful Logo">
+                    <span>PruBSN Takaful</span>
+                </div>
+                <div class="partner-logo">
+                    <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Shazay And Associates Logo">
+                    <span>Shazay And Associates</span>
+                </div>
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Utama</a></li>
                 <li><a href="#services">Perkhidmatan</a></li>
                 <li><a href="#features">Kelebihan</a></li>
                 <li><a href="#testimonials">Testimoni</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">Hubungi</a></li>
             </ul>
             <div class="mobile-menu-toggle" id="mobileMenuToggle">
@@ -734,8 +875,14 @@
             <h1>Perlindungan Takaful Untuk Keluarga Anda</h1>
             <p>Temui penyelesaian perlindungan kewangan Islam yang komprehensif untuk masa depan yang lebih selamat</p>
             <div class="cta-buttons">
-                <a href="#services" class="cta-button cta-primary">Terokai Perkhidmatan</a>
-                <a href="#contact" class="cta-button cta-secondary">Hubungi Kami</a>
+                <a href="#services" class="cta-button cta-primary">
+                    <i class="fas fa-search"></i>
+                    Terokai Perkhidmatan
+                </a>
+                <a href="#contact" class="cta-button cta-secondary">
+                    <i class="fas fa-phone-alt"></i>
+                    Hubungi Kami
+                </a>
             </div>
         </div>
     </section>
@@ -754,8 +901,11 @@
                 </div>
                 <div class="service-content">
                     <h3 class="service-title">WhatsApp</h3>
-                    <p class="service-description">Hubungi wakil khidmat pelanggan kami untuk bantuan segera dengan keperluan takaful anda.</p>
-                    <a href="#" class="service-action">Mulakan Chat</a>
+                    <p class="service-description">Hubungi wakil khidmat pelanggan kami / Contact our customer service representative for immediate assistance with your takaful needs.</p>
+                    <a href="#" class="service-action">
+                        Mulakan Chat / Start Chat
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
             
@@ -764,9 +914,12 @@
                     <i class="fas fa-globe"></i>
                 </div>
                 <div class="service-content">
-                    <h3 class="service-title">Terokai Takaful</h3>
-                    <p class="service-description">Terokai pelbagai produk dan perkhidmatan takaful kami untuk mencari pelan perlindungan yang sesuai.</p>
-                    <a href="#" class="service-action">Terokai Sekarang</a>
+                    <h3 class="service-title">Terokai Takaful / Discover Takaful</h3>
+                    <p class="service-description">Terokai pelbagai produk dan perkhidmatan takaful kami / Explore our full range of takaful products and services to find the perfect protection plan.</p>
+                    <a href="#" class="service-action">
+                        Terokai Sekarang / Explore Now
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
             
@@ -775,9 +928,12 @@
                     <i class="fas fa-credit-card"></i>
                 </div>
                 <div class="service-content">
-                    <h3 class="service-title">Pembayaran Dalam Talian</h3>
-                    <p class="service-description">Buat pembayaran dalam talian yang selamat untuk premium takaful anda melalui portal kami.</p>
-                    <a href="#" class="service-action">Bayar Sekarang</a>
+                    <h3 class="service-title">Pembayaran Dalam Talian / Online Payment</h3>
+                    <p class="service-description">Buat pembayaran dalam talian yang selamat / Make secure online payments for your takaful premiums conveniently through our portal.</p>
+                    <a href="#" class="service-action">
+                        Bayar Sekarang / Pay Now
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
             
@@ -787,8 +943,11 @@
                 </div>
                 <div class="service-content">
                     <h3 class="service-title">PruBsn Touch</h3>
-                    <p class="service-description">Akses akaun anda atau daftar untuk menguruskan polisi takaful anda dengan mudah.</p>
-                    <a href="#" class="service-action">Log Masuk/Daftar</a>
+                    <p class="service-description">Akses akaun anda atau daftar / Access your account or register to manage your takaful policies on the go.</p>
+                    <a href="#" class="service-action">
+                        Log Masuk/Daftar / Login/Register
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
             
@@ -797,9 +956,12 @@
                     <i class="fas fa-user-tie"></i>
                 </div>
                 <div class="service-content">
-                    <h3 class="service-title">Jadi Ejen</h3>
-                    <p class="service-description">Sertai pasukan kami dan bantu orang lain melindungi masa depan kewangan mereka sambil membina kerjaya anda.</p>
-                    <a href="#" class="service-action">Mohon Sekarang</a>
+                    <h3 class="service-title">Jadi Ejen / Become an Agent</h3>
+                    <p class="service-description">Sertai pasukan kami / Join our team and help others secure their financial future while building your career.</p>
+                    <a href="#" class="service-action">
+                        Mohon Sekarang / Apply Now
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -887,7 +1049,7 @@
                 <div class="testimonial">
                     <p class="testimonial-text">"Saya sangat berpuas hati dengan perkhidmatan PruBSN Takaful. Proses permohonan mudah dan khidmat pelanggan sangat membantu. Saya rasa lebih selamat dengan perlindungan untuk keluarga saya."</p>
                     <div class="testimonial-author">
-                        <img src="https://picsum.photos/seed/person1/60/60.jpg" alt="Ahmad" class="author-avatar">
+                        <img src="https://i.pravatar.cc/60?img=1" alt="Ahmad" class="author-avatar">
                         <div class="author-info">
                             <h4>Ahmad Rahman</h4>
                             <p>Usahawan</p>
@@ -899,6 +1061,46 @@
                 <span class="dot active"></span>
                 <span class="dot"></span>
                 <span class="dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="section-header animate-on-scroll">
+            <h2>Soalan Lazim</h2>
+            <p>Jawapan kepada soalan yang sering ditanya mengenai Takaful</p>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question">
+                    <span>Apakah perbezaan antara Takaful dan insurans konvensional?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Takaful berasaskan prinsip perkongsian risiko dan saling jamin-menjamin antara peserta, manakala insurans konvensional adalah kontrak jual beli antara syarikat insurans dan pemegang polisi. Takaful juga mematuhi prinsip Syariah dan bebas daripada unsur riba, gharar (ketidakpastian) dan maysir (judi).</p>
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question">
+                    <span>Bagaimana cara untuk membuat tuntutan Takaful?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Anda boleh membuat tuntutan dengan menghubungi wakil Takaful anda atau menghubungi pusat khidmat pelanggan kami. Sediakan dokumen yang diperlukan seperti sijil Takaful, bukti tuntutan dan dokumen sokongan lain. Proses tuntutan biasanya mengambil masa 14 hari bekerja selepas dokumen lengkap diterima.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question">
+                    <span>Adakah saya boleh menukar pelan Takaful saya?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Ya, anda boleh menukar pelan Takaful anda mengikut keperluan semasa. Hubungi wakil Takaful anda untuk berbincang tentang pilihan yang tersedia. Perlu diingat bahawa pertukaran pelan mungkin tertakluk kepada syarat-syarat tertentu dan penilaian semula risiko.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -947,7 +1149,6 @@
                     <li><a href="#">Takaful Perubatan</a></li>
                     <li><a href="#">Takaful Pendidikan</a></li>
                     <li><a href="#">Takaful Pelaburan</a></li>
-                    <li><a href="#">Takaful Riadah</a></li>
                 </ul>
             </div>
             
@@ -971,15 +1172,7 @@
         // Mobile menu toggle
         document.getElementById('mobileMenuToggle').addEventListener('click', function() {
             const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            navLinks.style.position = 'absolute';
-            navLinks.style.top = '100%';
-            navLinks.style.left = '0';
-            navLinks.style.width = '100%';
-            navLinks.style.flexDirection = 'column';
-            navLinks.style.backgroundColor = 'white';
-            navLinks.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
-            navLinks.style.padding = '20px';
+            navLinks.classList.toggle('active');
         });
         
         // Smooth scrolling for navigation links
@@ -992,8 +1185,8 @@
                 
                 // Close mobile menu if open
                 const navLinks = document.querySelector('.nav-links');
-                if (window.innerWidth <= 992 && navLinks.style.display === 'flex') {
-                    navLinks.style.display = 'none';
+                if (window.innerWidth <= 992 && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
                 }
             });
         });
@@ -1015,7 +1208,7 @@
                 const elementTop = element.getBoundingClientRect().top;
                 const elementBottom = element.getBoundingClientRect().bottom;
                 
-                if (elementTop < window.innerHeight && elementBottom > 0) {
+                if (elementTop < window.innerHeight - 100 && elementBottom > 0) {
                     element.classList.add('animated');
                 }
             });
@@ -1035,6 +1228,23 @@
                 
                 // In a real implementation, you would change the testimonial content here
                 // For demo purposes, we're just changing the active dot
+            });
+        });
+        
+        // FAQ accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                // Close all other FAQ items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
             });
         });
     </script>
