@@ -1,643 +1,532 @@
-<!doctype html>
-<html lang="ms">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hafizul Takaful Solutions</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takaful Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root{
-            --bg-color: #f0f4f8;
-            --text-main: #1e293b;
-        }
-        
-        *{box-sizing:border-box}
-        
-        html, body {
-            height: 100%;
+        * {
             margin: 0;
-            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-            background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
-            background-size: 100% 600px;
-            background-repeat: no-repeat;
-            color: var(--text-main);
-            -webkit-tap-highlight-color: transparent;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        /* === FLOATING WIDGETS (CLOCK & CALENDAR) === */
-        /* Make them look like glass cards */
-        .floating-clock, .floating-calendar {
-            position: fixed;
-            z-index: 70;
-            width: 100px;
-            height: 100px;
-            border-radius: 24px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            font-family: 'Outfit', sans-serif;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .floating-clock:hover, .floating-calendar:hover {
-            transform: scale(1.05) translateY(-5px);
-        }
-
-        .floating-clock {
-            top: 20px;
-            left: 20px;
-            border-radius: 50%; /* Keep clock round */
-        }
-
-        .floating-calendar {
-            top: 20px;
-            left: 140px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-        }
-
-        /* Clock Hands Styling */
-        .floating-clock::after {
-            content: ''; position: absolute; top: 50%; left: 50%; width: 8px; height: 8px;
-            background-color: #334155; border-radius: 50%; transform: translate(-50%, -50%); z-index: 12;
-        }
-        .clock-number {
-            position: absolute; width: 100%; height: 100%; text-align: center;
-            font-size: 0.75rem; font-weight: 700; color: #64748b;
-            transform: rotate(var(--rotation)); padding-top: 6px;
-        }
-        .clock-number span { display: inline-block; transform: rotate(calc(-1 * var(--rotation))); }
-        .clock-hand {
-            position: absolute; top: 50%; left: 0; transform-origin: 100%; transform: rotate(90deg); border-radius: 10px;
-        }
-        .clock-hand.hour { width: 30%; height: 4px; left: 20%; background-color: #334155; z-index: 8; }
-        .clock-hand.minute { width: 40%; height: 3px; left: 10%; background-color: #475569; z-index: 9; }
-        .clock-hand.second { width: 45%; height: 2px; left: 5%; background-color: #ef4444; z-index: 10; }
-        .clock-marks-container { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
-        .clock-mark { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
-        .clock-mark span { display: block; position: absolute; background-color: #cbd5e1; top: 2px; left: 50%; transform: translateX(-50%); }
-        .clock-mark.minute-mark span { width: 1px; height: 3px; }
-        .clock-mark.hour-mark span { width: 2px; height: 6px; background-color: #94a3b8; }
-
-        /* Calendar Styling */
-        .calendar-day { font-size: 2.8rem; font-weight: 800; color: #1e293b; line-height: 1; letter-spacing: -1px; }
-        .calendar-month { font-size: 0.75rem; font-weight: 700; color: #ef4444; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
-
-        /* === RESPONSIVE FLOATING === */
-        @media (max-width: 1024px) {
-            .floating-clock, .floating-calendar { display: none; }
-        }
-
-        /* === LAYOUT === */
-        .main-container {
-            width: 100%;
-            max-width: 480px;
-            margin: 0 auto;
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            z-index: 1;
+            color: #333;
+            padding: 15px;
         }
-
-        /* === HEADER === */
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
         header {
             text-align: center;
-            padding: 40px 0 20px;
-            color: white;
-            animation: fadeInDown 0.8s ease-out;
+            margin-bottom: 40px;
+            padding: 20px 0;
         }
-
-        .profile-container {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 16px;
-        }
-
-        .profile-img {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(255,255,255,0.8);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-
-        .brand-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(8px);
-            padding: 6px 16px;
-            border-radius: 100px;
-            border: 1px solid rgba(255,255,255,0.2);
-            margin-bottom: 12px;
-        }
-
-        .brand-pill img { height: 20px; width: auto; }
         
         h1 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            margin: 0;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
-
+        
         .subtitle {
-            font-size: 14px;
-            opacity: 0.9;
-            margin-top: 6px;
-            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
-
-        /* === MODERN BUTTON CARDS === */
-        .button-grid {
+        
+        .services-grid {
+            display: grid;
+            gap: 25px;
+            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            margin-top: 20px;
-        }
-
-        .card-btn {
-            position: relative;
-            display: flex;
             align-items: center;
-            padding: 16px 20px;
-            background: white;
-            border-radius: 20px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-align: center;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            animation: fadeInUp 0.5s ease-out backwards;
+            cursor: pointer;
         }
-
-        /* Glass Shine Effect */
-        .card-btn::before {
+        
+        .service-card::before {
             content: '';
             position: absolute;
-            top: 0; left: -100%;
-            width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transform: skewX(-20deg);
-            transition: 0.5s;
-        }
-
-        .card-btn:hover::before { left: 150%; transition: 0.7s; }
-        .card-btn:hover {
-            transform: scale(1.02) translateY(-2px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        .card-btn:active { transform: scale(0.98); }
-
-        /* Icon Container */
-        .icon-box {
-            width: 54px;
-            height: 54px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 18px;
-            flex-shrink: 0;
-            backdrop-filter: blur(4px);
-            box-shadow: inset 0 0 10px rgba(255,255,255,0.2);
-        }
-
-        .icon-box img {
-            width: 36px;
-            height: 36px;
-            object-fit: contain;
-            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1));
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transform-origin: left;
             transition: transform 0.3s ease;
         }
         
-        .card-btn:hover .icon-box img { transform: scale(1.15) rotate(5deg); }
-
-        /* Text Container */
-        .text-content { flex-grow: 1; }
-        .btn-title { display: block; font-weight: 700; font-size: 17px; font-family: 'Outfit', sans-serif; line-height: 1.2; margin-bottom: 2px;}
-        .btn-desc { display: block; font-size: 11px; font-weight: 500; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.5px; }
-
-        /* Arrow Icon */
-        .arrow-icon { opacity: 0.6; transform: translateX(0); transition: transform 0.3s ease; }
-        .card-btn:hover .arrow-icon { transform: translateX(4px); opacity: 1; }
-
-        /* --- THEMES FOR BUTTONS --- */
-        
-        /* 1. Quick Quotation (Blue Deep Ocean) */
-        .theme-quote {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
         
-        /* 2. Lain Lain (Purple/Pink Creative) */
-        .theme-link {
-            background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+        .service-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
         
-        /* 3. WhatsApp (Emerald Green) */
-        .theme-whatsapp {
-            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-        }
-        
-        /* 4. Call (Slate/Professional) */
-        .theme-call {
-            background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
-        }
-
-        /* Staggered Animation Delays */
-        .card-btn:nth-child(1) { animation-delay: 0.1s; }
-        .card-btn:nth-child(2) { animation-delay: 0.2s; }
-        .card-btn:nth-child(3) { animation-delay: 0.3s; }
-        .card-btn:nth-child(4) { animation-delay: 0.4s; }
-
-        /* === FOOTER === */
-        footer {
-            margin-top: auto;
-            padding: 30px 0;
-            text-align: center;
-            font-size: 13px;
-            color: #64748b;
-            font-weight: 500;
-        }
-
-        /* === ANIMATIONS === */
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* === FLOATING BADGES (Business Card & Promo) === */
-        .float-badge, .promo-float-badge {
-            position: fixed; right: 20px; z-index: 80;
-            display: flex; align-items: center; gap: 8px;
-            cursor: pointer; transition: transform 0.2s;
-        }
-        .float-badge { bottom: 25px; }
-        .promo-float-badge { bottom: 95px; }
-        
-        .float-badge:hover, .promo-float-badge:hover { transform: scale(1.05); }
-
-        .badge-icon {
-            width: 56px; height: 56px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-            border: 3px solid white;
-            position: relative; overflow: hidden;
-        }
-
-        .badge-label {
-            background: white; padding: 6px 14px; border-radius: 20px;
-            font-size: 12px; font-weight: 700; color: #334155;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            display: none; /* Hidden on mobile by default */
-        }
-
-        @media(min-width: 640px) { .badge-label { display: block; } }
-
-        .bc-avatar { width: 100%; height: 100%; object-fit: cover; }
-        .promo-bg { background: linear-gradient(135deg, #f43f5e, #fb7185); color: white; font-weight: 800; font-size: 12px; }
-
-        /* Ping Animations */
-        .ping { position: absolute; inset: 0; border-radius: 50%; animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite; opacity: 0.5; z-index: -1; }
-        @keyframes ping { 75%, 100% { transform: scale(1.6); opacity: 0; } }
-
-        /* === MODALS (Glass & 3D) === */
-        .modal-overlay {
-            position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px);
-            z-index: 90; opacity: 0; visibility: hidden; transition: all 0.3s ease;
-            display: flex; align-items: center; justify-content: center; padding: 20px;
-        }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            width: 100%; max-width: 450px;
-            padding: 24px;
-            transform: scale(0.95); transition: transform 0.3s ease;
+        .service-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            transition: all 0.3s ease;
             position: relative;
         }
-        .modal-overlay.active .glass-panel { transform: scale(1); }
-
-        .close-btn {
-            position: absolute; top: 16px; right: 16px; width: 32px; height: 32px;
-            background: #f1f5f9; border-radius: 50%; border: none;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; color: #64748b; transition: all 0.2s;
+        
+        .service-card:hover .service-icon {
+            transform: rotate(5deg) scale(1.1);
         }
-        .close-btn:hover { background: #e2e8f0; color: #0f172a; }
-
-        /* 3D Card Scene */
-        .scene { perspective: 1200px; width: 100%; height: 240px; display:flex; justify-content:center; align-items:center; margin: 20px 0; }
-        .card3d {
-            width: 100%; max-width: 340px; aspect-ratio: 1.75/1; /* Typical business card ratio */
-            position: relative; transform-style: preserve-3d; transition: transform 0.5s;
-            cursor: grab;
+        
+        .message-icon {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
         }
-        .face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
-        .face img { width: 100%; height: 100%; object-fit: cover; }
-        .face.back { transform: rotateY(180deg); }
-
-        /* Promo Modal specific */
-        .promo-content img { width: 100%; border-radius: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .nav-btn {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            width: 36px; height: 36px; border-radius: 50%; background: white;
-            border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            cursor: pointer; display: flex; align-items: center; justify-content: center;
-            color: #1e293b; transition: all 0.2s;
+        
+        .discover-icon {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
         }
-        .nav-btn:hover { background: #f8fafc; transform: translateY(-50%) scale(1.1); }
-        .prev-btn { left: 10px; } .next-btn { right: 10px; }
-
-        /* Zoom */
-        .zoom-overlay { position: fixed; inset: 0; background: black; z-index: 100; display: none; align-items: center; justify-content: center; }
-        .zoom-overlay.active { display: flex; }
-        .zoom-img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
+        
+        .payment-icon {
+            background: linear-gradient(135deg, #fa709a, #fee140);
+            color: white;
+        }
+        
+        .login-icon {
+            background: linear-gradient(135deg, #30cfd0, #330867);
+            color: white;
+        }
+        
+        .agent-icon {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            color: #333;
+        }
+        
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #2d3748;
+            transition: color 0.3s ease;
+        }
+        
+        .service-card:hover .service-title {
+            color: #667eea;
+        }
+        
+        .service-description {
+            color: #718096;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+        
+        .service-action {
+            display: inline-block;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .service-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Desktop/Large Screens (1200px and up) */
+        @media (min-width: 1200px) {
+            .services-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 30px;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.3rem;
+            }
+        }
+        
+        /* Desktop Landscape (992px - 1199px) */
+        @media (min-width: 992px) and (max-width: 1199px) {
+            .services-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        /* iPad Landscape (768px - 991px) */
+        @media (min-width: 768px) and (max-width: 991px) and (orientation: landscape) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            
+            .service-card {
+                padding: 25px 20px;
+            }
+            
+            .service-icon {
+                width: 75px;
+                height: 75px;
+                font-size: 1.8rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* iPad Portrait (768px - 991px) */
+        @media (min-width: 768px) and (max-width: 991px) and (orientation: portrait) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        /* Tablet Small Landscape (600px - 767px) */
+        @media (min-width: 600px) and (max-width: 767px) and (orientation: landscape) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+            
+            .service-card {
+                padding: 20px 15px;
+            }
+            
+            .service-icon {
+                width: 65px;
+                height: 65px;
+                font-size: 1.6rem;
+            }
+            
+            .service-title {
+                font-size: 1.1rem;
+            }
+            
+            .service-description {
+                font-size: 0.85rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Mobile Landscape (480px - 599px) */
+        @media (min-width: 480px) and (max-width: 599px) and (orientation: landscape) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .service-card {
+                padding: 20px 15px;
+            }
+            
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .service-title {
+                font-size: 1rem;
+            }
+            
+            .service-description {
+                font-size: 0.8rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* Mobile Portrait (max-width: 479px) */
+        @media (max-width: 479px) and (orientation: portrait) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .service-card {
+                padding: 25px 20px;
+                flex-direction: row;
+                text-align: left;
+                align-items: center;
+            }
+            
+            .service-icon {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 0;
+                margin-right: 20px;
+                flex-shrink: 0;
+            }
+            
+            .service-content {
+                flex-grow: 1;
+            }
+            
+            .service-title {
+                font-size: 1.1rem;
+                margin-bottom: 8px;
+            }
+            
+            .service-description {
+                font-size: 0.85rem;
+                margin-bottom: 12px;
+            }
+            
+            .service-action {
+                padding: 8px 20px;
+                font-size: 0.85rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 0.95rem;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+        
+        /* Extra Small Mobile (max-width: 320px) */
+        @media (max-width: 320px) {
+            .service-card {
+                padding: 20px 15px;
+            }
+            
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.3rem;
+                margin-right: 15px;
+            }
+            
+            .service-title {
+                font-size: 1rem;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+        
+        /* Animation for orientation change */
+        @media (orientation: landscape) {
+            .services-grid {
+                animation: fadeIn 0.5s ease-in;
+            }
+        }
+        
+        @media (orientation: portrait) {
+            .services-grid {
+                animation: slideUp 0.5s ease-in;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
-
-    <div class="floating-clock" id="floatingClock">
-        <div class="clock-hand hour" data-hour-hand></div>
-        <div class="clock-hand minute" data-minute-hand></div>
-        <div class="clock-hand second" data-second-hand></div>
-        <div class="clock-marks-container" id="clockMarks"></div>
-        </div>
-
-    <div class="floating-calendar">
-        <div class="calendar-day" id="calendar-day">--</div>
-        <div class="calendar-month" id="calendar-month">---</div>
-    </div>
-
-    <div class="main-container">
-        
+    <div class="container">
         <header>
-            <div class="brand-pill">
-                <img src="https://i.ibb.co/zTsc152b/unnamed.jpg" alt="Prudential">
-                <span style="opacity: 0.3">|</span>
-                <span>Takaful Solutions</span>
-            </div>
-            
-            <div class="profile-container">
-                <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Hafizul" class="profile-img">
-            </div>
-            
-            <h1>Hafizul Takaful</h1>
-            <p class="subtitle">Professional Takaful Advisor & Planner</p>
+            <h1>Takaful Services</h1>
+            <p class="subtitle">Discover our comprehensive range of Islamic insurance solutions designed to protect you and your loved ones</p>
         </header>
-
-        <div class="button-grid">
+        
+        <div class="services-grid">
+            <div class="service-card" onclick="handleServiceClick('message')">
+                <div class="service-icon message-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div class="service-content">
+                    <h2 class="service-title">Direct Message</h2>
+                    <p class="service-description">Connect with our customer service representatives for immediate assistance with your takaful needs.</p>
+                    <a href="#" class="service-action" onclick="event.stopPropagation()">Start Chat</a>
+                </div>
+            </div>
             
-            <a href="https://qoutation.hafizulcheamid.com/" target="_blank" class="card-btn theme-quote">
-                <div class="icon-box">
-                    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Memo.png" alt="Quote">
+            <div class="service-card" onclick="handleServiceClick('discover')">
+                <div class="service-icon discover-icon">
+                    <i class="fas fa-globe"></i>
                 </div>
-                <div class="text-content">
-                    <span class="btn-title">Quick Quotation</span>
-                    <span class="btn-desc">Dapatkan Sebut Harga Pantas</span>
+                <div class="service-content">
+                    <h2 class="service-title">Discover Takaful</h2>
+                    <p class="service-description">Explore our full range of takaful products and services to find the perfect protection plan.</p>
+                    <a href="#" class="service-action" onclick="event.stopPropagation()">Explore Now</a>
                 </div>
-                <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-
-            <a href="https://linktr.ee/hafizulca" target="_blank" class="card-btn theme-link">
-                <div class="icon-box">
-                    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Rocket.png" alt="Rocket">
+            </div>
+            
+            <div class="service-card" onclick="handleServiceClick('payment')">
+                <div class="service-icon payment-icon">
+                    <i class="fas fa-credit-card"></i>
                 </div>
-                <div class="text-content">
-                    <span class="btn-title">Lain Lain Servis</span>
-                    <span class="btn-desc">Linktree & Info Lanjut</span>
+                <div class="service-content">
+                    <h2 class="service-title">Online Payment</h2>
+                    <p class="service-description">Make secure online payments for your takaful premiums conveniently through our portal.</p>
+                    <a href="#" class="service-action" onclick="event.stopPropagation()">Pay Now</a>
                 </div>
-                <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-
-            <a href="https://api.whatsapp.com/send?phone=601125517767&text=assalamualaikum%2C%20saya%20nk%20tanya%20berkenaan%20medical%20card%20%2F%20hibah." target="_blank" class="card-btn theme-whatsapp">
-                <div class="icon-box">
-                    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Symbols/Speech%20Balloon.png" alt="Chat">
+            </div>
+            
+            <div class="service-card" onclick="handleServiceClick('login')">
+                <div class="service-icon login-icon">
+                    <i class="fas fa-mobile-alt"></i>
                 </div>
-                <div class="text-content">
-                    <span class="btn-title">WhatsApp Saya</span>
-                    <span class="btn-desc">Direct Message Sekarang</span>
+                <div class="service-content">
+                    <h2 class="service-title">PruBsn Touch</h2>
+                    <p class="service-description">Access your account or register to manage your takaful policies on the go.</p>
+                    <a href="#" class="service-action" onclick="event.stopPropagation()">Login/Register</a>
                 </div>
-                <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-
-            <a href="tel:+601125517767" class="card-btn theme-call">
-                <div class="icon-box">
-                    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Telephone%20Receiver.png" alt="Phone">
+            </div>
+            
+            <div class="service-card" onclick="handleServiceClick('agent')">
+                <div class="service-icon agent-icon">
+                    <i class="fas fa-user-tie"></i>
                 </div>
-                <div class="text-content">
-                    <span class="btn-title">Call Saya</span>
-                    <span class="btn-desc">Panggilan Terus</span>
-                </div>
-                <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-
-        </div>
-
-        <footer>
-            &copy; 2025 Hafizul Takaful. <br>All Rights Reserved.
-        </footer>
-    </div>
-
-    <div id="promo-badge" class="promo-float-badge">
-        <span class="badge-label">Year End Sale!</span>
-        <div class="badge-icon promo-bg">
-            <span style="position:relative; z-index:2">SALE</span>
-            <div class="ping bg-rose-500"></div>
-        </div>
-    </div>
-
-    <div id="bc-badge" class="float-badge">
-        <span class="badge-label">My Business Card</span>
-        <div class="badge-icon">
-            <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" class="bc-avatar">
-            <div class="ping bg-sky-500"></div>
-        </div>
-    </div>
-
-    <div id="promo-overlay" class="modal-overlay">
-        <div class="glass-panel">
-            <button class="close-btn" id="promo-close">✕</button>
-            <div class="promo-content">
-                <button class="nav-btn prev-btn" id="promo-prev">‹</button>
-                <button class="nav-btn next-btn" id="promo-next">›</button>
-                <img id="promo-image" src="" alt="Promo">
-                <div style="display:flex; justify-content:center; gap:6px; margin-top:12px;">
-                    <div class="p-dot" style="width:8px; height:8px; background:#e2e8f0; border-radius:50%"></div>
-                    <div class="p-dot" style="width:8px; height:8px; background:#e2e8f0; border-radius:50%"></div>
+                <div class="service-content">
+                    <h2 class="service-title">Become an Agent</h2>
+                    <p class="service-description">Join our team and help others secure their financial future while building your career.</p>
+                    <a href="#" class="service-action" onclick="event.stopPropagation()">Apply Now</a>
                 </div>
             </div>
         </div>
     </div>
-
-    <div id="bc-overlay" class="modal-overlay">
-        <div class="glass-panel">
-            <button class="close-btn" id="bc-close">✕</button>
-            <h3 style="text-align:center; font-weight:700; margin-bottom:10px; color:#334155;">Digital Card</h3>
-            
-            <div class="scene">
-                <div id="card3d" class="card3d">
-                    <div class="face front">
-                        <img id="imgFront" src="https://i.ibb.co/kV8dVVS0/Scanned-Document-06-10-2025-at-22-20-01.jpg" alt="Front">
-                    </div>
-                    <div class="face back">
-                        <img id="imgBack" src="https://i.ibb.co/MD2DP338/Scanned-Document-06-10-2025-at-22-20-45.jpg" alt="Back">
-                    </div>
-                </div>
-            </div>
-            
-            <div style="display:flex; justify-content:center; gap:10px;">
-                <button id="flip" class="px-4 py-2 rounded-lg bg-slate-100 font-bold text-sm text-slate-700 hover:bg-slate-200">Flip Card</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="zoomOverlay" class="zoom-overlay">
-        <img id="zoomImg" class="zoom-img">
-        <button id="zoomClose" class="close-btn" style="position:fixed; top:20px; right:20px; background:white;">✕</button>
-    </div>
-
+    
     <script>
-        // === 1. TIME LOGIC (GMT+8) ===
-        function getMalaysiaDate() {
-            const d = new Date();
-            const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-            return new Date(utc + 28800000);
-        }
-
-        // Clock
-        const hourHand = document.querySelector('[data-hour-hand]');
-        const minuteHand = document.querySelector('[data-minute-hand]');
-        const secondHand = document.querySelector('[data-second-hand]');
+        // Handle orientation change
+        let orientationTimer;
+        window.addEventListener('orientationchange', function() {
+            clearTimeout(orientationTimer);
+            orientationTimer = setTimeout(function() {
+                // Adjust layout after orientation change
+                document.body.style.display = 'none';
+                document.body.offsetHeight; // Trigger reflow
+                document.body.style.display = 'block';
+            }, 200);
+        });
         
-        function setClock() {
-            const d = getMalaysiaDate();
-            const s = d.getSeconds();
-            const m = d.getMinutes();
-            const h = d.getHours();
+        // Handle service card clicks
+        function handleServiceClick(service) {
+            console.log('Service clicked:', service);
+            // Add your navigation logic here
+        }
+        
+        // Detect device and add class for additional styling
+        function detectDevice() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isTablet = /ipad|android(?!.*mobile)|tablet/i.test(userAgent);
+            const isMobile = /mobile|iphone|ipod|android.*mobile/i.test(userAgent);
             
-            const sRatio = s / 60;
-            const mRatio = (m + sRatio) / 60;
-            const hRatio = (h + mRatio) / 12;
-
-            setRot(secondHand, sRatio);
-            setRot(minuteHand, mRatio);
-            setRot(hourHand, hRatio);
-        }
-
-        function setRot(el, ratio) {
-            el.style.transform = `rotate(${ratio * 360 + 90}deg)`;
-        }
-
-        setInterval(setClock, 1000);
-        setClock();
-
-        // Clock Numbers
-        const marksContainer = document.getElementById('clockMarks');
-        const clockEl = document.getElementById('floatingClock');
-        
-        for(let i=1; i<=12; i++){
-            let num = document.createElement('div');
-            num.className = 'clock-number';
-            num.style.setProperty('--rotation', `${i * 30}deg`);
-            num.innerHTML = `<span>${i}</span>`;
-            clockEl.appendChild(num);
-        }
-
-        // Calendar
-        const months = ['JAN', 'FEB', 'MAC', 'APR', 'MEI', 'JUN', 'JUL', 'OGO', 'SEP', 'OKT', 'NOV', 'DIS'];
-        function updateCal() {
-            const d = getMalaysiaDate();
-            document.getElementById('calendar-day').innerText = d.getDate();
-            document.getElementById('calendar-month').innerText = months[d.getMonth()];
-        }
-        updateCal();
-
-        // === 2. PROMO LOGIC ===
-        const promoBadge = document.getElementById('promo-badge');
-        const promoOverlay = document.getElementById('promo-overlay');
-        const promoImg = document.getElementById('promo-image');
-        const images = ['https://i.ibb.co/kt9czYT/photo-1-2025-11-17-23-51-40.jpg', 'https://i.ibb.co/q3M4TKh7/photo-2-2025-11-17-23-51-40.jpg'];
-        let idx = 0;
-
-        function showPromo(i) {
-            idx = i;
-            if(idx < 0) idx = images.length - 1;
-            if(idx >= images.length) idx = 0;
-            promoImg.src = images[idx];
-            // dots update could go here
-        }
-
-        promoBadge.onclick = () => { promoOverlay.classList.add('active'); showPromo(0); };
-        document.getElementById('promo-close').onclick = () => promoOverlay.classList.remove('active');
-        document.getElementById('promo-prev').onclick = () => showPromo(idx - 1);
-        document.getElementById('promo-next').onclick = () => showPromo(idx + 1);
-        
-        // === 3. BUSINESS CARD LOGIC ===
-        const bcBadge = document.getElementById('bc-badge');
-        const bcOverlay = document.getElementById('bc-overlay');
-        const card3d = document.getElementById('card3d');
-        let isFlipped = false;
-
-        bcBadge.onclick = () => bcOverlay.classList.add('active');
-        document.getElementById('bc-close').onclick = () => bcOverlay.classList.remove('active');
-        
-        document.getElementById('flip').onclick = () => {
-            isFlipped = !isFlipped;
-            card3d.querySelector('.front').style.transform = isFlipped ? 'rotateY(180deg)' : 'translateZ(1px)';
-            card3d.querySelector('.back').style.transform = isFlipped ? 'translateZ(1px)' : 'rotateY(180deg)';
-            card3d.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
-        };
-
-        // Simple 3D sway effect on mouse move for the card
-        const scene = document.querySelector('.scene');
-        scene.addEventListener('mousemove', (e) => {
-            const box = scene.getBoundingClientRect();
-            const x = (e.clientX - box.left) / box.width - 0.5;
-            const y = (e.clientY - box.top) / box.height - 0.5;
-            if(!isFlipped) card3d.style.transform = `rotateY(${x * 20}deg) rotateX(${-y * 20}deg)`;
-            else card3d.style.transform = `rotateY(${180 + x * 20}deg) rotateX(${-y * 20}deg)`;
-        });
-        scene.addEventListener('mouseleave', () => {
-             card3d.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
-        });
-
-        // === 4. ZOOM LOGIC ===
-        const zoomOv = document.getElementById('zoomOverlay');
-        const zoomI = document.getElementById('zoomImg');
-        
-        document.querySelectorAll('.face img').forEach(img => {
-            img.onclick = (e) => {
-                e.stopPropagation();
-                zoomI.src = img.src;
-                zoomOv.classList.add('active');
+            if (isTablet) {
+                document.body.classList.add('tablet-device');
+            } else if (isMobile) {
+                document.body.classList.add('mobile-device');
+            } else {
+                document.body.classList.add('desktop-device');
             }
+        }
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', detectDevice);
+        
+        // Handle resize events with debouncing
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                // Handle any resize-specific adjustments
+                console.log('Window resized');
+            }, 250);
         });
-        document.getElementById('zoomClose').onclick = () => zoomOv.classList.remove('active');
-        zoomOv.onclick = () => zoomOv.classList.remove('active');
-
     </script>
 </body>
 </html>
