@@ -78,8 +78,9 @@
             border-left: 1px solid #e2e8f0;
         }
         
+        /* Logo Shazay Size */
         .partner-logo img {
-            height: 35px;
+            height: 50px; 
         }
         
         .partner-logo span {
@@ -135,7 +136,7 @@
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 150px 20px 100px;
+            padding: 110px 20px 60px; 
             text-align: center;
             color: white;
             position: relative;
@@ -163,6 +164,7 @@
         .hero h1 {
             font-size: 2.8rem;
             margin-bottom: 20px;
+            line-height: 1.2;
             animation: fadeInUp 0.8s ease;
         }
         
@@ -327,6 +329,11 @@
             background: linear-gradient(135deg, #a8edea, #fed6e3);
             color: #333;
         }
+
+        .hospital-icon {
+            background: linear-gradient(135deg, #ef476f, #ff1654);
+            color: white;
+        }
         
         .service-title {
             font-size: 1.3rem;
@@ -361,11 +368,118 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
+
+        /* Panel Search Section Styles */
+        .panel-search {
+            padding: 80px 20px;
+            background-color: white;
+        }
+
+        .search-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .search-controls {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            background: var(--light-bg);
+            padding: 25px;
+            border-radius: 15px;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .control-group select, 
+        .control-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .hospital-list {
+            display: none; /* Hidden by default */
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .hospital-item {
+            background: white;
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .hospital-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .hospital-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .hospital-item .city {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .hospital-item .phone {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .tag-type {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .tag-hospital {
+            background-color: #e6fffa;
+            color: #2c7a7b;
+        }
+        
+        .tag-clinic {
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+        }
         
         /* Features Section */
         .features {
             padding: 80px 20px;
-            background-color: white;
+            background-color: var(--light-bg);
         }
         
         .features-container {
@@ -383,7 +497,8 @@
             padding: 25px;
             border-radius: 12px;
             transition: var(--transition);
-            background: var(--light-bg);
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         
         .feature-item:hover {
@@ -418,7 +533,7 @@
         /* Testimonials Section */
         .testimonials {
             padding: 80px 20px;
-            background-color: var(--light-bg);
+            background-color: white;
         }
         
         .testimonials-container {
@@ -436,7 +551,7 @@
         .testimonial {
             min-width: 100%;
             padding: 40px;
-            background-color: white;
+            background-color: var(--light-bg);
             border-radius: 16px;
             box-shadow: var(--card-shadow);
             text-align: center;
@@ -497,7 +612,7 @@
         /* FAQ Section */
         .faq {
             padding: 80px 20px;
-            background-color: white;
+            background-color: var(--light-bg);
         }
         
         .faq-container {
@@ -510,11 +625,12 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background: white;
         }
         
         .faq-question {
             padding: 20px;
-            background: var(--light-bg);
+            background: white;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -531,7 +647,7 @@
         
         .faq-item.active .faq-answer {
             padding: 20px;
-            max-height: 300px;
+            max-height: 500px;
         }
         
         .faq-question i {
@@ -721,6 +837,10 @@
                 display: block;
             }
             
+            .hero {
+                padding: 100px 20px 50px;
+            }
+            
             .hero h1 {
                 font-size: 2.2rem;
             }
@@ -740,10 +860,6 @@
         }
         
         @media (max-width: 768px) {
-            .hero {
-                padding: 120px 20px 80px;
-            }
-            
             .hero h1 {
                 font-size: 1.8rem;
             }
@@ -799,8 +915,27 @@
         }
         
         @media (max-width: 480px) {
+            .hero {
+                padding: 90px 20px 40px;
+            }
+
             .hero h1 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
+                margin-bottom: 15px;
+            }
+            
+            .hero p {
+                font-size: 0.95rem;
+                margin-bottom: 25px;
+            }
+
+            .cta-buttons {
+                width: 100%;
+                gap: 15px;
+            }
+
+            .cta-button {
+                width: 100%; 
             }
             
             .services-grid {
@@ -825,6 +960,8 @@
             .whatsapp-cta {
                 font-size: 1rem;
                 padding: 12px 25px;
+                width: 100%;
+                justify-content: center;
             }
             
             .logo-container {
@@ -842,411 +979,1147 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
             <div class="logo-container">
-                <div class="logo">
-                    <img src="https://i.ibb.co/zTsc152b/unnamed.jpg" alt="PruBSN Takaful Logo">
-                    <span>PruBSN Takaful</span>
-                </div>
-                <div class="partner-logo">
-                    <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Shazay And Associates Logo">
-                    <span>Shazay And Associates</span>
-                </div>
-            </div>
+               <div class="logo">
+                   <img src="https://i.ibb.co/zTsc152b/unnamed.jpg" alt="PruBSN Takaful Logo">
+                   <span>PruBSN Takaful</span>
+               </div>
+               <div class="partner-logo">
+                   <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Shazay And Associates Logo">
+                   <span>Shazay And Associates</span>
+               </div>
+           </div>
             <ul class="nav-links">
-                <li><a href="#home">Utama</a></li>
-                <li><a href="#services">Perkhidmatan</a></li>
-                <li><a href="#features">Kelebihan</a></li>
-                <li><a href="#testimonials">Testimoni</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">Hubungi</a></li>
-            </ul>
+               <li><a href="#home">Utama</a></li>
+               <li><a href="#services">Perkhidmatan</a></li>
+               <li><a href="#features">Kelebihan</a></li>
+               <li><a href="#testimonials">Testimoni</a></li>
+               <li><a href="#faq">FAQ</a></li>
+               <li><a href="#contact">Hubungi</a></li>
+           </ul>
             <div class="mobile-menu-toggle" id="mobileMenuToggle">
                 <i class="fas fa-bars"></i>
-            </div>
+           </div>
         </div>
     </nav>
-
-    <!-- Hero Section -->
+ 
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>Perlindungan Takaful Untuk Keluarga Anda</h1>
-            <p>Temui penyelesaian perlindungan kewangan Islam yang komprehensif untuk masa depan yang lebih selamat</p>
+           <h1>Perlindungan Takaful Untuk Keluarga Anda</h1>
+           <p>Temui penyelesaian perlindungan kewangan Islam yang komprehensif untuk masa depan yang lebih selamat</p>
             <div class="cta-buttons">
                 <a href="#services" class="cta-button cta-primary">
-                    <i class="fas fa-search"></i>
-                    Terokai Perkhidmatan
-                </a>
+                   <i class="fas fa-search"></i>
+                   Terokai Perkhidmatan
+               </a>
                 <a href="#contact" class="cta-button cta-secondary">
-                    <i class="fas fa-phone-alt"></i>
-                    Hubungi Kami
-                </a>
-            </div>
+                   <i class="fas fa-phone-alt"></i>
+                   Hubungi Kami
+               </a>
+           </div>
         </div>
     </section>
-
-    <!-- Services Section -->
+ 
     <section class="services" id="services">
         <div class="section-header animate-on-scroll">
-            <h2>Perkhidmatan Takaful Kami</h2>
-            <p>Pelbagai perkhidmatan direka untuk memenuhi keperluan perlindungan anda dan keluarga</p>
+           <h2>Perkhidmatan Takaful Kami</h2>
+           <p>Pelbagai perkhidmatan direka untuk memenuhi keperluan perlindungan anda dan keluarga</p>
         </div>
         
         <div class="services-grid">
             <div class="service-card animate-on-scroll">
-                <div class="service-icon whatsapp-icon">
-                    <i class="fab fa-whatsapp"></i>
-                </div>
-                <div class="service-content">
-                    <h3 class="service-title">WhatsApp</h3>
-                    <p class="service-description">Hubungi wakil khidmat pelanggan kami / Contact our customer service representative for immediate assistance with your takaful needs.</p>
-                    <a href="https://wa.me/601125517767" class="service-action" target="_blank">
-                        Mulakan Chat / Start Chat
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
+               <div class="service-icon whatsapp-icon">
+                   <i class="fab fa-whatsapp"></i>
+               </div>
+               <div class="service-content">
+                   <h3 class="service-title">WhatsApp</h3>
+                   <p class="service-description">Hubungi wakil khidmat pelanggan kami / Contact our customer service representative for immediate assistance with your takaful needs.</p>
+                   <a href="https://wa.me/601125517767" class="service-action" target="_blank">
+                       Mulakan Chat / Start Chat
+                       <i class="fas fa-arrow-right"></i>
+                   </a>
+               </div>
+           </div>
+           
             <div class="service-card animate-on-scroll">
-                <div class="service-icon discover-icon">
-                    <i class="fas fa-globe"></i>
-                </div>
-                <div class="service-content">
-                    <h3 class="service-title">Terokai Takaful / Discover Takaful</h3>
-                    <p class="service-description">Terokai pelbagai produk dan perkhidmatan takaful kami / Explore our full range of takaful products and services to find the perfect protection plan.</p>
-                    <a href="http://qoutation.hafizulcheamid.com/" class="service-action" target="_blank">
-                        Terokai Sekarang / Explore Now
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
+               <div class="service-icon discover-icon">
+                   <i class="fas fa-calculator"></i>
+               </div>
+               <div class="service-content">
+                   <h3 class="service-title">Anggaran Sebut Harga / Estimated Quote</h3>
+                   <p class="service-description">
+                       Dapatkan anggaran kasar caruman bulanan anda di sini.
+                       <br><br>
+                       <small style="color: #e53e3e; font-style: italic; font-weight: 500;">
+                           *Nota: Harga dipaparkan adalah anggaran sahaja. Untuk sebut harga rasmi yang tepat, sila hubungi ejen kami melalui WhatsApp.
+                       </small>
+                   </p>
+                   <a href="http://qoutation.hafizulcheamid.com/" class="service-action" target="_blank">
+                       Kira Anggaran / Calculate Estimate
+                       <i class="fas fa-arrow-right"></i>
+                   </a>
+               </div>
+           </div>
+           
             <div class="service-card animate-on-scroll">
-                <div class="service-icon payment-icon">
-                    <i class="fas fa-credit-card"></i>
-                </div>
-                <div class="service-content">
-                    <h3 class="service-title">Pembayaran Dalam Talian / Online Payment</h3>
-                    <p class="service-description">Buat pembayaran dalam talian yang selamat / Make secure online payments for your takaful premiums conveniently through our portal.</p>
-                    <a href="https://app.prubsn.com.my/PruBSNPay/validate" class="service-action" target="_blank">
-                        Bayar Sekarang / Pay Now
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
+               <div class="service-icon payment-icon">
+                   <i class="fas fa-credit-card"></i>
+               </div>
+               <div class="service-content">
+                   <h3 class="service-title">Pembayaran Dalam Talian / Online Payment</h3>
+                   <p class="service-description">Buat pembayaran dalam talian yang selamat / Make secure online payments for your takaful premiums conveniently through our portal.</p>
+                   <a href="https://app.prubsn.com.my/PruBSNPay/validate" class="service-action" target="_blank">
+                       Bayar Sekarang / Pay Now
+                       <i class="fas fa-arrow-right"></i>
+                   </a>
+               </div>
+           </div>
+           
             <div class="service-card animate-on-scroll">
-                <div class="service-icon login-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <div class="service-content">
-                    <h3 class="service-title">PruBsn Touch</h3>
-                    <p class="service-description">Akses akaun anda atau daftar / Access your account or register to manage your takaful policies on the go.</p>
-                    <a href="https://app.prubsn.com.my/PruBSNTouch/login/login.do" class="service-action" target="_blank">
-                        Log Masuk/Daftar / Login/Register
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-            
+               <div class="service-icon login-icon">
+                   <i class="fas fa-mobile-alt"></i>
+               </div>
+               <div class="service-content">
+                   <h3 class="service-title">PruBsn Touch</h3>
+                   <p class="service-description">Akses akaun anda atau daftar / Access your account or register to manage your takaful policies on the go.</p>
+                   <a href="https://app.prubsn.com.my/PruBSNTouch/login/login.do" class="service-action" target="_blank">
+                       Log Masuk/Daftar / Login/Register
+                       <i class="fas fa-arrow-right"></i>
+                   </a>
+               </div>
+           </div>
+           
             <div class="service-card animate-on-scroll">
-                <div class="service-icon agent-icon">
-                    <i class="fas fa-user-tie"></i>
-                </div>
-                <div class="service-content">
-                    <h3 class="service-title">Jadi Ejen / Become an Agent</h3>
-                    <p class="service-description">Sertai pasukan kami / Join our team and help others secure their financial future while building your career.</p>
-                    <a href="https://wa.me/601125517767?text=nak%20tahu%20cara%20jadi%20agent" class="service-action" target="_blank">
-                        Mohon Sekarang / Apply Now
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
+               <div class="service-icon agent-icon">
+                   <i class="fas fa-user-tie"></i>
+               </div>
+               <div class="service-content">
+                   <h3 class="service-title">Jadi Ejen / Become an Agent</h3>
+                   <p class="service-description">Sertai pasukan kami / Join our team and help others secure their financial future while building your career.</p>
+                   <a href="https://wa.me/601125517767?text=nak%20tahu%20cara%20jadi%20agent" class="service-action" target="_blank">
+                       Mohon Sekarang / Apply Now
+                       <i class="fas fa-arrow-right"></i>
+                   </a>
+               </div>
+           </div>
+
+           <div class="service-card animate-on-scroll">
+               <div class="service-icon hospital-icon">
+                   <i class="fas fa-hospital-alt"></i>
+               </div>
+               <div class="service-content">
+                   <h3 class="service-title">Hospital & Klinik Panel</h3>
+                   <p class="service-description">Semak senarai hospital panel mengikut negeri dan daerah anda, atau cari klinik panel terdekat.</p>
+                   <a href="#panel-search" class="service-action">
+                       Cari Lokasi / Find Location
+                       <i class="fas fa-arrow-down"></i>
+                   </a>
+               </div>
+           </div>
         </div>
     </section>
 
-    <!-- Features Section -->
+    <section class="panel-search" id="panel-search">
+        <div class="section-header animate-on-scroll">
+            <h2>Cari Panel PruBSN</h2>
+            <p>Semak senarai hospital dan klinik panel mengikut lokasi anda</p>
+        </div>
+
+        <div class="search-container animate-on-scroll">
+            <div class="search-controls">
+                <div class="control-group">
+                    <label><i class="fas fa-building"></i> Jenis Panel</label>
+                    <select id="typeFilter" onchange="filterPanels()">
+                        <option value="hospital">Hospital</option>
+                        <option value="clinic">Klinik</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label><i class="fas fa-map-marker-alt"></i> Pilih Negeri</label>
+                    <select id="stateFilter" onchange="populateDistricts()">
+                        <option value="hide" selected disabled>-- Sila Pilih Negeri --</option>
+                        <option value="all">Semua Negeri</option>
+                        <option value="johor">Johor</option>
+                        <option value="kedah">Kedah</option>
+                        <option value="kelantan">Kelantan</option>
+                        <option value="melaka">Melaka</option>
+                        <option value="negeri sembilan">Negeri Sembilan</option>
+                        <option value="pahang">Pahang</option>
+                        <option value="penang">Pulau Pinang</option>
+                        <option value="perak">Perak</option>
+                        <option value="perlis">Perlis</option>
+                        <option value="sabah">Sabah</option>
+                        <option value="sarawak">Sarawak</option>
+                        <option value="selangor">Selangor</option>
+                        <option value="terengganu">Terengganu</option>
+                        <option value="kuala lumpur">W.P. Kuala Lumpur</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label><i class="fas fa-map-pin"></i> Pilih Daerah / Bandar</label>
+                    <select id="districtFilter" onchange="filterPanels()" disabled>
+                        <option value="all">Semua Daerah</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="hospital-list" id="hospitalList">
+                
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="johor bahru">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Johor Specialist Hospital</h4>
+                    <p class="city">Johor Bahru, Johor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 07-225 3000</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="johor bahru">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Hospital Tebrau</h4>
+                    <p class="city">Johor Bahru, Johor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 07-272 9999</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="johor bahru">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Kempas Medical Centre</h4>
+                    <p class="city">Johor Bahru, Johor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 07-236 8999</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="johor bahru">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Bandar Dato' Onn Specialist</h4>
+                    <p class="city">Johor Bahru, Johor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 07-301 1000</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="iskandar puteri">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Hospital Iskandar Puteri</h4>
+                    <p class="city">Iskandar Puteri, Johor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 07-233 9999</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="iskandar puteri">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Gleneagles Medini</h4>
+                    <p class="city">Iskandar Puteri, Johor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 07-560 1000</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="pasir gudang">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Pasir Gudang Specialist</h4>
+                    <p class="city">Pasir Gudang, Johor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 07-257 3999</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="masai">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Regency Specialist Hospital</h4>
+                    <p class="city">Masai, Johor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 07-381 7700</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="batu pahat">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Batu Pahat Specialist</h4>
+                    <p class="city">Batu Pahat, Johor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 07-459 1000</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="batu pahat">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Pantai Hospital Batu Pahat</h4>
+                    <p class="city">Batu Pahat, Johor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 07-433 8811</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="muar">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Bandar Maharani Specialist</h4>
+                    <p class="city">Muar, Johor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 06-956 4500</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="kluang">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Kluang Utama Specialist</h4>
+                    <p class="city">Kluang, Johor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 07-771 8999</p>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Prince Court Medical Centre</h4>
+                    <p class="city">KL City Centre</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-2160 0888</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Gleneagles Kuala Lumpur</h4>
+                    <p class="city">Jalan Ampang, KL</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-4141 3000</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Institut Jantung Negara (IJN)</h4>
+                    <p class="city">KL City Centre</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-2617 8200</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Tawakkal Specialist</h4>
+                    <p class="city">KL City Centre</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-4026 7777</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="cheras">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Pantai Hospital Cheras</h4>
+                    <p class="city">Cheras, KL</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-9145 2888</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="cheras">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Hospital Cheras</h4>
+                    <p class="city">Cheras, KL</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-9086 9999</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="setapak">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Hospital Setapak</h4>
+                    <p class="city">Setapak, KL</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-4145 9999</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="desa parkcity">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>ParkCity Medical Centre</h4>
+                    <p class="city">Desa ParkCity, KL</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-5639 1212</p>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="shah alam">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Avisena Specialist Hospital</h4>
+                    <p class="city">Shah Alam, Selangor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-5515 1888</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="shah alam">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Selangor Specialist</h4>
+                    <p class="city">Shah Alam, Selangor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-5543 1111</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="shah alam">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Bukit Rimau</h4>
+                    <p class="city">Shah Alam, Selangor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-5125 9999</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="petaling jaya">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Sunway Medical Centre</h4>
+                    <p class="city">Bandar Sunway, PJ</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-7491 9191</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="petaling jaya">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Assunta Hospital</h4>
+                    <p class="city">Petaling Jaya, Selangor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-7872 3000</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="petaling jaya">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Thomson Hospital Kota Damansara</h4>
+                    <p class="city">Kota Damansara, PJ</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-6287 1111</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="klang">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Klang Specialist</h4>
+                    <p class="city">Klang, Selangor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-3377 7888</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="klang">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Sri Kota Specialist</h4>
+                    <p class="city">Klang, Selangor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-3375 7799</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="subang jaya">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Subang Jaya Medical Centre</h4>
+                    <p class="city">Subang Jaya, Selangor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-5639 1212</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="bangi">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Hospital Pakar An-Nur</h4>
+                    <p class="city">Bangi, Selangor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-8923 5500</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="rawang">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Rawang Specialist</h4>
+                    <p class="city">Rawang, Selangor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-6099 8999</p>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="kedah" data-city="alor setar">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Kedah Medical Centre</h4>
+                    <p class="city">Alor Setar, Kedah</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 04-730 8878</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kedah" data-city="sungai petani">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Pantai Hospital Laguna Merbok</h4>
+                    <p class="city">Sungai Petani, Kedah</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 04-442 3888</p>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="penang" data-city="george town">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Island Hospital</h4>
+                    <p class="city">George Town, Penang</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 04-228 8222</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="penang" data-city="george town">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Gleneagles Penang</h4>
+                    <p class="city">George Town, Penang</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 04-222 9111</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="penang" data-city="bayan lepas">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Pantai Hospital Penang</h4>
+                    <p class="city">Bayan Lepas, Penang</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 04-643 3888</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="penang" data-city="seberang jaya">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Penang Specialist</h4>
+                    <p class="city">Seberang Jaya, Penang</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 04-548 6688</p>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="melaka" data-city="melaka city centre">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Mahkota Medical Centre</h4>
+                    <p class="city">Melaka City</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 06-285 2999</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="melaka" data-city="ayer keroh">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Pantai Hospital Ayer Keroh</h4>
+                    <p class="city">Ayer Keroh, Melaka</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 06-231 9999</p>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="negeri sembilan" data-city="seremban">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Seremban Specialist</h4>
+                    <p class="city">Seremban, Negeri Sembilan</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 06-767 7800</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="negeri sembilan" data-city="seremban">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Hospital Seremban</h4>
+                    <p class="city">Seremban, Negeri Sembilan</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 06-603 3988</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="negeri sembilan" data-city="nilai">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Aurelius Hospital Nilai</h4>
+                    <p class="city">Nilai, Negeri Sembilan</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 06-850 0999</p>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="perak" data-city="ipoh">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Ipoh Specialist</h4>
+                    <p class="city">Ipoh, Perak</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 05-240 8777</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="perak" data-city="ipoh">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Pantai Hospital Ipoh</h4>
+                    <p class="city">Ipoh, Perak</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 05-540 5555</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="perak" data-city="taiping">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Hospital Taiping</h4>
+                    <p class="city">Taiping, Perak</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 05-820 8888</p>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="pahang" data-city="kuantan">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Pahang Specialist</h4>
+                    <p class="city">Kuantan, Pahang</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 09-511 2692</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="pahang" data-city="kuantan">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Kuantan Medical Centre</h4>
+                    <p class="city">Kuantan, Pahang</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 09-590 2828</p>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="kelantan" data-city="kota bharu">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Perdana Specialist</h4>
+                    <p class="city">Kota Bharu, Kelantan</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 09-745 8000</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kelantan" data-city="kubang kerian">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Hospital USM (HUSM)</h4>
+                    <p class="city">Kubang Kerian, Kelantan</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 09-766 6200</p>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="terengganu" data-city="kuala terengganu">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KMI Kuala Terengganu Medical Centre</h4>
+                    <p class="city">Kuala Terengganu</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 09-637 8888</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="terengganu" data-city="kuala terengganu">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Salam Specialist Hospital</h4>
+                    <p class="city">Kuala Terengganu</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 09-620 0200</p>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="sabah" data-city="kota kinabalu">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Gleneagles Kota Kinabalu</h4>
+                    <p class="city">Kota Kinabalu, Sabah</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 088-518 888</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="sabah" data-city="kota kinabalu">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Sabah Specialist Hospital</h4>
+                    <p class="city">Kota Kinabalu, Sabah</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 088-322 000</p>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="kuching">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Kuching Specialist</h4>
+                    <p class="city">Kuching, Sarawak</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 082-365 777</p>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="miri">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Hospital Miri</h4>
+                    <p class="city">Miri, Sarawak</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 085-437 755</p>
+                </div>
+
+                <div class="hospital-item" data-type="clinic" data-state="selangor" data-city="petaling jaya">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Mediviron</h4>
+                    <p class="city">Petaling Jaya, Selangor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-7728 8888</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="selangor" data-city="petaling jaya">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Medical Associates</h4>
+                    <p class="city">Sea Park, Petaling Jaya</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-7876 4790</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="selangor" data-city="subang jaya">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Keluarga Lee</h4>
+                    <p class="city">Subang Jaya, Selangor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-5633 7481</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="selangor" data-city="puchong">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Puchong Jaya</h4>
+                    <p class="city">Puchong, Selangor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-8075 2993</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="selangor" data-city="shah alam">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Poliklinik Sri Muda</h4>
+                    <p class="city">Shah Alam, Selangor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-5121 1163</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="selangor" data-city="klang">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Dr. Jaafar</h4>
+                    <p class="city">Klang, Selangor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-3371 9333</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="selangor" data-city="batu caves">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Goh</h4>
+                    <p class="city">Batu Caves, Selangor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-6189 6041</p>
+                </div>
+
+                <div class="hospital-item" data-type="clinic" data-state="kuala lumpur" data-city="jalan ipoh">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Tan</h4>
+                    <p class="city">Jalan Ipoh, KL</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-4043 3563</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="kuala lumpur" data-city="bangsar">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Chong & Rakan-Rakan</h4>
+                    <p class="city">Lucky Garden, Bangsar</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-2282 1719</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="kuala lumpur" data-city="kl city centre">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Kumpulan Medic</h4>
+                    <p class="city">Jalan Ampang, KL</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-2078 1632</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="kuala lumpur" data-city="cheras">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Ng & Lee</h4>
+                    <p class="city">Taman Maluri, Cheras</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-9285 2820</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="kuala lumpur" data-city="jalan pudu">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Ng & Lee (Pudu)</h4>
+                    <p class="city">Jalan Pudu, KL</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 03-9222 5581</p>
+                </div>
+
+                <div class="hospital-item" data-type="clinic" data-state="johor" data-city="johor bahru">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Sentosa</h4>
+                    <p class="city">Taman Sentosa, Johor Bahru</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 07-332 2045</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="johor" data-city="skudai">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Theesan</h4>
+                    <p class="city">Taman Universiti, Skudai</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 07-520 6009</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="johor" data-city="muar">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Asia 24 Jam</h4>
+                    <p class="city">Muar, Johor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 06-951 8420</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="johor" data-city="batu pahat">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Maju Specialist Clinic</h4>
+                    <p class="city">Batu Pahat, Johor</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 07-438 8295</p>
+                </div>
+
+                <div class="hospital-item" data-type="clinic" data-state="negeri sembilan" data-city="seremban">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Ren & Specialist Medical Clinic</h4>
+                    <p class="city">Seremban, Negeri Sembilan</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 06-763 8111</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="negeri sembilan" data-city="bahau">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Poliklinik Lien</h4>
+                    <p class="city">Bahau, Negeri Sembilan</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 06-454 2954</p>
+                </div>
+
+                <div class="hospital-item" data-type="clinic" data-state="perak" data-city="ipoh">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Poliklinik Tan, Lee & Cheong</h4>
+                    <p class="city">Ipoh, Perak</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 05-241 2083</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="perak" data-city="taiping">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Tan Cheng Leng</h4>
+                    <p class="city">Taiping, Perak</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 05-807 6611</p>
+                </div>
+
+                <div class="hospital-item" data-type="clinic" data-state="penang" data-city="george town">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Lim Dispensary</h4>
+                    <p class="city">George Town, Penang</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 04-261 7778</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="penang" data-city="bayan lepas">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Sentosa</h4>
+                    <p class="city">Bayan Baru, Penang</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 04-643 2131</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="penang" data-city="butterworth">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Ling Klinik</h4>
+                    <p class="city">Raja Uda, Butterworth</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 04-331 4688</p>
+                </div>
+
+                <div class="hospital-item" data-type="clinic" data-state="pahang" data-city="kuantan">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Kumpulan Klinik Syed Badaruddin</h4>
+                    <p class="city">Kuantan, Pahang</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 09-513 4295</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="pahang" data-city="mentakab">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Primamediklinik Jaya</h4>
+                    <p class="city">Mentakab, Pahang</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 09-277 1600</p>
+                </div>
+
+                <div class="hospital-item" data-type="clinic" data-state="sabah" data-city="kota kinabalu">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Dr. Raj</h4>
+                    <p class="city">Heritage Plaza, KK</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 088-717 645</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="sabah" data-city="sandakan">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Sk Lo</h4>
+                    <p class="city">Sandakan, Sabah</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 089-212 072</p>
+                </div>
+
+                <div class="hospital-item" data-type="clinic" data-state="sarawak" data-city="kuching">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Everbright</h4>
+                    <p class="city">Kuching, Sarawak</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 082-241 741</p>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="sarawak" data-city="miri">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Arif Medical Clinic</h4>
+                    <p class="city">Miri, Sarawak</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 085-413 887</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+ 
     <section class="features" id="features">
         <div class="section-header animate-on-scroll">
-            <h2>Mengapa Pilih Takaful Kami</h2>
-            <p>Kelebihan yang membuat kami pilihan terbaik untuk perlindungan anda</p>
+           <h2>Mengapa Pilih Takaful Kami</h2>
+           <p>Kelebihan yang membuat kami pilihan terbaik untuk perlindungan anda</p>
         </div>
         
         <div class="features-container">
             <div class="feature-item animate-on-scroll">
-                <div class="feature-icon">
-                    <i class="fas fa-hand-holding-heart"></i>
-                </div>
-                <div class="feature-content">
-                    <h3>Perlindungan Komprehensif</h3>
-                    <p>Pelan takaful yang lengkap untuk melindungi anda dan keluarga dari segala risiko kewangan.</p>
-                </div>
-            </div>
-            
+               <div class="feature-icon">
+                   <i class="fas fa-hand-holding-heart"></i>
+               </div>
+               <div class="feature-content">
+                   <h3>Perlindungan Komprehensif</h3>
+                   <p>Pelan takaful yang lengkap untuk melindungi anda dan keluarga dari segala risiko kewangan.</p>
+               </div>
+           </div>
+           
             <div class="feature-item animate-on-scroll">
-                <div class="feature-icon">
-                    <i class="fas fa-coins"></i>
-                </div>
-                <div class="feature-content">
-                    <h3>Nilai Pulangan Tinggi</h3>
-                    <p>Dapatkan pulangan pelaburan yang kompetitif dengan pelan simpanan takaful kami.</p>
-                </div>
-            </div>
-            
+               <div class="feature-icon">
+                   <i class="fas fa-coins"></i>
+               </div>
+               <div class="feature-content">
+                   <h3>Nilai Pulangan Tinggi</h3>
+                   <p>Dapatkan pulangan pelaburan yang kompetitif dengan pelan simpanan takaful kami.</p>
+               </div>
+           </div>
+           
             <div class="feature-item animate-on-scroll">
-                <div class="feature-icon">
-                    <i class="fas fa-mosque"></i>
-                </div>
-                <div class="feature-content">
-                    <h3>Sesuai Syariah</h3>
-                    <p>Semua produk kami adalah patuh Syariah dan diluluskan oleh Majlis Penasihat Syariah.</p>
-                </div>
-            </div>
-            
+               <div class="feature-icon">
+                   <i class="fas fa-mosque"></i>
+               </div>
+               <div class="feature-content">
+                   <h3>Sesuai Syariah</h3>
+                   <p>Semua produk kami adalah patuh Syariah dan diluluskan oleh Majlis Penasihat Syariah.</p>
+               </div>
+           </div>
+           
             <div class="feature-item animate-on-scroll">
-                <div class="feature-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <div class="feature-content">
-                    <h3>Khidmat Pelanggan Cemerlang</h3>
-                    <p>Pasukan sokongan kami sentiasa bersedia membantu anda dengan sebarang pertanyaan.</p>
-                </div>
-            </div>
-            
+               <div class="feature-icon">
+                   <i class="fas fa-users"></i>
+               </div>
+               <div class="feature-content">
+                   <h3>Khidmat Pelanggan Cemerlang</h3>
+                   <p>Pasukan sokongan kami sentiasa bersedia membantu anda dengan sebarang pertanyaan.</p>
+               </div>
+           </div>
+           
             <div class="feature-item animate-on-scroll">
-                <div class="feature-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <div class="feature-content">
-                    <h3>Akses Mudah</h3>
-                    <p>Uruskan polisi takaful anda dengan mudah melalui aplikasi mudah alih dan portal dalam talian.</p>
-                </div>
-            </div>
-            
+               <div class="feature-icon">
+                   <i class="fas fa-mobile-alt"></i>
+               </div>
+               <div class="feature-content">
+                   <h3>Akses Mudah</h3>
+                   <p>Uruskan polisi takaful anda dengan mudah melalui aplikasi mudah alih dan portal dalam talian.</p>
+               </div>
+           </div>
+           
             <div class="feature-item animate-on-scroll">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <div class="feature-content">
-                    <h3>Aman dan Dipercayai</h3>
-                    <p>Perlindungan kewangan anda adalah keutamaan kami dengan sistem yang selamat dan dipercayai.</p>
-                </div>
-            </div>
+               <div class="feature-icon">
+                   <i class="fas fa-shield-alt"></i>
+               </div>
+               <div class="feature-content">
+                   <h3>Aman dan Dipercayai</h3>
+                   <p>Perlindungan kewangan anda adalah keutamaan kami dengan sistem yang selamat dan dipercayai.</p>
+               </div>
+           </div>
         </div>
     </section>
-
-    <!-- Testimonials Section -->
+ 
     <section class="testimonials" id="testimonials">
         <div class="section-header animate-on-scroll">
-            <h2>Apa Kata Pelanggan Kami</h2>
-            <p>Kongsian pengalaman mereka dengan perkhidmatan takaful kami</p>
+           <h2>Apa Kata Pelanggan Kami</h2>
+           <p>Kongsian pengalaman mereka dengan perkhidmatan takaful kami</p>
         </div>
         
         <div class="testimonials-container animate-on-scroll">
             <div class="testimonial-slider">
-                <div class="testimonial">
-                    <p class="testimonial-text">"Saya sangat berpuas hati dengan perkhidmatan PruBSN Takaful. Proses permohonan mudah dan khidmat pelanggan sangat membantu. Saya rasa lebih selamat dengan perlindungan untuk keluarga saya."</p>
-                    <div class="testimonial-author">
-                        <img src="https://i.pravatar.cc/60?img=1" alt="Ahmad" class="author-avatar">
-                        <div class="author-info">
-                            <h4>Ahmad Rahman</h4>
-                            <p>Usahawan</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+               <div class="testimonial">
+                   <p class="testimonial-text">"Alhamdulillah, proses hibah sangat mudah dengan bantuan ejen Hafizul. Penjelasan yang jelas dan servis pantas. Kini saya rasa lebih tenang demi masa depan keluarga."</p>
+                   <div class="testimonial-author">
+                       <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="User Icon" class="author-avatar">
+                       <div class="author-info">
+                           <h4>Hafiz & Keluarga</h4>
+                           <p>Pelanggan Takaful</p>
+                       </div>
+                   </div>
+               </div>
+           </div>
             <div class="slider-dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
+               <span class="dot active"></span>
+               <span class="dot"></span>
+               <span class="dot"></span>
+           </div>
         </div>
     </section>
-
-    <!-- FAQ Section -->
+ 
     <section class="faq" id="faq">
         <div class="section-header animate-on-scroll">
-            <h2>Soalan Lazim</h2>
-            <p>Jawapan kepada soalan yang sering ditanya mengenai Takaful</p>
+           <h2>Soalan Lazim</h2>
+           <p>Jawapan kepada soalan yang sering ditanya mengenai Takaful</p>
         </div>
         
         <div class="faq-container">
             <div class="faq-item animate-on-scroll">
                 <div class="faq-question">
-                    <span>Apakah perbezaan antara Takaful dan insurans konvensional?</span>
+                    <span>Kalau saya sihat dan tak pernah claim, bolehkah saya dapat balik semua duit caruman?</span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    <p>Takaful berasaskan prinsip perkongsian risiko dan saling jamin-menjamin antara peserta, manakala insurans konvensional adalah kontrak jual beli antara syarikat insurans dan pemegang polisi. Takaful juga mematuhi prinsip Syariah dan bebas daripada unsur riba, gharar (ketidakpastian) dan maysir (judi).</p>
+                    <p>Ini adalah salah faham yang sering berlaku. Dalam Takaful, sebahagian caruman anda disalurkan ke dalam dana <strong>Tabarru' (Derma)</strong> untuk membantu peserta lain yang ditimpa musibah. Wang ini dianggap sebagai kos perlindungan dan amal jariah anda.<br><br>Oleh itu, <strong>tiada pemulangan 100% caruman</strong> jika tiada tuntutan, melainkan anda mengambil pelan simpanan khusus (Endowment). Walau bagaimanapun, jika pelan anda jenis <em>Investment-Linked</em>, anda mungkin menerima <strong>Nilai Tunai (Cash Value)</strong> hasil pelaburan, namun jumlahnya bergantung pada prestasi pasaran dan bukan jumlah penuh caruman yang dibayar.</p>
                 </div>
             </div>
-            
+
             <div class="faq-item animate-on-scroll">
-                <div class="faq-question">
-                    <span>Bagaimana cara untuk membuat tuntutan Takaful?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Anda boleh membuat tuntutan dengan menghubungi wakil Takaful anda atau menghubungi pusat khidmat pelanggan kami. Sediakan dokumen yang diperlukan seperti sijil Takaful, bukti tuntutan dan dokumen sokongan lain. Proses tuntutan biasanya mengambil masa 14 hari bekerja selepas dokumen lengkap diterima.</p>
-                </div>
-            </div>
-            
+               <div class="faq-question">
+                   <span>Apa itu Takaful dan bezanya dengan Insurans?</span>
+                   <i class="fas fa-chevron-down"></i>
+               </div>
+               <div class="faq-answer">
+                   <p>Takaful adalah konsep insurans Islamik di mana peserta menyumbang wang ke dalam satu dana umum (Tabarru') untuk saling menjamin satu sama lain. Ia bebas daripada Riba (faedah), Maisir (perjudian), dan Gharar (ketidakpastian). Berbeza dengan insurans konvensional yang merupakan kontrak jual beli risiko.</p>
+               </div>
+           </div>
+
             <div class="faq-item animate-on-scroll">
-                <div class="faq-question">
-                    <span>Adakah saya boleh menukar pelan Takaful saya?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Ya, anda boleh menukar pelan Takaful anda mengikut keperluan semasa. Hubungi wakil Takaful anda untuk berbincang tentang pilihan yang tersedia. Perlu diingat bahawa pertukaran pelan mungkin tertakluk kepada syarat-syarat tertentu dan penilaian semula risiko.</p>
-                </div>
-            </div>
+               <div class="faq-question">
+                   <span>Apa itu Hibah Takaful & Akta yang terlibat?</span>
+                   <i class="fas fa-chevron-down"></i>
+               </div>
+               <div class="faq-answer">
+                   <p>Hibah Takaful adalah 'hadiah' pampasan kematian yang diberikan kepada penama (penerima) secara terus tanpa perlu melalui prosedur pembahagian harta pusaka (Faraid) yang panjang. <br><br> Di bawah <strong>Akta Perkhidmatan Kewangan Islam 2013 (IFSA 2013)</strong>, wang Hibah Takaful adalah hak mutlak penama dan tidak boleh dituntut oleh waris lain atau pemiutang (tertakluk syarat), menjadikannya cara terpantas untuk mewariskan tunai kepada keluarga tersayang.</p>
+               </div>
+           </div>
+
+           <div class="faq-item animate-on-scroll">
+               <div class="faq-question">
+                   <span>Kenapa harga caruman Takaful boleh naik (Repricing)?</span>
+                   <i class="fas fa-chevron-down"></i>
+               </div>
+               <div class="faq-answer">
+                   <p>Kenaikan harga (repricing) biasanya berlaku disebabkan oleh inflasi perubatan yang meningkat setiap tahun. Apabila kos rawatan di hospital swasta naik dan jumlah tuntutan (claim) dari peserta meningkat, dana Tabarru' perlu dikukuhkan. Repricing memastikan dana kekal mampan untuk terus melindungi semua peserta pada masa hadapan.</p>
+               </div>
+           </div>
+
+           <div class="faq-item animate-on-scroll">
+               <div class="faq-question">
+                   <span>Kalau saya dah sakit, boleh ke ambil Takaful?</span>
+                   <i class="fas fa-chevron-down"></i>
+               </div>
+               <div class="faq-answer">
+                   <p>Secara amnya, Takaful perlu diambil semasa sihat. Jika anda sudah mempunyai penyakit sedia ada, anda WAJIB mengisytiharkannya semasa permohonan. Permohonan mungkin diterima dengan syarat (pengecualian penyakit tersebut), dikenakan caj tambahan (loading), atau mungkin ditolak bergantung kepada tahap keseriusan penyakit. Kejujuran adalah kunci untuk elak tuntutan ditolak kelak.</p>
+               </div>
+           </div>
+
+           <div class="faq-item animate-on-scroll">
+               <div class="faq-question">
+                   <span>Syarikat saya dah cover insurans, perlu ke ambil personal?</span>
+                   <i class="fas fa-chevron-down"></i>
+               </div>
+               <div class="faq-answer">
+                   <p>Sangat perlu. Perlindungan syarikat (company cover) adalah milik syarikat, bukan milik anda. Jika anda berhenti kerja, diberhentikan, atau bersara, perlindungan itu akan tamat serta-merta. Jika masa itu anda sudah ada penyakit, sukar untuk memohon Takaful personal yang baru. Takaful personal adalah hak milik kekal anda walau di mana anda bekerja.</p>
+               </div>
+           </div>
+
+           <div class="faq-item animate-on-scroll">
+               <div class="faq-question">
+                   <span>Bila saya boleh guna kad perubatan selepas sign up? (Tempoh Menunggu)</span>
+                   <i class="fas fa-chevron-down"></i>
+               </div>
+               <div class="faq-answer">
+                   <p>Untuk kemalangan (accident), perlindungan bermula serta-merta selepas polisi lulus. Untuk penyakit biasa (seperti demam denggi, viral infection), tempoh menunggu adalah 30 hari. Untuk penyakit spesifik (seperti batu karang, ketumbuhan), tempoh menunggu adalah 120 hari. Ini adalah standard industri untuk mengelakkan penipuan tuntutan.</p>
+               </div>
+           </div>
+
+           <div class="faq-item animate-on-scroll">
+               <div class="faq-question">
+                   <span>Apa jadi kalau saya terlepas bayar caruman (Lapsed)?</span>
+                   <i class="fas fa-chevron-down"></i>
+               </div>
+               <div class="faq-answer">
+                   <p>Jika caruman tidak dibayar melebihi tempoh ihsan (grace period), polisi anda akan menjadi 'Lapsed' (luput). Semasa status Lapsed, anda tiada sebarang perlindungan dan kad perubatan tidak boleh digunakan. Anda perlu membayar tunggakan atau membuat pengaktifan semula (revival) yang mungkin memerlukan pemeriksaan kesihatan semula.</p>
+               </div>
+           </div>
+
+           <div class="faq-item animate-on-scroll">
+               <div class="faq-question">
+                   <span>Bagaimana cara untuk membuat tuntutan (Claim)?</span>
+                   <i class="fas fa-chevron-down"></i>
+               </div>
+               <div class="faq-answer">
+                   <p>Untuk kemasukan hospital (GL), tunjukkan kad maya PruBSN anda di kaunter hospital panel. Untuk tuntutan balik (reimbursement) atau elaun, hubungi saya (ejen anda) untuk bantuan mengisi borang. Dokumen sokongan seperti laporan perubatan dan resit asal diperlukan. Proses biasanya mengambil masa 14 hari bekerja selepas dokumen lengkap.</p>
+               </div>
+           </div>
         </div>
     </section>
-
-    <!-- CTA Section -->
+ 
     <section class="cta-section" id="contact">
         <div class="cta-content animate-on-scroll">
-            <h2>Bersedia Untuk Perlindungan Yang Lebih Baik?</h2>
-            <p>Hubungi kami hari ini untuk konsultasi percuma dan temui pelan takaful yang sesuai untuk anda</p>
+           <h2>Bersedia Untuk Perlindungan Yang Lebih Baik?</h2>
+           <p>Hubungi kami hari ini untuk konsultasi percuma dan temui pelan takaful yang sesuai untuk anda</p>
             <a href="https://wa.me/601125517767" class="whatsapp-cta" target="_blank">
                 <i class="fab fa-whatsapp"></i>
-                <span>Chat dengan Kami di WhatsApp</span>
+               <span>Chat dengan Kami di WhatsApp</span>
             </a>
         </div>
     </section>
-
-    <!-- Footer -->
+ 
     <footer>
         <div class="footer-container">
             <div class="footer-column">
-                <h3>Tentang Kami</h3>
-                <p>PruBSN Takaful adalah penyedia perlindungan takaful terkemuka di Malaysia, komited untuk menyediakan penyelesaian perlindungan kewangan Islam yang komprehensif untuk semua.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            
+               <h3>Tentang Kami</h3>
+               <p>PruBSN Takaful adalah penyedia perlindungan takaful terkemuka di Malaysia, komited untuk menyediakan penyelesaian perlindungan kewangan Islam yang komprehensif untuk semua.</p>
+               <div class="social-links">
+                   <a href="#"><i class="fab fa-facebook-f"></i></a>
+                   <a href="#"><i class="fab fa-twitter"></i></a>
+                   <a href="#"><i class="fab fa-instagram"></i></a>
+                   <a href="#"><i class="fab fa-linkedin-in"></i></a>
+               </div>
+           </div>
+           
             <div class="footer-column">
-                <h3>Pautan Pantas</h3>
-                <ul>
-                    <li><a href="#home">Utama</a></li>
-                    <li><a href="#services">Perkhidmatan</a></li>
-                    <li><a href="#features">Kelebihan</a></li>
-                    <li><a href="#testimonials">Testimoni</a></li>
-                    <li><a href="#contact">Hubungi Kami</a></li>
-                </ul>
-            </div>
-            
+               <h3>Pautan Pantas</h3>
+               <ul>
+                   <li><a href="#home">Utama</a></li>
+                   <li><a href="#services">Perkhidmatan</a></li>
+                   <li><a href="#features">Kelebihan</a></li>
+                   <li><a href="#testimonials">Testimoni</a></li>
+                   <li><a href="#contact">Hubungi Kami</a></li>
+               </ul>
+           </div>
+           
             <div class="footer-column">
-                <h3>Perkhidmatan</h3>
-                <ul>
-                    <li><a href="#">Takaful Keluarga</a></li>
-                    <li><a href="#">Takaful Perubatan</a></li>
-                    <li><a href="#">Takaful Pendidikan</a></li>
-                    <li><a href="#">Takaful Pelaburan</a></li>
-                </ul>
-            </div>
-            
+               <h3>Perkhidmatan</h3>
+               <ul>
+                   <li><a href="#">Takaful Keluarga</a></li>
+                   <li><a href="#">Takaful Perubatan</a></li>
+                   <li><a href="#">Takaful Pendidikan</a></li>
+                   <li><a href="#">Takaful Pelaburan</a></li>
+               </ul>
+           </div>
+           
             <div class="footer-column">
-                <h3>Hubungi Kami</h3>
-                <ul>
-                    <li><i class="fas fa-map-marker-alt"></i> 123, Jalan Takaful, Kuala Lumpur</li>
-                    <li><i class="fas fa-phone"></i> +60 3-1234 5678</li>
-                    <li><i class="fas fa-envelope"></i> info@prubsn.com.my</li>
-                    <li><i class="fab fa-whatsapp"></i> +60 11-255 17767</li>
-                </ul>
-            </div>
+               <h3>Hubungi Kami</h3>
+               <ul>
+                   <li><i class="fas fa-map-marker-alt"></i> 123, Jalan Takaful, Kuala Lumpur</li>
+                   <li><i class="fas fa-phone"></i> +60 3-1234 5678</li>
+                   <li><i class="fas fa-envelope"></i> info@prubsn.com.my</li>
+                   <li><i class="fab fa-whatsapp"></i> +60 11-2551 7767</li>
+               </ul>
+           </div>
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2023 PruBSN Takaful. Hak Cipta Terpelihara.</p>
+           <p>&copy; 2025 PruBSN Takaful. Hak Cipta Terpelihara Hafizul Che Amid</p>
         </div>
     </footer>
-
+ 
     <script>
         // Mobile menu toggle
-        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+       document.getElementById('mobileMenuToggle').addEventListener('click', function() {
             const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
+           navLinks.classList.toggle('active');
         });
         
         // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+           anchor.addEventListener('click', function (e) {
+               e.preventDefault();
+               document.querySelector(this.getAttribute('href')).scrollIntoView({
+                   behavior: 'smooth'
                 });
                 
                 // Close mobile menu if open
                 const navLinks = document.querySelector('.nav-links');
                 if (window.innerWidth <= 992 && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
+                   navLinks.classList.remove('active');
                 }
             });
         });
         
         // Navbar background on scroll
-        window.addEventListener('scroll', function() {
+       window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
-                navbar.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+               navbar.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
             } else {
-                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+               navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
             }
         });
         
         // Animate elements on scroll
         function animateOnScroll() {
             const elements = document.querySelectorAll('.animate-on-scroll');
-            elements.forEach(element => {
+           elements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
                 const elementBottom = element.getBoundingClientRect().bottom;
                 
                 if (elementTop < window.innerHeight - 100 && elementBottom > 0) {
-                    element.classList.add('animated');
+                   element.classList.add('animated');
                 }
             });
         }
         
-        window.addEventListener('scroll', animateOnScroll);
-        window.addEventListener('load', animateOnScroll);
+       window.addEventListener('scroll', animateOnScroll);
+       window.addEventListener('load', animateOnScroll);
         
         // Testimonial slider
         const dots = document.querySelectorAll('.dot');
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
+       dots.forEach((dot, index) => {
+           dot.addEventListener('click', () => {
                 // Remove active class from all dots
-                dots.forEach(d => d.classList.remove('active'));
+               dots.forEach(d => d.classList.remove('active'));
                 // Add active class to clicked dot
-                dot.classList.add('active');
-                
-                // In a real implementation, you would change the testimonial content here
-                // For demo purposes, we're just changing the active dot
+               dot.classList.add('active');
             });
         });
         
         // FAQ accordion
         const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
+       faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
+           question.addEventListener('click', () => {
                 // Close all other FAQ items
-                faqItems.forEach(otherItem => {
+               faqItems.forEach(otherItem => {
                     if (otherItem !== item) {
-                        otherItem.classList.remove('active');
+                       otherItem.classList.remove('active');
                     }
                 });
                 
                 // Toggle current item
-                item.classList.toggle('active');
+               item.classList.toggle('active');
             });
         });
+
+        // --- NEW PANEL SEARCH LOGIC (Updated with Cities from PDF) ---
+
+        // Data Daerah/Bandar yang TEPAT ikut PDF Panel Hospital & Klinik 2025
+        const districtsData = {
+            johor: ["Johor Bahru", "Iskandar Puteri", "Pasir Gudang", "Masai", "Batu Pahat", "Muar", "Kluang", "Skudai"],
+            "kuala lumpur": ["KL City Centre", "Cheras", "Setapak", "Desa ParkCity", "Bangsar", "Jalan Ipoh", "Jalan Pudu", "Jalan Ampang"],
+            selangor: ["Shah Alam", "Petaling Jaya", "Klang", "Bangi", "Subang Jaya", "Puchong", "Rawang", "Batu Caves", "Cyberjaya", "Seri Kembangan"],
+            penang: ["George Town", "Bayan Lepas", "Seberang Jaya", "Butterworth", "Jelutong", "Batu Ferringhi"],
+            kedah: ["Alor Setar", "Sungai Petani", "Langkawi", "Kulim", "Padang Serai"],
+            perak: ["Ipoh", "Taiping", "Manjung", "Teluk Intan", "Batu Gajah", "Sitiawan", "Kamunting"],
+            melaka: ["Melaka City Centre", "Ayer Keroh", "Klebang", "Alor Gajah"],
+            "negeri sembilan": ["Seremban", "Nilai", "Senawang", "Bahau", "Tampin"],
+            pahang: ["Kuantan", "Mentakab", "Temerloh", "Jerantut"],
+            kelantan: ["Kota Bharu", "Kubang Kerian"],
+            terengganu: ["Kuala Terengganu", "Kerteh", "Dungun", "Paka", "Cukai"],
+            sabah: ["Kota Kinabalu", "Sandakan", "Tawau", "Penampang", "Tuaran"],
+            sarawak: ["Kuching", "Miri", "Bintulu", "Sibu"],
+            perlis: ["Kangar"]
+        };
+
+        function populateDistricts() {
+            const stateFilter = document.getElementById('stateFilter').value;
+            const districtFilter = document.getElementById('districtFilter');
+            const listContainer = document.getElementById('hospitalList');
+
+            // Reset district dropdown
+            districtFilter.innerHTML = '<option value="all">Semua Daerah</option>';
+            
+            // Kalau pilih "Hide" atau default, sembunyikan list & disable daerah
+            if (stateFilter === "hide" || stateFilter === "") {
+                districtFilter.disabled = true;
+                listContainer.style.display = "none";
+                return;
+            }
+
+            // Enable district dropdown
+            districtFilter.disabled = false;
+
+            // Masukkan daerah ikut negeri yang dipilih
+            if (stateFilter !== "all" && districtsData[stateFilter]) {
+                districtsData[stateFilter].forEach(district => {
+                    const option = document.createElement('option');
+                    option.value = district.toLowerCase();
+                    option.textContent = district;
+                    districtFilter.appendChild(option);
+                });
+            }
+
+            // TERUS TUNJUK LIST (Trigger filter immediately)
+            filterPanels();
+        }
+
+        function filterPanels() {
+            const typeFilter = document.getElementById('typeFilter').value.toLowerCase();
+            const stateFilter = document.getElementById('stateFilter').value.toLowerCase();
+            const districtFilter = document.getElementById('districtFilter').value.toLowerCase();
+            
+            const panels = document.querySelectorAll('.hospital-item');
+            const listContainer = document.getElementById('hospitalList');
+
+            // Logic: Sembunyi list jika negeri belum dipilih
+            if (stateFilter === "hide" || stateFilter === "") {
+                listContainer.style.display = "none";
+                return;
+            } else {
+                listContainer.style.display = "grid"; // Tunjuk list
+            }
+
+            panels.forEach(item => {
+                const itemType = item.getAttribute('data-type');
+                const itemState = item.getAttribute('data-state');
+                const itemCity = item.getAttribute('data-city').toLowerCase();
+                
+                // Logic Matching
+                const typeMatch = (typeFilter === 'all') || (itemType === typeFilter);
+                const stateMatch = (stateFilter === 'all') || (itemState === stateFilter);
+                
+                // Logic Daerah: Check kalau daerah dalam item sama dengan selection
+                // Atau kalau user pilih "Semua Daerah", tunjuk semua dalam negeri tu
+                const districtMatch = (districtFilter === 'all') || (itemCity.includes(districtFilter));
+
+                if (typeMatch && stateMatch && districtMatch) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
     </script>
 </body>
 </html>
