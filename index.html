@@ -6,6 +6,7 @@
     <title>Perkhidmatan Takaful - PruBSN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -15,6 +16,7 @@
         }
         
         :root {
+            /* Main Colors */
             --primary-color: #1a365d;
             --secondary-color: #25D366;
             --accent-color: #667eea;
@@ -23,6 +25,10 @@
             --text-light: #718096;
             --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+            
+            /* Widget Colors */
+            --primary-navy: #1a2b4c;
+            --promo-gradient: linear-gradient(135deg, #ff6b6b, #ff8e8e);
         }
         
         body {
@@ -32,7 +38,7 @@
             line-height: 1.6;
         }
         
-        /* Navigation */
+        /* --- NAVIGATION --- */
         nav {
             background-color: white;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -78,7 +84,6 @@
             border-left: 1px solid #e2e8f0;
         }
         
-        /* Logo Shazay Size */
         .partner-logo img {
             height: 50px; 
         }
@@ -133,7 +138,7 @@
             color: var(--primary-color);
         }
         
-        /* Hero Section */
+        /* --- HERO SECTION --- */
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 110px 20px 60px; 
@@ -218,7 +223,7 @@
             color: var(--accent-color);
         }
         
-        /* Services Section */
+        /* --- SERVICES SECTION --- */
         .services {
             padding: 80px 20px;
             background-color: var(--light-bg);
@@ -305,35 +310,12 @@
             transform: rotate(5deg) scale(1.1);
         }
         
-        .whatsapp-icon {
-            background-color: var(--secondary-color);
-            color: white;
-        }
-        
-        .discover-icon {
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            color: white;
-        }
-        
-        .payment-icon {
-            background: linear-gradient(135deg, #fa709a, #fee140);
-            color: white;
-        }
-        
-        .login-icon {
-            background: linear-gradient(135deg, #30cfd0, #330867);
-            color: white;
-        }
-        
-        .agent-icon {
-            background: linear-gradient(135deg, #a8edea, #fed6e3);
-            color: #333;
-        }
-
-        .hospital-icon {
-            background: linear-gradient(135deg, #ef476f, #ff1654);
-            color: white;
-        }
+        .whatsapp-icon { background-color: var(--secondary-color); color: white; }
+        .discover-icon { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; }
+        .payment-icon { background: linear-gradient(135deg, #fa709a, #fee140); color: white; }
+        .login-icon { background: linear-gradient(135deg, #30cfd0, #330867); color: white; }
+        .agent-icon { background: linear-gradient(135deg, #a8edea, #fed6e3); color: #333; }
+        .hospital-icon { background: linear-gradient(135deg, #ef476f, #ff1654); color: white; }
         
         .service-title {
             font-size: 1.3rem;
@@ -369,7 +351,7 @@
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
 
-        /* Panel Search Section Styles */
+        /* --- PANEL SEARCH SECTION --- */
         .panel-search {
             padding: 80px 20px;
             background-color: white;
@@ -454,6 +436,11 @@
             color: var(--accent-color);
             font-weight: 600;
             font-size: 0.95rem;
+            text-decoration: none;
+        }
+        
+        .hospital-item .phone:hover {
+            text-decoration: underline;
         }
         
         .tag-type {
@@ -466,17 +453,10 @@
             font-weight: 600;
         }
         
-        .tag-hospital {
-            background-color: #e6fffa;
-            color: #2c7a7b;
-        }
+        .tag-hospital { background-color: #e6fffa; color: #2c7a7b; }
+        .tag-clinic { background-color: #ebf8ff; color: #2b6cb0; }
         
-        .tag-clinic {
-            background-color: #ebf8ff;
-            color: #2b6cb0;
-        }
-        
-        /* Features Section */
+        /* --- FEATURES SECTION --- */
         .features {
             padding: 80px 20px;
             background-color: var(--light-bg);
@@ -530,7 +510,7 @@
             line-height: 1.6;
         }
         
-        /* Testimonials Section */
+        /* --- TESTIMONIALS SECTION --- */
         .testimonials {
             padding: 80px 20px;
             background-color: white;
@@ -609,7 +589,7 @@
             background-color: var(--accent-color);
         }
         
-        /* FAQ Section */
+        /* --- FAQ SECTION --- */
         .faq {
             padding: 80px 20px;
             background-color: var(--light-bg);
@@ -658,7 +638,7 @@
             transform: rotate(180deg);
         }
         
-        /* CTA Section */
+        /* --- CTA SECTION --- */
         .cta-section {
             padding: 80px 20px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -705,11 +685,13 @@
             font-size: 1.3rem;
         }
         
-        /* Footer */
+        /* --- FOOTER --- */
         footer {
             background-color: var(--primary-color);
             color: white;
             padding: 50px 20px 20px;
+            /* Padding bottom extra to account for floating buttons */
+            padding-bottom: 100px; 
         }
         
         .footer-container {
@@ -786,6 +768,105 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
+        }
+        
+        /* --- MARKETING WIDGET STYLES --- */
+        .float-badge {
+            position: fixed; right: 20px; bottom: 20px; z-index: 900;
+            display: flex; align-items: center; gap: 10px;
+            animation: bob 3s ease-in-out infinite;
+            font-family: 'Poppins', sans-serif;
+        }
+        .promo-float-badge {
+            position: fixed; right: 20px; bottom: 95px; z-index: 900;
+            display: flex; align-items: center; gap: 10px;
+            animation: bob 3s ease-in-out infinite reverse;
+            font-family: 'Poppins', sans-serif;
+        }
+        @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+        .badge-btn {
+            position: relative; width: 60px; height: 60px; border-radius: 50%;
+            background: white; border: none; cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2); padding: 0;
+            overflow: hidden;
+        }
+        .badge-btn img { width: 100%; height: 100%; object-fit: cover; }
+        .badge-btn span {
+            position: absolute; inset: 0; border-radius: 50%;
+            animation: pulse-ring 2s infinite; border: 2px solid transparent;
+        }
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(102, 126, 234, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
+        }
+
+        .promo-btn {
+            background: var(--promo-gradient);
+            color: white; font-weight: bold; display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .speech-bubble {
+            background: var(--primary-navy); color: white; padding: 5px 12px;
+            border-radius: 20px; font-size: 0.75rem; box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            white-space: nowrap; display: none;
+        }
+        @media(min-width: 768px) { .speech-bubble { display: block; } }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000;
+            backdrop-filter: blur(5px); display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: all 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+
+        /* 3D Card Styles */
+        .card-modal-content { padding: 20px; width: 100%; max-width: 500px; }
+        .scene { perspective: 1000px; width: 320px; height: 500px; margin: 0 auto; }
+        .card3d {
+            position: relative; width: 100%; height: 100%;
+            transform-style: preserve-3d; transition: transform 0.5s;
+            cursor: grab;
+        }
+        .face {
+            position: absolute; inset: 0; backface-visibility: hidden;
+            border-radius: 15px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        .face img { width: 100%; height: 100%; object-fit: cover; }
+        .face.back { transform: rotateY(180deg); }
+        
+        .modal-controls { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .control-btn {
+            padding: 8px 20px; border-radius: 8px; border: none; background: white;
+            color: var(--primary-navy); font-weight: 600; cursor: pointer; transition: transform 0.2s;
+        }
+        .control-btn:hover { transform: scale(1.05); }
+
+        /* Promo Slider Styles */
+        .promo-modal-content {
+            background: white; border-radius: 12px; max-width: 90%; max-height: 90vh;
+            position: relative; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .promo-img { max-width: 100%; max-height: 80vh; display: block; }
+        .close-btn {
+            position: absolute; top: 10px; right: 10px; width: 30px; height: 30px;
+            background: rgba(0,0,0,0.5); color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; z-index: 10;
+        }
+        .nav-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(0,0,0,0.5); color: white; width: 40px; height: 40px;
+            border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10;
+        }
+        .nav-btn.prev { left: 10px; }
+        .nav-btn.next { right: 10px; }
+
+        @media (max-width: 400px) {
+            .scene { width: 280px; height: 440px; }
+            .promo-float-badge { bottom: 80px; }
         }
         
         /* Animations */
@@ -1170,519 +1251,680 @@
 
             <div class="hospital-list" id="hospitalList">
                 
-                <div class="hospital-item" data-type="hospital" data-state="kedah" data-city="alor setar">
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="kluang">
                     <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Kedah Medical Centre</h4>
-                    <p class="city">Alor Setar, Kedah</p>
+                    <h4>Kluang Utama Specialist Hospital</h4>
+                    <p class="city">Kluang, Johor</p>
+                    <a href="tel:077718999" class="phone"><i class="fas fa-phone"></i> 07-771 8999</a>
                 </div>
-                <div class="hospital-item" data-type="hospital" data-state="kedah" data-city="sungai petani">
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="batu pahat">
                     <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Amanjaya Specialist Centre</h4>
-                    <p class="city">Sungai Petani, Kedah</p>
+                    <h4>KPJ Batu Pahat Specialist Hospital</h4>
+                    <p class="city">Batu Pahat, Johor</p>
+                    <a href="tel:074591000" class="phone"><i class="fas fa-phone"></i> 07-459 1000</a>
                 </div>
-                <div class="hospital-item" data-type="hospital" data-state="kedah" data-city="sungai petani">
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="batu pahat">
                     <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Pantai Hospital Sungai Petani</h4>
-                    <p class="city">Sungai Petani, Kedah</p>
+                    <h4>Pantai Hospital Batu Pahat</h4>
+                    <p class="city">Batu Pahat, Johor</p>
+                    <a href="tel:074338811" class="phone"><i class="fas fa-phone"></i> 07-433 8811</a>
                 </div>
-                <div class="hospital-item" data-type="hospital" data-state="kedah" data-city="sungai petani">
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="batu pahat">
                     <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Metro Specialist Hospital</h4>
-                    <p class="city">Sungai Petani, Kedah</p>
+                    <h4>Putra Specialist Hospital (Batu Pahat)</h4>
+                    <p class="city">Batu Pahat, Johor</p>
+                    <a href="tel:074133333" class="phone"><i class="fas fa-phone"></i> 07-413 3333</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="iskandar puteri">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Hospital Iskandar Puteri</h4>
+                    <p class="city">Iskandar Puteri, Johor</p>
+                    <a href="tel:072339999" class="phone"><i class="fas fa-phone"></i> 07-233 9999</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="johor bahru">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Kempas Medical Centre</h4>
+                    <p class="city">Johor Bahru, Johor</p>
+                    <a href="tel:072368999" class="phone"><i class="fas fa-phone"></i> 07-236 8999</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="johor bahru">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Puteri Specialist Hospital</h4>
+                    <p class="city">Johor Bahru, Johor</p>
+                    <a href="tel:072253222" class="phone"><i class="fas fa-phone"></i> 07-225 3222</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="johor bahru">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Johor Specialist Hospital</h4>
+                    <p class="city">Johor Bahru, Johor</p>
+                    <a href="tel:072253000" class="phone"><i class="fas fa-phone"></i> 07-225 3000</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="masai">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Regency Specialist Hospital</h4>
+                    <p class="city">Masai, Johor</p>
+                    <a href="tel:073817700" class="phone"><i class="fas fa-phone"></i> 07-381 7700</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="muar">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Bandar Maharani Specialist Hospital</h4>
+                    <p class="city">Muar, Johor</p>
+                    <a href="tel:069564500" class="phone"><i class="fas fa-phone"></i> 06-956 4500</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="pasir gudang">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Pasir Gudang Specialist Hospital</h4>
+                    <p class="city">Pasir Gudang, Johor</p>
+                    <a href="tel:072573999" class="phone"><i class="fas fa-phone"></i> 07-257 3999</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="pasir gudang">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Hospital Penawar</h4>
+                    <p class="city">Pasir Gudang, Johor</p>
+                    <a href="tel:072521800" class="phone"><i class="fas fa-phone"></i> 07-252 1800</a>
                 </div>
 
                 <div class="hospital-item" data-type="hospital" data-state="perak" data-city="taiping">
                     <span class="tag-type tag-hospital">Hospital</span>
                     <h4>Columbia Asia Hospital - Taiping</h4>
                     <p class="city">Taiping, Perak</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="perak" data-city="taiping">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Apollo Medical Centre</h4>
-                    <p class="city">Taiping, Perak</p>
+                    <a href="tel:058208888" class="phone"><i class="fas fa-phone"></i> 05-820 8888</a>
                 </div>
                 <div class="hospital-item" data-type="hospital" data-state="perak" data-city="taiping">
                     <span class="tag-type tag-hospital">Hospital</span>
                     <h4>Taiping Medical Centre</h4>
                     <p class="city">Taiping, Perak</p>
+                    <a href="tel:058071049" class="phone"><i class="fas fa-phone"></i> 05-807 1049</a>
                 </div>
                 <div class="hospital-item" data-type="hospital" data-state="perak" data-city="ipoh">
                     <span class="tag-type tag-hospital">Hospital</span>
                     <h4>Hospital Fatimah</h4>
                     <p class="city">Ipoh, Perak</p>
+                    <a href="tel:055455777" class="phone"><i class="fas fa-phone"></i> 05-545 5777</a>
                 </div>
                 <div class="hospital-item" data-type="hospital" data-state="perak" data-city="ipoh">
                     <span class="tag-type tag-hospital">Hospital</span>
                     <h4>KPJ Ipoh Specialist Hospital</h4>
                     <p class="city">Ipoh, Perak</p>
+                    <a href="tel:052408777" class="phone"><i class="fas fa-phone"></i> 05-240 8777</a>
                 </div>
                 <div class="hospital-item" data-type="hospital" data-state="perak" data-city="ipoh">
                     <span class="tag-type tag-hospital">Hospital</span>
                     <h4>Pantai Hospital Ipoh</h4>
                     <p class="city">Ipoh, Perak</p>
+                    <a href="tel:055405555" class="phone"><i class="fas fa-phone"></i> 05-540 5555</a>
                 </div>
                 <div class="hospital-item" data-type="hospital" data-state="perak" data-city="ipoh">
                     <span class="tag-type tag-hospital">Hospital</span>
                     <h4>Perak Community Specialist Hospital</h4>
                     <p class="city">Ipoh, Perak</p>
+                    <a href="tel:052419000" class="phone"><i class="fas fa-phone"></i> 05-241 9000</a>
                 </div>
                 <div class="hospital-item" data-type="hospital" data-state="perak" data-city="manjung">
                     <span class="tag-type tag-hospital">Hospital</span>
                     <h4>Pantai Hospital Manjung</h4>
                     <p class="city">Seri Manjung, Perak</p>
+                    <a href="tel:056898555" class="phone"><i class="fas fa-phone"></i> 05-689 8555</a>
                 </div>
                 <div class="hospital-item" data-type="hospital" data-state="perak" data-city="sitiawan">
                     <span class="tag-type tag-hospital">Hospital</span>
                     <h4>KPJ Sri Manjung Specialist Hospital</h4>
                     <p class="city">Sitiawan, Perak</p>
+                    <a href="tel:056918153" class="phone"><i class="fas fa-phone"></i> 05-691 8153</a>
                 </div>
 
-                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
+                <div class="hospital-item" data-type="hospital" data-state="kedah" data-city="alor setar">
                     <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Sentosa Medical Centre</h4>
-                    <p class="city">Kuala Lumpur</p>
+                    <h4>Kedah Medical Centre</h4>
+                    <p class="city">Alor Setar, Kedah</p>
+                    <a href="tel:047308878" class="phone"><i class="fas fa-phone"></i> 04-730 8878</a>
                 </div>
-                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
+                <div class="hospital-item" data-type="hospital" data-state="kedah" data-city="sungai petani">
                     <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Tung Shin Hospital</h4>
-                    <p class="city">Kuala Lumpur</p>
+                    <h4>Pantai Hospital Sungai Petani</h4>
+                    <p class="city">Sungai Petani, Kedah</p>
+                    <a href="tel:044458888" class="phone"><i class="fas fa-phone"></i> 04-445 8888</a>
                 </div>
-                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
+                <div class="hospital-item" data-type="hospital" data-state="kedah" data-city="sungai petani">
                     <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Tawakkal Specialist Hospital</h4>
-                    <p class="city">Kuala Lumpur</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Institut Jantung Negara</h4>
-                    <p class="city">Kuala Lumpur</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Hospital Pusrawi</h4>
-                    <p class="city">Kuala Lumpur</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Prince Court Medical Centre</h4>
-                    <p class="city">Kuala Lumpur</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="bangsar">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Pantai Hospital Kuala Lumpur</h4>
-                    <p class="city">Bangsar, KL</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>International Specialist Eye Centre</h4>
-                    <p class="city">Kuala Lumpur</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="setapak">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Columbia Asia Hospital - Setapak</h4>
-                    <p class="city">Setapak, KL</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Gleneagles Kuala Lumpur</h4>
-                    <p class="city">Kuala Lumpur</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="desa parkcity">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>ParkCity Medical Centre</h4>
-                    <p class="city">Desa ParkCity, KL</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="petaling jaya">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Damansara Specialist Hospital</h4>
-                    <p class="city">Petaling Jaya, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="petaling jaya">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Columbia Asia Hospital Petaling Jaya</h4>
-                    <p class="city">Petaling Jaya, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="ampang">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Ampang Puteri Specialist Hospital</h4>
-                    <p class="city">Ampang, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="kota damansara">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Hospital Pakar Damansara 2</h4>
-                    <p class="city">Kota Damansara, KL</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="ampang">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Pantai Hospital Ampang</h4>
-                    <p class="city">Ampang, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="cheras">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>UKM Specialist Centre</h4>
-                    <p class="city">Cheras, KL</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="petaling jaya">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Assunta Hospital</h4>
-                    <p class="city">Petaling Jaya, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="cheras">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Pantai Hospital Cheras</h4>
-                    <p class="city">Cheras, KL</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="kota damansara">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Tropicana Medical Centre</h4>
-                    <p class="city">Kota Damansara, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="sungai buloh">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>UiTM Private Specialist Centre</h4>
-                    <p class="city">Sungai Buloh, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="petaling jaya">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Sunway Medical Centre</h4>
-                    <p class="city">Petaling Jaya, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="subang jaya">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Subang Jaya Medical Centre</h4>
-                    <p class="city">Subang Jaya, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="puchong">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Columbia Asia Hospital - Puchong</h4>
-                    <p class="city">Puchong, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="cheras">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Columbia Asia Hospital - Cheras</h4>
-                    <p class="city">Cheras, KL</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="shah alam">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Selangor Specialist Hospital</h4>
-                    <p class="city">Shah Alam, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="shah alam">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Avisena Specialist Hospital</h4>
-                    <p class="city">Shah Alam, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="kajang">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Kajang Specialist Hospital</h4>
-                    <p class="city">Kajang, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="shah alam">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Columbia Asia Hospital Bukit Rimau</h4>
-                    <p class="city">Shah Alam, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="rawang">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Rawang Specialist Hospital</h4>
-                    <p class="city">Rawang, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="klang">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Sri Kota Specialist Medical Centre</h4>
-                    <p class="city">Klang, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="klang">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Klang Specialist Hospital</h4>
-                    <p class="city">Klang, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="klang">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Pantai Hospital Klang</h4>
-                    <p class="city">Klang, Selangor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="shah alam">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Ara Damansara Medical Centre</h4>
-                    <p class="city">Shah Alam, Selangor</p>
-                </div>
-
-                <div class="hospital-item" data-type="hospital" data-state="negeri sembilan" data-city="senawang">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Senawang Specialist Hospital</h4>
-                    <p class="city">Senawang, Negeri Sembilan</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="negeri sembilan" data-city="seremban">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Seremban Specialist Hospital</h4>
-                    <p class="city">Seremban, Negeri Sembilan</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="negeri sembilan" data-city="seremban">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Columbia Asia Hospital - Seremban</h4>
-                    <p class="city">Seremban, Negeri Sembilan</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="negeri sembilan" data-city="nilai">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Aurelius Hospital Nilai</h4>
-                    <p class="city">Nilai, Negeri Sembilan</p>
-                </div>
-
-                <div class="hospital-item" data-type="hospital" data-state="melaka" data-city="ayer keroh">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Pantai Hospital Ayer Keroh</h4>
-                    <p class="city">Ayer Keroh, Melaka</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="melaka" data-city="melaka city">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Putra Specialist Hospital (Melaka)</h4>
-                    <p class="city">Melaka City</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="melaka" data-city="melaka city">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Mahkota Medical Centre</h4>
-                    <p class="city">Melaka City</p>
-                </div>
-
-                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="kluang">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Kluang Utama Specialist Hospital</h4>
-                    <p class="city">Kluang, Johor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="batu pahat">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Batu Pahat Specialist Hospital</h4>
-                    <p class="city">Batu Pahat, Johor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="batu pahat">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Pantai Hospital Batu Pahat</h4>
-                    <p class="city">Batu Pahat, Johor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="batu pahat">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Putra Specialist Hospital (Batu Pahat)</h4>
-                    <p class="city">Batu Pahat, Johor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="iskandar puteri">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Columbia Asia Hospital Iskandar Puteri</h4>
-                    <p class="city">Iskandar Puteri, Johor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="johor bahru">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Kempas Medical Centre</h4>
-                    <p class="city">Johor Bahru, Johor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="johor bahru">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Puteri Specialist Hospital</h4>
-                    <p class="city">Johor Bahru, Johor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="johor bahru">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Johor Specialist Hospital</h4>
-                    <p class="city">Johor Bahru, Johor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="johor bahru">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Medical Specialist Centre (JB)</h4>
-                    <p class="city">Johor Bahru, Johor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="masai">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Regency Specialist Hospital</h4>
-                    <p class="city">Masai, Johor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="muar">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Bandar Maharani Specialist Hospital</h4>
-                    <p class="city">Muar, Johor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="pasir gudang">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Pasir Gudang Specialist Hospital</h4>
-                    <p class="city">Pasir Gudang, Johor</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="pasir gudang">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Hospital Penawar</h4>
-                    <p class="city">Pasir Gudang, Johor</p>
-                </div>
-
-                <div class="hospital-item" data-type="hospital" data-state="terengganu" data-city="kuala terengganu">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Salam Specialist Hospital Kuala Terengganu</h4>
-                    <p class="city">Kuala Terengganu</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="terengganu" data-city="kuala terengganu">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Kuala Terengganu Specialist Hospital</h4>
-                    <p class="city">Kuala Terengganu</p>
-                </div>
-
-                <div class="hospital-item" data-type="hospital" data-state="pahang" data-city="kuantan">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Kuantan Medical Centre</h4>
-                    <p class="city">Kuantan, Pahang</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="pahang" data-city="kuantan">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>IIUM Medical Specialist Centre (IMSC)</h4>
-                    <p class="city">Kuantan, Pahang</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="pahang" data-city="kuantan">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Darul Makmur Medical Centre</h4>
-                    <p class="city">Kuantan, Pahang</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="pahang" data-city="kuantan">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Pahang Specialist Hospital</h4>
-                    <p class="city">Kuantan, Pahang</p>
-                </div>
-
-                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="bintulu">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Columbia Asia Hospital - Bintulu</h4>
-                    <p class="city">Bintulu, Sarawak</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="sibu">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Rejang Medical Centre</h4>
-                    <p class="city">Sibu, Sarawak</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="sibu">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Sibu Specialist Medical Centre</h4>
-                    <p class="city">Sibu, Sarawak</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="miri">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Columbia Asia Hospital - Miri</h4>
-                    <p class="city">Miri, Sarawak</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="miri">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Miri Specialist Hospital</h4>
-                    <p class="city">Miri, Sarawak</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="kuching">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Kuching Specialist Hospital</h4>
-                    <p class="city">Kuching, Sarawak</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="kuching">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Normah Medical Specialist Centre</h4>
-                    <p class="city">Kuching, Sarawak</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="kuching">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Timberland Medical Centre</h4>
-                    <p class="city">Kuching, Sarawak</p>
-                </div>
-
-                <div class="hospital-item" data-type="hospital" data-state="sabah" data-city="kota kinabalu">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Rafflesia Medical Centre</h4>
-                    <p class="city">Kota Kinabalu, Sabah</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="sabah" data-city="kota kinabalu">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Sabah Specialist Hospital</h4>
-                    <p class="city">Kota Kinabalu, Sabah</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="sabah" data-city="kota kinabalu">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Damai Specialist Hospital</h4>
-                    <p class="city">Kota Kinabalu, Sabah</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="sabah" data-city="kota kinabalu">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Gleneagles Kota Kinabalu</h4>
-                    <p class="city">Kota Kinabalu, Sabah</p>
-                </div>
-
-                <div class="hospital-item" data-type="hospital" data-state="kelantan" data-city="kota bharu">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>KPJ Perdana Specialist Hospital</h4>
-                    <p class="city">Kota Bharu, Kelantan</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 09-745 8000</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="kelantan" data-city="kota bharu">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Kota Bharu Medical Centre (KBMC)</h4>
-                    <p class="city">Kota Bharu, Kelantan</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 09-743 3399</p>
-                </div>
-                <div class="hospital-item" data-type="hospital" data-state="kelantan" data-city="kubang kerian">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Hospital Universiti Sains Malaysia (HUSM)</h4>
-                    <p class="city">Kubang Kerian, Kelantan</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 09-766 6200</p>
+                    <h4>Metro Specialist Hospital</h4>
+                    <p class="city">Sungai Petani, Kedah</p>
+                    <a href="tel:044238888" class="phone"><i class="fas fa-phone"></i> 04-423 8888</a>
                 </div>
 
                 <div class="hospital-item" data-type="hospital" data-state="penang" data-city="bukit mertajam">
                     <span class="tag-type tag-hospital">Hospital</span>
                     <h4>KPJ Penang Specialist Hospital</h4>
                     <p class="city">Bukit Mertajam, Penang</p>
+                    <a href="tel:045486688" class="phone"><i class="fas fa-phone"></i> 04-548 6688</a>
                 </div>
                 <div class="hospital-item" data-type="hospital" data-state="penang" data-city="butterworth">
                     <span class="tag-type tag-hospital">Hospital</span>
                     <h4>Bagan Specialist Centre</h4>
                     <p class="city">Butterworth, Penang</p>
+                    <a href="tel:043710000" class="phone"><i class="fas fa-phone"></i> 04-371 0000</a>
                 </div>
                 <div class="hospital-item" data-type="hospital" data-state="penang" data-city="bayan lepas">
                     <span class="tag-type tag-hospital">Hospital</span>
                     <h4>Pantai Hospital Penang</h4>
                     <p class="city">Bayan Lepas, Penang</p>
+                    <a href="tel:046433888" class="phone"><i class="fas fa-phone"></i> 04-643 3888</a>
                 </div>
                 <div class="hospital-item" data-type="hospital" data-state="penang" data-city="george town">
                     <span class="tag-type tag-hospital">Hospital</span>
                     <h4>Hospital Lam Wah Ee</h4>
                     <p class="city">George Town, Penang</p>
+                    <a href="tel:046528888" class="phone"><i class="fas fa-phone"></i> 04-652 8888</a>
                 </div>
                 <div class="hospital-item" data-type="hospital" data-state="penang" data-city="george town">
                     <span class="tag-type tag-hospital">Hospital</span>
                     <h4>Loh Guan Lye Specialists Centre</h4>
                     <p class="city">George Town, Penang</p>
+                    <a href="tel:042388888" class="phone"><i class="fas fa-phone"></i> 04-238 8888</a>
                 </div>
                 <div class="hospital-item" data-type="hospital" data-state="penang" data-city="george town">
                     <span class="tag-type tag-hospital">Hospital</span>
                     <h4>Gleneagles Penang</h4>
                     <p class="city">George Town, Penang</p>
+                    <a href="tel:042229111" class="phone"><i class="fas fa-phone"></i> 04-222 9111</a>
                 </div>
                 <div class="hospital-item" data-type="hospital" data-state="penang" data-city="george town">
                     <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Penang Adventist Hospital</h4>
+                    <h4>Island Hospital</h4>
                     <p class="city">George Town, Penang</p>
+                    <a href="tel:042288222" class="phone"><i class="fas fa-phone"></i> 04-228 8222</a>
                 </div>
 
-                <div class="hospital-item" data-type="clinic" data-state="selangor" data-city="petaling jaya">
-                    <span class="tag-type tag-clinic">Klinik</span>
-                    <h4>Klinik Mediviron</h4>
-                    <p class="city">Petaling Jaya, Selangor</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 03-7728 8888</p>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Sentosa KL Specialist Hospital</h4>
+                    <p class="city">Kuala Lumpur</p>
+                    <a href="tel:0340437166" class="phone"><i class="fas fa-phone"></i> 03-4043 7166</a>
                 </div>
-                <div class="hospital-item" data-type="clinic" data-state="selangor" data-city="shah alam">
-                    <span class="tag-type tag-clinic">Klinik</span>
-                    <h4>Poliklinik Sri Muda</h4>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Tung Shin Hospital</h4>
+                    <p class="city">Kuala Lumpur</p>
+                    <a href="tel:0320372288" class="phone"><i class="fas fa-phone"></i> 03-2037 2288</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Tawakkal Specialist Hospital</h4>
+                    <p class="city">Kuala Lumpur</p>
+                    <a href="tel:0340267777" class="phone"><i class="fas fa-phone"></i> 03-4026 7777</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Institut Jantung Negara (IJN)</h4>
+                    <p class="city">Kuala Lumpur</p>
+                    <a href="tel:0326178200" class="phone"><i class="fas fa-phone"></i> 03-2617 8200</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Hospital Pusrawi</h4>
+                    <p class="city">Kuala Lumpur</p>
+                    <a href="tel:0326875000" class="phone"><i class="fas fa-phone"></i> 03-2687 5000</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Prince Court Medical Centre</h4>
+                    <p class="city">Kuala Lumpur</p>
+                    <a href="tel:0321600888" class="phone"><i class="fas fa-phone"></i> 03-2160 0888</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="bangsar">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Pantai Hospital Kuala Lumpur</h4>
+                    <p class="city">Bangsar, KL</p>
+                    <a href="tel:0322960888" class="phone"><i class="fas fa-phone"></i> 03-2296 0888</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="setapak">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Hospital - Setapak</h4>
+                    <p class="city">Setapak, KL</p>
+                    <a href="tel:0341459999" class="phone"><i class="fas fa-phone"></i> 03-4145 9999</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="kl city centre">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Gleneagles Kuala Lumpur</h4>
+                    <p class="city">Kuala Lumpur</p>
+                    <a href="tel:0341413000" class="phone"><i class="fas fa-phone"></i> 03-4141 3000</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="desa parkcity">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>ParkCity Medical Centre</h4>
+                    <p class="city">Desa ParkCity, KL</p>
+                    <a href="tel:0356391212" class="phone"><i class="fas fa-phone"></i> 03-5639 1212</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="petaling jaya">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Damansara Specialist Hospital</h4>
+                    <p class="city">Petaling Jaya, Selangor</p>
+                    <a href="tel:0377181000" class="phone"><i class="fas fa-phone"></i> 03-7718 1000</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="petaling jaya">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Hospital Petaling Jaya</h4>
+                    <p class="city">Petaling Jaya, Selangor</p>
+                    <a href="tel:0379499999" class="phone"><i class="fas fa-phone"></i> 03-7949 9999</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="ampang">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Ampang Puteri Specialist Hospital</h4>
+                    <p class="city">Ampang, Selangor</p>
+                    <a href="tel:0342895000" class="phone"><i class="fas fa-phone"></i> 03-4289 5000</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="kota damansara">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Hospital Pakar Damansara 2</h4>
+                    <p class="city">Kota Damansara, Selangor</p>
+                    <a href="tel:0377173000" class="phone"><i class="fas fa-phone"></i> 03-7717 3000</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="ampang">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Pantai Hospital Ampang</h4>
+                    <p class="city">Ampang, Selangor</p>
+                    <a href="tel:0342892828" class="phone"><i class="fas fa-phone"></i> 03-4289 2828</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="cheras">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>UKM Specialist Centre</h4>
+                    <p class="city">Cheras, KL</p>
+                    <a href="tel:0391749222" class="phone"><i class="fas fa-phone"></i> 03-9174 9222</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="petaling jaya">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Assunta Hospital</h4>
+                    <p class="city">Petaling Jaya, Selangor</p>
+                    <a href="tel:0378723000" class="phone"><i class="fas fa-phone"></i> 03-7872 3000</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="cheras">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Pantai Hospital Cheras</h4>
+                    <p class="city">Cheras, KL</p>
+                    <a href="tel:0391452888" class="phone"><i class="fas fa-phone"></i> 03-9145 2888</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="kota damansara">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Thomson Hospital Kota Damansara</h4>
+                    <p class="city">Kota Damansara, Selangor</p>
+                    <a href="tel:0362871111" class="phone"><i class="fas fa-phone"></i> 03-6287 1111</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="sungai buloh">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>UiTM Private Specialist Centre</h4>
+                    <p class="city">Sungai Buloh, Selangor</p>
+                    <a href="tel:0361441600" class="phone"><i class="fas fa-phone"></i> 03-6144 1600</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="petaling jaya">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Sunway Medical Centre</h4>
+                    <p class="city">Petaling Jaya, Selangor</p>
+                    <a href="tel:0374919191" class="phone"><i class="fas fa-phone"></i> 03-7491 9191</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="subang jaya">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Subang Jaya Medical Centre</h4>
+                    <p class="city">Subang Jaya, Selangor</p>
+                    <a href="tel:0356391212" class="phone"><i class="fas fa-phone"></i> 03-5639 1212</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="puchong">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Hospital - Puchong</h4>
+                    <p class="city">Puchong, Selangor</p>
+                    <a href="tel:0380648688" class="phone"><i class="fas fa-phone"></i> 03-8064 8688</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kuala lumpur" data-city="cheras">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Hospital - Cheras</h4>
+                    <p class="city">Cheras, KL</p>
+                    <a href="tel:0390869999" class="phone"><i class="fas fa-phone"></i> 03-9086 9999</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="shah alam">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Selangor Specialist Hospital</h4>
                     <p class="city">Shah Alam, Selangor</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 03-5121 1163</p>
+                    <a href="tel:0355431111" class="phone"><i class="fas fa-phone"></i> 03-5543 1111</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="shah alam">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Avisena Specialist Hospital</h4>
+                    <p class="city">Shah Alam, Selangor</p>
+                    <a href="tel:0355151888" class="phone"><i class="fas fa-phone"></i> 03-5515 1888</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="kajang">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Kajang Specialist Hospital</h4>
+                    <p class="city">Kajang, Selangor</p>
+                    <a href="tel:0387692999" class="phone"><i class="fas fa-phone"></i> 03-8769 2999</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="shah alam">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Hospital Bukit Rimau</h4>
+                    <p class="city">Shah Alam, Selangor</p>
+                    <a href="tel:0351259999" class="phone"><i class="fas fa-phone"></i> 03-5125 9999</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="rawang">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Rawang Specialist Hospital</h4>
+                    <p class="city">Rawang, Selangor</p>
+                    <a href="tel:0360998999" class="phone"><i class="fas fa-phone"></i> 03-6099 8999</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="klang">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Sri Kota Specialist Medical Centre</h4>
+                    <p class="city">Klang, Selangor</p>
+                    <a href="tel:0333757799" class="phone"><i class="fas fa-phone"></i> 03-3375 7799</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="klang">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Klang Specialist Hospital</h4>
+                    <p class="city">Klang, Selangor</p>
+                    <a href="tel:0333777888" class="phone"><i class="fas fa-phone"></i> 03-3377 7888</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="klang">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Pantai Hospital Klang</h4>
+                    <p class="city">Klang, Selangor</p>
+                    <a href="tel:0332585500" class="phone"><i class="fas fa-phone"></i> 03-3258 5500</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="selangor" data-city="shah alam">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Ara Damansara Medical Centre</h4>
+                    <p class="city">Shah Alam, Selangor</p>
+                    <a href="tel:0356391212" class="phone"><i class="fas fa-phone"></i> 03-5639 1212</a>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="negeri sembilan" data-city="senawang">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Salam Senawang Specialist Hospital</h4>
+                    <p class="city">Senawang, Negeri Sembilan</p>
+                    <a href="tel:066751188" class="phone"><i class="fas fa-phone"></i> 06-675 1188</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="negeri sembilan" data-city="seremban">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Seremban Specialist Hospital</h4>
+                    <p class="city">Seremban, Negeri Sembilan</p>
+                    <a href="tel:067677800" class="phone"><i class="fas fa-phone"></i> 06-767 7800</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="negeri sembilan" data-city="seremban">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Hospital - Seremban</h4>
+                    <p class="city">Seremban, Negeri Sembilan</p>
+                    <a href="tel:066033988" class="phone"><i class="fas fa-phone"></i> 06-603 3988</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="negeri sembilan" data-city="nilai">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Aurelius Hospital Nilai</h4>
+                    <p class="city">Nilai, Negeri Sembilan</p>
+                    <a href="tel:068500999" class="phone"><i class="fas fa-phone"></i> 06-850 0999</a>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="melaka" data-city="ayer keroh">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Pantai Hospital Ayer Keroh</h4>
+                    <p class="city">Ayer Keroh, Melaka</p>
+                    <a href="tel:062319999" class="phone"><i class="fas fa-phone"></i> 06-231 9999</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="melaka" data-city="melaka city">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Putra Specialist Hospital (Melaka)</h4>
+                    <p class="city">Melaka City</p>
+                    <a href="tel:062835888" class="phone"><i class="fas fa-phone"></i> 06-283 5888</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="melaka" data-city="melaka city">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Mahkota Medical Centre</h4>
+                    <p class="city">Melaka City</p>
+                    <a href="tel:062852999" class="phone"><i class="fas fa-phone"></i> 06-285 2999</a>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="terengganu" data-city="kuala terengganu">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Salam Specialist Hospital Kuala Terengganu</h4>
+                    <p class="city">Kuala Terengganu</p>
+                    <a href="tel:096200200" class="phone"><i class="fas fa-phone"></i> 09-620 0200</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="terengganu" data-city="kuala terengganu">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KMI Kuala Terengganu Medical Centre</h4>
+                    <p class="city">Kuala Terengganu</p>
+                    <a href="tel:096378888" class="phone"><i class="fas fa-phone"></i> 09-637 8888</a>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="pahang" data-city="kuantan">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KMI Kuantan Medical Centre</h4>
+                    <p class="city">Kuantan, Pahang</p>
+                    <a href="tel:095902828" class="phone"><i class="fas fa-phone"></i> 09-590 2828</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="pahang" data-city="kuantan">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>IIUM Medical Specialist Centre (IMSC)</h4>
+                    <p class="city">Kuantan, Pahang</p>
+                    <a href="tel:095730380" class="phone"><i class="fas fa-phone"></i> 09-573 0380</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="pahang" data-city="kuantan">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Darul Makmur Medical Centre</h4>
+                    <p class="city">Kuantan, Pahang</p>
+                    <a href="tel:095349988" class="phone"><i class="fas fa-phone"></i> 09-534 9988</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="pahang" data-city="kuantan">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Pahang Specialist Hospital</h4>
+                    <p class="city">Kuantan, Pahang</p>
+                    <a href="tel:095112692" class="phone"><i class="fas fa-phone"></i> 09-511 2692</a>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="kelantan" data-city="kota bharu">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Perdana Specialist Hospital</h4>
+                    <p class="city">Kota Bharu, Kelantan</p>
+                    <a href="tel:097458000" class="phone"><i class="fas fa-phone"></i> 09-745 8000</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kelantan" data-city="kota bharu">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Kota Bharu Medical Centre (KBMC)</h4>
+                    <p class="city">Kota Bharu, Kelantan</p>
+                    <a href="tel:097433399" class="phone"><i class="fas fa-phone"></i> 09-743 3399</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="kelantan" data-city="kubang kerian">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Hospital Universiti Sains Malaysia (HUSM)</h4>
+                    <p class="city">Kubang Kerian, Kelantan</p>
+                    <a href="tel:097666200" class="phone"><i class="fas fa-phone"></i> 09-766 6200</a>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="bintulu">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Hospital - Bintulu</h4>
+                    <p class="city">Bintulu, Sarawak</p>
+                    <a href="tel:086251888" class="phone"><i class="fas fa-phone"></i> 086-251 888</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="sibu">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Rejang Medical Centre</h4>
+                    <p class="city">Sibu, Sarawak</p>
+                    <a href="tel:084323333" class="phone"><i class="fas fa-phone"></i> 084-323 333</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="sibu">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Sibu Medical Centre</h4>
+                    <p class="city">Sibu, Sarawak</p>
+                    <a href="tel:084329900" class="phone"><i class="fas fa-phone"></i> 084-329 900</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="miri">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Columbia Asia Hospital - Miri</h4>
+                    <p class="city">Miri, Sarawak</p>
+                    <a href="tel:085437755" class="phone"><i class="fas fa-phone"></i> 085-437 755</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="miri">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Miri Specialist Hospital</h4>
+                    <p class="city">Miri, Sarawak</p>
+                    <a href="tel:085649999" class="phone"><i class="fas fa-phone"></i> 085-649 999</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="kuching">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Kuching Specialist Hospital</h4>
+                    <p class="city">Kuching, Sarawak</p>
+                    <a href="tel:082365777" class="phone"><i class="fas fa-phone"></i> 082-365 777</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="kuching">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Normah Medical Specialist Centre</h4>
+                    <p class="city">Kuching, Sarawak</p>
+                    <a href="tel:082234466" class="phone"><i class="fas fa-phone"></i> 082-234 466</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="sarawak" data-city="kuching">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Timberland Medical Centre</h4>
+                    <p class="city">Kuching, Sarawak</p>
+                    <a href="tel:082234466" class="phone"><i class="fas fa-phone"></i> 082-234 466</a>
+                </div>
+
+                <div class="hospital-item" data-type="hospital" data-state="sabah" data-city="kota kinabalu">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Rafflesia Medical Centre</h4>
+                    <p class="city">Kota Kinabalu, Sabah</p>
+                    <a href="tel:088322000" class="phone"><i class="fas fa-phone"></i> 088-322 000</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="sabah" data-city="kota kinabalu">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>KPJ Sabah Specialist Hospital</h4>
+                    <p class="city">Kota Kinabalu, Sabah</p>
+                    <a href="tel:088322000" class="phone"><i class="fas fa-phone"></i> 088-322 000</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="sabah" data-city="kota kinabalu">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Jesselton Medical Centre</h4>
+                    <p class="city">Kota Kinabalu, Sabah</p>
+                    <a href="tel:088366333" class="phone"><i class="fas fa-phone"></i> 088-366 333</a>
+                </div>
+                <div class="hospital-item" data-type="hospital" data-state="sabah" data-city="kota kinabalu">
+                    <span class="tag-type tag-hospital">Hospital</span>
+                    <h4>Gleneagles Kota Kinabalu</h4>
+                    <p class="city">Kota Kinabalu, Sabah</p>
+                    <a href="tel:088518888" class="phone"><i class="fas fa-phone"></i> 088-518 888</a>
+                </div>
+
+                <div class="hospital-item" data-type="clinic" data-state="johor" data-city="kluang">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Malaysia</h4>
+                    <p class="city">Kluang, Johor</p>
+                    <a href="tel:077718484" class="phone"><i class="fas fa-phone"></i> 07-771 8484</a>
                 </div>
                 <div class="hospital-item" data-type="clinic" data-state="johor" data-city="johor bahru">
                     <span class="tag-type tag-clinic">Klinik</span>
                     <h4>Klinik Sentosa</h4>
                     <p class="city">Taman Sentosa, Johor Bahru</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 07-332 2045</p>
+                    <a href="tel:073322045" class="phone"><i class="fas fa-phone"></i> 07-332 2045</a>
                 </div>
-                <div class="hospital-item" data-type="clinic" data-state="kuala lumpur" data-city="cheras">
+                <div class="hospital-item" data-type="clinic" data-state="johor" data-city="skudai">
                     <span class="tag-type tag-clinic">Klinik</span>
-                    <h4>Klinik Ng & Lee</h4>
-                    <p class="city">Taman Maluri, Cheras</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 03-9285 2820</p>
+                    <h4>Klinik Theesan</h4>
+                    <p class="city">Taman Universiti, Skudai</p>
+                    <a href="tel:075206009" class="phone"><i class="fas fa-phone"></i> 07-520 6009</a>
+                </div>
+                <div class="hospital-item" data-type="clinic" data-state="johor" data-city="skudai">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Poliklinik Chu</h4>
+                    <p class="city">Skudai, Johor</p>
+                    <a href="tel:075213188" class="phone"><i class="fas fa-phone"></i> 07-521 3188</a>
+                </div>
+                 <div class="hospital-item" data-type="clinic" data-state="johor" data-city="skudai">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Yam & Surgery</h4>
+                    <p class="city">Skudai, Johor</p>
+                    <a href="tel:075567147" class="phone"><i class="fas fa-phone"></i> 07-556 7147</a>
+                </div>
+                 <div class="hospital-item" data-type="clinic" data-state="johor" data-city="kota tinggi">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Ray Clinic</h4>
+                    <p class="city">Kota Tinggi, Johor</p>
+                    <a href="tel:078831389" class="phone"><i class="fas fa-phone"></i> 07-883 1389</a>
+                </div>
+
+                <div class="hospital-item" data-type="clinic" data-state="negeri sembilan" data-city="bahau">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Polyclinic Liew</h4>
+                    <p class="city">Bahau, Negeri Sembilan</p>
+                    <a href="tel:064542954" class="phone"><i class="fas fa-phone"></i> 06-454 2954</a>
+                </div>
+                 <div class="hospital-item" data-type="clinic" data-state="negeri sembilan" data-city="bahau">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Thong</h4>
+                    <p class="city">Bahau, Negeri Sembilan</p>
+                    <a href="tel:064547954" class="phone"><i class="fas fa-phone"></i> 06-454 7954</a>
+                </div>
+                 <div class="hospital-item" data-type="clinic" data-state="negeri sembilan" data-city="seremban">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Poliklinik Seremban</h4>
+                    <p class="city">Seremban, Negeri Sembilan</p>
+                    <a href="tel:067625381" class="phone"><i class="fas fa-phone"></i> 06-762 5381</a>
+                </div>
+
+                 <div class="hospital-item" data-type="clinic" data-state="melaka" data-city="melaka city centre">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Chin</h4>
+                    <p class="city">Melaka City, Melaka</p>
+                    <a href="tel:062832882" class="phone"><i class="fas fa-phone"></i> 06-283 2882</a>
+                </div>
+
+                 <div class="hospital-item" data-type="clinic" data-state="pahang" data-city="mentakab">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Primamediklinik Jaya</h4>
+                    <p class="city">Mentakab, Pahang</p>
+                    <a href="tel:092771600" class="phone"><i class="fas fa-phone"></i> 09-277 1600</a>
+                </div>
+                 <div class="hospital-item" data-type="clinic" data-state="pahang" data-city="kuantan">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Kumpulan Klinik Syed Badaruddin (Bukit Goh)</h4>
+                    <p class="city">Kuantan, Pahang</p>
+                    <a href="tel:095477236" class="phone"><i class="fas fa-phone"></i> 09-547 7236</a>
+                </div>
+
+                 <div class="hospital-item" data-type="clinic" data-state="perak" data-city="ipoh">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Poliklinik Tan, Lee & Cheong</h4>
+                    <p class="city">Ipoh, Perak</p>
+                    <a href="tel:052412083" class="phone"><i class="fas fa-phone"></i> 05-241 2083</a>
+                </div>
+
+                 <div class="hospital-item" data-type="clinic" data-state="kelantan" data-city="kota bharu">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Chong</h4>
+                    <p class="city">Kota Bharu, Kelantan</p>
+                    <a href="tel:097446486" class="phone"><i class="fas fa-phone"></i> 09-744 6486</a>
+                </div>
+
+                 <div class="hospital-item" data-type="clinic" data-state="sabah" data-city="kota kinabalu">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Dr Raj</h4>
+                    <p class="city">Kota Kinabalu, Sabah</p>
+                    <a href="tel:088717645" class="phone"><i class="fas fa-phone"></i> 088-717 645</a>
+                </div>
+
+                 <div class="hospital-item" data-type="clinic" data-state="sarawak" data-city="kuching">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Everbright</h4>
+                    <p class="city">Kuching, Sarawak</p>
+                    <a href="tel:082241741" class="phone"><i class="fas fa-phone"></i> 082-241 741</a>
+                </div>
+
+                 <div class="hospital-item" data-type="clinic" data-state="selangor" data-city="petaling jaya">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Klinik Medical Associates</h4>
+                    <p class="city">Sea Park, Petaling Jaya</p>
+                    <a href="tel:0378764790" class="phone"><i class="fas fa-phone"></i> 03-7876 4790</a>
+                </div>
+
+                 <div class="hospital-item" data-type="clinic" data-state="kuala lumpur" data-city="kl city centre">
+                    <span class="tag-type tag-clinic">Klinik</span>
+                    <h4>Kumpulan Medic</h4>
+                    <p class="city">Jalan Ampang, KL</p>
+                    <a href="tel:0320781632" class="phone"><i class="fas fa-phone"></i> 03-2078 1632</a>
                 </div>
 
             </div>
@@ -1945,6 +2187,50 @@
         </div>
     </footer>
  
+    <div class="promo-float-badge" onclick="openPromo()">
+        <div class="speech-bubble">Year End Sale!</div>
+        <button class="badge-btn promo-btn">
+            SALE
+            <span></span>
+        </button>
+    </div>
+ 
+    <div class="float-badge" onclick="openCard()">
+        <div class="speech-bubble">Kad Bisnes Saya</div>
+        <button class="badge-btn">
+            <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Profile">
+            <span></span>
+        </button>
+    </div>
+ 
+    <div class="modal-overlay" id="cardModal">
+        <div class="card-modal-content">
+            <div class="scene">
+                <div class="card3d" id="card3d">
+                    <div class="face front">
+                        <img src="https://i.ibb.co/kV8dVVS0/Scanned-Document-06-10-2025-at-22-20-01.jpg" alt="Front">
+                    </div>
+                    <div class="face back">
+                        <img src="https://i.ibb.co/MD2DP338/Scanned-Document-06-10-2025-at-22-20-45.jpg" alt="Back">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-controls">
+                <button class="control-btn" onclick="flipCard()">Pusing</button>
+                <button class="control-btn" onclick="closeCard()">Tutup</button>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="modal-overlay" id="promoModal">
+        <div class="promo-modal-content">
+            <button class="close-btn" onclick="closePromo()">✕</button>
+            <button class="nav-btn prev" onclick="prevSlide()">‹</button>
+            <button class="nav-btn next" onclick="nextSlide()">›</button>
+            <img src="" id="promoImg" class="promo-img" alt="Promotion">
+        </div>
+    </div>
+
     <script>
         // Mobile menu toggle
        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
@@ -2026,20 +2312,20 @@
 
         // Data Daerah/Bandar yang TEPAT ikut PDF Panel Hospital & Klinik 2025
         const districtsData = {
-            johor: ["Johor Bahru", "Iskandar Puteri", "Pasir Gudang", "Masai", "Batu Pahat", "Muar", "Kluang", "Skudai"],
+            johor: ["Johor Bahru", "Iskandar Puteri", "Pasir Gudang", "Masai", "Batu Pahat", "Muar", "Kluang", "Skudai", "Kota Tinggi", "Ulu Tiram", "Segamat"],
             "kuala lumpur": ["KL City Centre", "Cheras", "Setapak", "Desa ParkCity", "Bangsar", "Jalan Ipoh", "Jalan Pudu", "Jalan Ampang"],
             selangor: ["Shah Alam", "Petaling Jaya", "Klang", "Bangi", "Subang Jaya", "Puchong", "Rawang", "Batu Caves", "Cyberjaya", "Seri Kembangan", "Sungai Buloh", "Kota Damansara", "Ampang"],
-            penang: ["George Town", "Bayan Lepas", "Seberang Jaya", "Butterworth", "Jelutong", "Batu Ferringhi", "Bukit Mertajam"],
+            penang: ["George Town", "Bayan Lepas", "Seberang Jaya", "Butterworth", "Jelutong", "Batu Ferringhi", "Bukit Mertajam", "Perai"],
             kedah: ["Alor Setar", "Sungai Petani", "Langkawi", "Kulim", "Padang Serai"],
-            perak: ["Ipoh", "Taiping", "Manjung", "Teluk Intan", "Batu Gajah", "Sitiawan", "Kamunting"],
-            melaka: ["Melaka City", "Ayer Keroh", "Klebang", "Alor Gajah"],
-            "negeri sembilan": ["Seremban", "Nilai", "Senawang", "Bahau", "Tampin"],
-            pahang: ["Kuantan", "Mentakab", "Temerloh", "Jerantut"],
+            perak: ["Ipoh", "Taiping", "Manjung", "Teluk Intan", "Batu Gajah", "Sitiawan", "Kamunting", "Kampar"],
+            melaka: ["Melaka City", "Ayer Keroh", "Klebang", "Alor Gajah", "Bukit Baru", "Tanjong Kling"],
+            "negeri sembilan": ["Seremban", "Nilai", "Senawang", "Bahau", "Tampin", "Mantin", "Gemencheh"],
+            pahang: ["Kuantan", "Mentakab", "Temerloh", "Jerantut", "Raub", "Bentong"],
             kelantan: ["Kota Bharu", "Kubang Kerian"],
-            terengganu: ["Kuala Terengganu", "Kerteh", "Dungun", "Paka", "Cukai"],
-            sabah: ["Kota Kinabalu", "Sandakan", "Tawau", "Penampang", "Tuaran"],
+            terengganu: ["Kuala Terengganu", "Kerteh", "Dungun", "Paka", "Cukai", "Kemaman", "Jerteh"],
+            sabah: ["Kota Kinabalu", "Sandakan", "Tawau", "Penampang", "Tuaran", "Keningau", "Putatan"],
             sarawak: ["Kuching", "Miri", "Bintulu", "Sibu"],
-            perlis: ["Kangar"],
+            perlis: ["Kangar", "Kuala Perlis"],
             putrajaya: ["Putrajaya"]
         };
 
@@ -2111,6 +2397,86 @@
                 }
             });
         }
+
+        // --- MARKETING WIDGETS LOGIC ---
+        
+        // 1. BUSINESS CARD LOGIC
+        const cardModal = document.getElementById('cardModal');
+        const card3d = document.getElementById('card3d');
+        let isFlipped = false;
+        let isSpinning = false;
+        let spinInterval;
+        let rotation = 0;
+
+        function openCard() {
+            cardModal.classList.add('active');
+            startSpin();
+        }
+
+        function closeCard() {
+            cardModal.classList.remove('active');
+            stopSpin();
+            isFlipped = false;
+            card3d.style.transform = 'rotateY(0deg)';
+        }
+
+        function flipCard() {
+            stopSpin();
+            isFlipped = !isFlipped;
+            card3d.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+        }
+
+        function startSpin() {
+            if(isSpinning) return;
+            isSpinning = true;
+            spinInterval = setInterval(() => {
+                rotation += 1;
+                card3d.style.transform = `rotateY(${rotation}deg)`;
+            }, 20);
+        }
+
+        function stopSpin() {
+            isSpinning = false;
+            clearInterval(spinInterval);
+        }
+
+        // Close card when clicking background
+        cardModal.addEventListener('click', (e) => {
+            if(e.target === cardModal) closeCard();
+        });
+
+        // 2. PROMO SLIDER LOGIC
+        const promoModal = document.getElementById('promoModal');
+        const promoImg = document.getElementById('promoImg');
+        const promoImages = [
+            'https://i.ibb.co/kt9czYT/photo-1-2025-11-17-23-51-40.jpg',
+            'https://i.ibb.co/q3M4TKh7/photo-2-2025-11-17-23-51-40.jpg'
+        ];
+        let currentSlide = 0;
+
+        function openPromo() {
+            promoModal.classList.add('active');
+            showSlide(0);
+        }
+
+        function closePromo() {
+            promoModal.classList.remove('active');
+        }
+
+        function showSlide(index) {
+            currentSlide = index;
+            if(currentSlide >= promoImages.length) currentSlide = 0;
+            if(currentSlide < 0) currentSlide = promoImages.length - 1;
+            promoImg.src = promoImages[currentSlide];
+        }
+
+        function nextSlide() { showSlide(currentSlide + 1); }
+        function prevSlide() { showSlide(currentSlide - 1); }
+
+        // Close promo when clicking background
+        promoModal.addEventListener('click', (e) => {
+            if(e.target === promoModal) closePromo();
+        });
     </script>
 </body>
 </html>
