@@ -1555,7 +1555,7 @@
                    <i class="fas fa-chevron-down"></i>
                </div>
                <div class="faq-answer">
-                   <p>Kenaikan harga (repricing) biasanya berlaku disebabkan oleh inflasi perubatan yang meningkat setiap tahun. Apabila kos rawatan di hospital swasta naik dan jumlah tuntutan (claim) dari peserta meningkat, dana Tabarru' perlu dikukuhkan. Repricing memastikan dana kekal mampan untuk terus melindungi semua peserta pada masa hadapan.</p>
+                   <p>Kenaikan harga (repricing) biasanya berlaku disebabkan oleh inflasi perubatan yang meningkat setiap tahun. Apabila kos rawatan di hospital swasta naik dan jumlah tuntutan (claim) dari peserta meningkat, dana Tabarru' perlu dikukuhkan. Repricing memastikan dana kekal mampan untuk terus melindungi semua peserta pada masa hadatan.</p>
                </div>
            </div>
 
@@ -1962,6 +1962,399 @@
         promoModal.addEventListener('click', (e) => {
             if(e.target === promoModal) closePromo();
         });
+
+        // --- HOSPITAL DATA ---
+        const hospitalData = [
+            // KEDAH CLINICS
+            { type: 'clinic', state: 'kedah', city: 'alor setar', name: "CH'NG KLINIK" },
+            { type: 'clinic', state: 'kedah', city: 'alor setar', name: "KLINIK DARULAMAN" },
+            { type: 'clinic', state: 'kedah', city: 'alor setar', name: "KLINIK TAN" },
+            { type: 'clinic', state: 'kedah', city: 'alor setar', name: "KLINIK LIEW YIN FONG" },
+            { type: 'clinic', state: 'kedah', city: 'alor setar', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'kedah', city: 'alor setar', name: "POLIKLINIK PUTRA" },
+            { type: 'clinic', state: 'kedah', city: 'sungai petani', name: "KLINIK 1 UTAMA SP SDN BHD" },
+            { type: 'clinic', state: 'kedah', city: 'sungai petani', name: "KLINIK TEOH KIM YONG" },
+            { type: 'clinic', state: 'kedah', city: 'sungai petani', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'kedah', city: 'sungai petani', name: "KLINIK PAKAR PERUBATAN KHOO" },
+            { type: 'clinic', state: 'kedah', city: 'sungai petani', name: "POLIKLINIK DR AZHAR & RAKAN-RAKAN" },
+            { type: 'clinic', state: 'kedah', city: 'padang serai', name: "POLIKLINIK MURNI" },
+            { type: 'clinic', state: 'kedah', city: 'kulim', name: "KLINIK VIGNESHWER" },
+            { type: 'clinic', state: 'kedah', city: 'iskandar perdana', name: "KLINIK DR ZAKARIA DAN RAKAN" },
+            
+            // JOHOR CLINICS
+            { type: 'clinic', state: 'johor', city: 'kluang', name: "POLIKLINIK INTAN" },
+            { type: 'clinic', state: 'johor', city: 'segamat', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'johor', city: 'kluang', name: "KLINIK MALAYSIA" },
+            { type: 'clinic', state: 'johor', city: 'muar', name: "KLINIK GOH DAN SURGERI" },
+            { type: 'clinic', state: 'johor', city: 'batu pahat', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'johor', city: 'batu pahat', name: "KLINIK P.L. LIM SDN BHD" },
+            { type: 'clinic', state: 'johor', city: 'kluang', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'johor', city: 'johor bahru', name: "KLINIK THEEBAN" },
+            { type: 'clinic', state: 'johor', city: 'skudai', name: "POLIKLINIK CHU SDN BHD" },
+            { type: 'clinic', state: 'johor', city: 'skudai', name: "KLINIK YAM & SURGERY" },
+            { type: 'clinic', state: 'johor', city: 'skudai', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'johor', city: 'kota tinggi', name: "RAY CLINIC" },
+            { type: 'clinic', state: 'johor', city: 'ulu tiram', name: "KLINIK CHIA" },
+            { type: 'clinic', state: 'johor', city: 'segamat', name: "KLINIK SEGAMAT" },
+            { type: 'clinic', state: 'johor', city: 'johor bahru', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'johor', city: 'johor bahru', name: "KLINIK THEESAN" },
+            { type: 'clinic', state: 'johor', city: 'johor bahru', name: "KLINIK SENTOSA" },
+            { type: 'clinic', state: 'johor', city: 'johor bahru', name: "KUMPULAN PERUBATAN ASIA SDN BHD KLINIK ASIA" },
+            { type: 'clinic', state: 'johor', city: 'johor bahru', name: "MEDICAL, LIVER & GASTRO SPECIALIST CENTRE" },
+            { type: 'clinic', state: 'johor', city: 'johor bahru', name: "KLINIK THEEBAN" },
+            { type: 'clinic', state: 'johor', city: 'johor bahru', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'johor', city: 'johor bahru', name: "KLINIK MEDIJAYA" },
+            { type: 'clinic', state: 'johor', city: 'johor bahru', name: "CLINIC AUSTRALIA" },
+            { type: 'clinic', state: 'johor', city: 'johor bahru', name: "KLINIK HUI & CHAN" },
+            { type: 'clinic', state: 'johor', city: 'johor bahru', name: "POLIKLINIK LEE SDN BHD" },
+            { type: 'clinic', state: 'johor', city: 'muar', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'johor', city: 'muar', name: "ELIZABETH MEDICAL CENTRE SDN BHD" },
+            
+            // MELAKA CLINICS
+            { type: 'clinic', state: 'melaka', city: 'alor gajah', name: "KLINIK UNION MEDIC" },
+            { type: 'clinic', state: 'melaka', city: 'telok mas', name: "KLINIK AL'AZHIM TELOK MAS" },
+            { type: 'clinic', state: 'melaka', city: 'cheng perdana', name: "KLINIK SRIMAS & SURGERI" },
+            { type: 'clinic', state: 'melaka', city: 'cheng baru', name: "KLINIK CHENG" },
+            { type: 'clinic', state: 'melaka', city: 'pulau sebang', name: "KLINIK TAMPIN" },
+            { type: 'clinic', state: 'melaka', city: 'melaka', name: "SEVENTH SENSE SOLUTION SDN BHD / MAHKOTA MEDICAL CENTRE" },
+            { type: 'clinic', state: 'melaka', city: 'melaka', name: "KLINIK TAN & LAU" },
+            { type: 'clinic', state: 'melaka', city: 'melaka', name: "KLINIK CHIN" },
+            { type: 'clinic', state: 'melaka', city: 'melaka', name: "LINGHAM MEDICAL CENTRE SDN BHD" },
+            { type: 'clinic', state: 'melaka', city: 'melaka', name: "THE MERICAN DISPENSARY" },
+            { type: 'clinic', state: 'melaka', city: 'melaka', name: "POLIKLINIK BANDAR" },
+            { type: 'clinic', state: 'melaka', city: 'bukit baru', name: "KLINIK AL'AZHIM SDN BHD BUKIT BARU" },
+            { type: 'clinic', state: 'melaka', city: 'melaka', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'melaka', city: 'batang tiga', name: "KLINIK AL'AZHIM KLEBANG" },
+            
+            // NEGERI SEMBILAN CLINICS
+            { type: 'clinic', state: 'negeri sembilan', city: 'bahau', name: "POLIKLINIK LIEW" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'bahau', name: "KLINIK THONG" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'bahau', name: "KLINIK GOH" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'mantin', name: "POLIKLINIK KOO & YONG" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'gemencheh', name: "KLINIK CHUA" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'seremban', name: "MAWAR SPECIALIST MEDICAL CENTRE SDN BHD" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'seremban', name: "POLIKLINIK DAN SURGERI RAHANG" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'seremban', name: "ALEEN MEDICAL CENTRE" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'seremban', name: "REN AI SPECIALIST MEDICAL CLINIC" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'seremban', name: "POLIKLINIK SEREMBAN" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'seremban', name: "YONG'S SPECIALIST CLINIC" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'seremban', name: "POLIKLINIK RAJ" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'seremban', name: "KLINIK JIM" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'seremban', name: "POLIKLINIK DAN SURGERI RAHANG" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'seremban', name: "KLINIK GURU" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'seremban', name: "KLINIK RAHEE" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'tampin', name: "POLIKLINIK SAKTI" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'seremban', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'tampin', name: "KLINIK CHUA" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'tampin', name: "KLINIK AL'AZHIM TAMPIN" },
+            { type: 'clinic', state: 'negeri sembilan', city: 'port dickson', name: "KLINIK RAWANI" },
+            
+            // PULAU PINANG CLINICS
+            { type: 'clinic', state: 'penang', city: 'butterworth', name: "KLINIK GOH" },
+            { type: 'clinic', state: 'penang', city: 'bukit mertajam', name: "KLINIK JOEL SUBASHINI" },
+            { type: 'clinic', state: 'penang', city: 'sungai bakap', name: "SG CLINIC" },
+            { type: 'clinic', state: 'penang', city: 'bukit mertajam', name: "POLIKLINIK TEO" },
+            { type: 'clinic', state: 'penang', city: 'bukit mertajam', name: "KLINIK 1 UTAMA (BM)" },
+            { type: 'clinic', state: 'penang', city: 'bukit mertajam', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'penang', city: 'prai', name: "FOH MEDICAL SPECIALIST CLINIC (DRS K.S. TAN & HOOI) SDN BHD" },
+            { type: 'clinic', state: 'penang', city: 'prai', name: "KLINIK JARDIN" },
+            { type: 'clinic', state: 'penang', city: 'nibong tebal', name: "HEALTH FIRST CLINIC SDN BHD" },
+            { type: 'clinic', state: 'penang', city: 'prai', name: "KLINIK SYED ALWI DAN CHANDRAN (PENANG) SDN BHD" },
+            { type: 'clinic', state: 'penang', city: 'butterworth', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'penang', city: 'butterworth', name: "KLINIK OOI" },
+            { type: 'clinic', state: 'penang', city: 'butterworth', name: "LING KLINIK" },
+            { type: 'clinic', state: 'penang', city: 'gelugor', name: "ISLAND FAMILY MEDICINE GROUP PRACTICE SDN BHD" },
+            { type: 'clinic', state: 'penang', city: 'bayan baru', name: "KLINIK TUAN ISHAK" },
+            { type: 'clinic', state: 'penang', city: 'bayan lepas', name: "KLINIK CHANDRAN" },
+            { type: 'clinic', state: 'penang', city: 'sungai dua', name: "KLINIK THAM & NG" },
+            { type: 'clinic', state: 'penang', city: 'bayan lepas', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'penang', city: 'georgetown', name: "KLINIK SENTOSA SDN BHD" },
+            { type: 'clinic', state: 'penang', city: 'butterworth', name: "CLINIC BAKER" },
+            { type: 'clinic', state: 'penang', city: 'jelutong', name: "KLINIK BERSATU JELUTONG" },
+            { type: 'clinic', state: 'penang', city: 'lintang mayang pasir', name: "KLINIK SENTOSA SDN BHD" },
+            { type: 'clinic', state: 'penang', city: 'jalan young', name: "LIM DISPENSARY" },
+            { type: 'clinic', state: 'penang', city: 'bayan baru', name: "KLINIK MALAYSIA" },
+            { type: 'clinic', state: 'penang', city: 'georgetown', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'penang', city: 'georgetown', name: "HOSPITAL LAM WAH EE" },
+            { type: 'clinic', state: 'penang', city: 'georgetown', name: "SPECILIST MEDICAL CLINIC (PULAU PINANG) SDN BHD" },
+            { type: 'clinic', state: 'penang', city: 'penang street', name: "KLINIK SENTOSA SDN BHD" },
+            { type: 'clinic', state: 'penang', city: 'pulau tikus', name: "KLINIK THERESA SDN BHD" },
+            { type: 'clinic', state: 'penang', city: 'pulau pinang', name: "KLINIK SINGA" },
+            { type: 'clinic', state: 'penang', city: 'kepala batas', name: "TOPS SDN BHD / POLIKLINIK THO-MEDIC" },
+            { type: 'clinic', state: 'penang', city: 'tanjung bungah', name: "TANJUNG MEDICAL CLINIC" },
+            { type: 'clinic', state: 'penang', city: 'tanjung bungah', name: "KLINIK PERGIGI" },
+            
+            // PAHANG CLINICS
+            { type: 'clinic', state: 'pahang', city: 'jerantut', name: "KLINIK SYAM" },
+            { type: 'clinic', state: 'pahang', city: 'mentakab', name: "KLINIK C.S. CHIN SDN BHD" },
+            { type: 'clinic', state: 'pahang', city: 'mentakab', name: "KLINIK JAYA" },
+            { type: 'clinic', state: 'pahang', city: 'raub', name: "KLINIK LING & KHOO" },
+            { type: 'clinic', state: 'pahang', city: 'raub', name: "KLINIK LOW" },
+            { type: 'clinic', state: 'pahang', city: 'temerloh', name: "KLINIK LEE" },
+            { type: 'clinic', state: 'pahang', city: 'bentong', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'pahang', city: 'bentong', name: "KLINIK C W CHEONG" },
+            { type: 'clinic', state: 'pahang', city: 'triang', name: "KLINIK LIEW" },
+            { type: 'clinic', state: 'pahang', city: 'kuantan', name: "KUMPULAN KLINIK SYED BADARUDDIN (BUKIT GOH)" },
+            { type: 'clinic', state: 'pahang', city: 'kuantan', name: "KUMPULAN KLINIK SYED BADARUDDIN (TAMAN GURU)" },
+            { type: 'clinic', state: 'pahang', city: 'kuantan', name: "KUMPULAN KLINIK SYED BADARUDDIN (SG ISAP)" },
+            { type: 'clinic', state: 'pahang', city: 'kuantan', name: "KUMPULAN KLINIK SYED BADARUDDIN (INDERA MAHKOTA)" },
+            { type: 'clinic', state: 'pahang', city: 'kuantan', name: "KLINIK LEE" },
+            { type: 'clinic', state: 'pahang', city: 'kuantan', name: "POLIKLINIK KUMPULAN CITY" },
+            { type: 'clinic', state: 'pahang', city: 'kuantan', name: "POLIKLINIK & SURGERI SHANKAR" },
+            { type: 'clinic', state: 'pahang', city: 'kuantan', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'pahang', city: 'kuantan', name: "KLINIK TANG" },
+            { type: 'clinic', state: 'pahang', city: 'kuantan', name: "KLINIK LIM" },
+            { type: 'clinic', state: 'pahang', city: 'kuantan', name: "KUMPULAN KLINIK SYED BADARUDDIN (GEBENG)" },
+            { type: 'clinic', state: 'pahang', city: 'kuantan', name: "KUMPULAN KLINIK SYED BADARUDDIN (BESERAH)" },
+            { type: 'clinic', state: 'pahang', city: 'kuantan', name: "KUMPULAN KLINIK SYED BADARUDDIN (TAMAN BERJAYA)" },
+            { type: 'clinic', state: 'pahang', city: 'kuantan', name: "KUMPULAN KLINIK SYED BADARUDDIN (BALOK)" },
+            { type: 'clinic', state: 'pahang', city: 'cameron highlands', name: "KLINIK WONG" },
+            
+            // TERENGGANU CLINICS
+            { type: 'clinic', state: 'terengganu', city: 'cukai', name: "POLIKLINIK IBNU SINA" },
+            { type: 'clinic', state: 'terengganu', city: 'kuala terengganu', name: "PUSAT PERUBATAN INTAN SDN BHD" },
+            { type: 'clinic', state: 'terengganu', city: 'jerteh', name: "KLINIK JERTEH" },
+            { type: 'clinic', state: 'terengganu', city: 'dungun', name: "KUMPULAN KLINIK SYED BADARUDDIN (PAKA)" },
+            { type: 'clinic', state: 'terengganu', city: 'kerteh', name: "KUMPULAN KLINIK SYED BADARUDDIN (KERTEH)" },
+            { type: 'clinic', state: 'terengganu', city: 'kemaman', name: "KUMPULAN KLINIK SYED BADARUDDIN (KEMAMAN)" },
+            
+            // PERAK CLINICS
+            { type: 'clinic', state: 'perak', city: 'taiping', name: "KLINIK HASANAH" },
+            { type: 'clinic', state: 'perak', city: 'taiping', name: "SENTOSA MEDICAL CENTRE" },
+            { type: 'clinic', state: 'perak', city: 'kamunting', name: "KLINIK MALAYSIA" },
+            { type: 'clinic', state: 'perak', city: 'taiping', name: "KUMPULAN POLIKLINIK MANJUNG SDN BHD" },
+            { type: 'clinic', state: 'perak', city: 'taiping', name: "KLINIK W Y LIM" },
+            { type: 'clinic', state: 'perak', city: 'taiping', name: "KLINIK UNION" },
+            { type: 'clinic', state: 'perak', city: 'ipoh', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'perak', city: 'sitiawan', name: "LIM CLINIC" },
+            { type: 'clinic', state: 'perak', city: 'sitiawan', name: "KUMPULAN POLIKLINIK MANJUNG SDN BHD" },
+            { type: 'clinic', state: 'perak', city: 'teluk intan', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'perak', city: 'manjung', name: "KLINIK PERMAI" },
+            { type: 'clinic', state: 'perak', city: 'teluk intan', name: "POLIKLINIK MARSON" },
+            { type: 'clinic', state: 'perak', city: 'teluk intan', name: "PUSAT PERUBATAN ANSON BAY" },
+            { type: 'clinic', state: 'perak', city: 'ipoh', name: "KINTA MEDICAL CENTRE SDN BHD" },
+            { type: 'clinic', state: 'perak', city: 'ipoh', name: "KLINIK KANAK-KANAK LEE" },
+            { type: 'clinic', state: 'perak', city: 'ipoh', name: "POLIKLINIK DR. KONG & PARTNERS" },
+            { type: 'clinic', state: 'perak', city: 'ipoh', name: "KLINIK LAKSHMI" },
+            { type: 'clinic', state: 'perak', city: 'ipoh', name: "POLIKLINIK CHONG" },
+            { type: 'clinic', state: 'perak', city: 'ipoh', name: "PERAK COMMUNITY SPECIALIST HOSPITAL" },
+            { type: 'clinic', state: 'perak', city: 'ipoh', name: "POLIKLINIK DR. J.J. CHEONG" },
+            { type: 'clinic', state: 'perak', city: 'ipoh', name: "POLIKLINIK RAKYAT" },
+            { type: 'clinic', state: 'perak', city: 'ipoh', name: "LIM DIAGNOSTIC CENTRE (IPOH) SDN BHD" },
+            { type: 'clinic', state: 'perak', city: 'tanjung tualang', name: "KLINIK UG GAM" },
+            { type: 'clinic', state: 'perak', city: 'sri manjung', name: "POLIKLINIK MANJUNG" },
+            { type: 'clinic', state: 'perak', city: 'batu gajah', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'perak', city: 'kampar', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'perak', city: 'tanjung malim', name: "KLINIK DAN SURGERI RAJENDAR" },
+            { type: 'clinic', state: 'perak', city: 'ipoh', name: "PUSAT PERUBATAN AR-RIDZUAN" },
+            { type: 'clinic', state: 'perak', city: 'tanjung malim', name: "KLINIK SAHID MEDIC & SURGERI" },
+            { type: 'clinic', state: 'perak', city: 'tanjung malim', name: "KLINIK DAN SURGERI LAKSHMI" },
+            { type: 'clinic', state: 'perak', city: 'sabak bernam', name: "KLINIK SABAK" },
+            { type: 'clinic', state: 'perak', city: 'seri manjung', name: "KUMPULAN POLIKLINIK MANJUNG SDN BHD" },
+            { type: 'clinic', state: 'perak', city: 'teluk intan', name: "POLIKLINIK DING" },
+            { type: 'clinic', state: 'perak', city: 'parit buntar', name: "KLINIK UNITEK" },
+            { type: 'clinic', state: 'perak', city: 'parit buntar', name: "SONY CLINIC" },
+            { type: 'clinic', state: 'perak', city: 'parit buntar', name: "ARYAN CLINIC" },
+            { type: 'clinic', state: 'perak', city: 'kuala kangsar', name: "KLINIK LIM" },
+            { type: 'clinic', state: 'perak', city: 'simpang empat', name: "FAMILI CLINIC" },
+            { type: 'clinic', state: 'perak', city: 'taiping', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'perak', city: 'gopeng', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'perak', city: 'kampung koh', name: "KLINIK DAN SURGERI NG" },
+            
+            // KELANTAN CLINICS
+            { type: 'clinic', state: 'kelantan', city: 'kota bharu', name: "KLINIK CHONG" },
+            { type: 'clinic', state: 'kelantan', city: 'kota bharu', name: "KOTA BHARU MEDICAL CENTRE SDN BHD" },
+            { type: 'clinic', state: 'kelantan', city: 'kota bharu', name: "POLIKLINIK AN-NISA' WAKAF CHE YEH" },
+            { type: 'clinic', state: 'kelantan', city: 'kota bharu', name: "KLINIK WEE" },
+            { type: 'clinic', state: 'kelantan', city: 'kota bharu', name: "KLINIK PRIMER CHERANG PT" },
+            { type: 'clinic', state: 'kelantan', city: 'kota bharu', name: "KLINIK DR FIRDAUS SDN BHD" },
+            
+            // PUTRAJAYA CLINICS
+            { type: 'clinic', state: 'putrajaya', city: 'putrajaya', name: "POLIKLINIK SRI PERMAI" },
+            
+            // PERLIS CLINICS
+            { type: 'clinic', state: 'perlis', city: 'kangar', name: "KLINIK KS TAN & PE LEE SDN BHD" },
+            { type: 'clinic', state: 'perlis', city: 'kangar', name: "KLINIK MENON SDN BHD" },
+            { type: 'clinic', state: 'perlis', city: 'kuala perlis', name: "KLINIK KS TAN & PE LEE SDN BHD" },
+            { type: 'clinic', state: 'perlis', city: 'kangar', name: "CHAN CLINIC" },
+            
+            // SARAWAK CLINICS
+            { type: 'clinic', state: 'sarawak', city: 'bintulu', name: "KLINIK MEDAN JAYA" },
+            { type: 'clinic', state: 'sarawak', city: 'sibu', name: "SIMON YII MEDICAL SPECIALIST CLINIC" },
+            { type: 'clinic', state: 'sarawak', city: 'miri', name: "MIRI MEDICAL CLINIC" },
+            { type: 'clinic', state: 'sarawak', city: 'miri', name: "CHONG CLINIC" },
+            { type: 'clinic', state: 'sarawak', city: 'kuching', name: "ASIA CLINIC" },
+            { type: 'clinic', state: 'sarawak', city: 'kuching', name: "LAWRENCE LEE SPECIALIST CLINIC" },
+            { type: 'clinic', state: 'sarawak', city: 'kuching', name: "KLINIK KWOK" },
+            { type: 'clinic', state: 'sarawak', city: 'kuching', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'sarawak', city: 'kuching', name: "SIM MEDICAL CLINIC" },
+            { type: 'clinic', state: 'sarawak', city: 'kuching', name: "POLIKLINIK LIMLEE" },
+            { type: 'clinic', state: 'sarawak', city: 'kuching', name: "KLINIK LIEW" },
+            { type: 'clinic', state: 'sarawak', city: 'kuching', name: "CHONG CLINIC" },
+            { type: 'clinic', state: 'sarawak', city: 'kuching', name: "WONG FAMILY CLINIC" },
+            { type: 'clinic', state: 'sarawak', city: 'kuching', name: "KLINIK EVERBRIGHT" },
+            
+            // SABAH CLINICS
+            { type: 'clinic', state: 'sabah', city: 'kota kinabalu', name: "KLINIK DR KHENG" },
+            { type: 'clinic', state: 'sabah', city: 'keningau', name: "KLINIK KINABALU BAARU" },
+            { type: 'clinic', state: 'sabah', city: 'kota kinabalu', name: "KLINIK DAN SURGERI HILLTOP" },
+            { type: 'clinic', state: 'sabah', city: 'kota kinabalu', name: "24 JAM KLINIK & SURGERI LAU & CHOONG" },
+            { type: 'clinic', state: 'sabah', city: 'putatan', name: "PUTATAN KLINIK & SURGERI" },
+            { type: 'clinic', state: 'sabah', city: 'tuaran', name: "KLINIK DR TEH DAN SURGERI (KLINIK TUARAN)" },
+            { type: 'clinic', state: 'sabah', city: 'kota kinabalu', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+            { type: 'clinic', state: 'sabah', city: 'kota kinabalu', name: "KLINIK DAN SURGERI HILLTOP" },
+            { type: 'clinic', state: 'sabah', city: 'kota kinabalu', name: "KLINIK DR LYN SDN BHD" },
+            { type: 'clinic', state: 'sabah', city: 'kota kinabalu', name: "PERMAI POLYCLINICS" },
+            { type: 'clinic', state: 'sabah', city: 'kota kinabalu', name: "KLINIK LO & WAH" },
+            { type: 'clinic', state: 'sabah', city: 'kota kinabalu', name: "KLINIK JAYA" },
+            { type: 'clinic', state: 'sabah', city: 'penampang', name: "KLINIK TEH SDN BHD" },
+            { type: 'clinic', state: 'sabah', city: 'sandakan', name: "KLINIK KHOO" },
+            { type: 'clinic', state: 'sabah', city: 'tawau', name: "KELINIK AU YONG" },
+            { type: 'clinic', state: 'sabah', city: 'tawau', name: "KLINIK S K LO SDN BHD" },
+            { type: 'clinic', state: 'sabah', city: 'tawau', name: "KLINIK DR SHIRLEY LEE" },
+            { type: 'clinic', state: 'sabah', city: 'tawau', name: "BP DIAGNOSTIC CENTER SDN BHD" },
+
+            // HOSPITALS
+            // TERENGGANU HOSPITALS
+            { type: 'hospital', state: 'terengganu', city: 'kuala terengganu', name: "Salam Specialist Hospital Kuala Terengganu" },
+            { type: 'hospital', state: 'terengganu', city: 'kuala terengganu', name: "Kuala Terengganu Specialist Hospital" },
+            
+            // JOHOR HOSPITALS
+            { type: 'hospital', state: 'johor', city: 'kluang', name: "Kluang Utama Specialist Hospital" },
+            { type: 'hospital', state: 'johor', city: 'batu pahat', name: "KPJ Batu Pahat Specialist Hospital" },
+            { type: 'hospital', state: 'johor', city: 'batu pahat', name: "Pantai Hospital Batu Pahat" },
+            { type: 'hospital', state: 'johor', city: 'batu pahat', name: "Putra Specialist Hospital (Batu Pahat)" },
+            { type: 'hospital', state: 'johor', city: 'iskandar puteri', name: "Columbia Asia Hospital Iskandar Puteri" },
+            { type: 'hospital', state: 'johor', city: 'kempas', name: "Kempas Medical Centre" },
+            { type: 'hospital', state: 'johor', city: 'johor bahru', name: "Puteri Specialist Hospital" },
+            { type: 'hospital', state: 'johor', city: 'johor bahru', name: "KPJ Johor Specialist Hospital" },
+            { type: 'hospital', state: 'johor', city: 'johor bahru', name: "Medical Specialist Centre (JB)" },
+            { type: 'hospital', state: 'johor', city: 'johor bahru', name: "Regency Specialist Hospital" },
+            { type: 'hospital', state: 'johor', city: 'maharani', name: "KPJ Bandar Maharani Specialist Hospital" },
+            { type: 'hospital', state: 'johor', city: 'pasir gudang', name: "KPJ Pasir Gudang Specialist Hospital" },
+            { type: 'hospital', state: 'johor', city: 'penawar', name: "Hospital Penawar" },
+            
+            // PULAU PINANG HOSPITALS
+            { type: 'hospital', state: 'penang', city: 'georgetown', name: "KPJ Penang Specialist Hospital" },
+            { type: 'hospital', state: 'penang', city: 'bagan', name: "Bagan Specialist Centre" },
+            { type: 'hospital', state: 'penang', city: 'georgetown', name: "Pantai Hospital Penang" },
+            { type: 'hospital', state: 'penang', city: 'georgetown', name: "Hospital Lam Wah Ee" },
+            { type: 'hospital', state: 'penang', city: 'georgetown', name: "Loh Guan Lye Specialists Centre" },
+            { type: 'hospital', state: 'penang', city: 'georgetown', name: "Gleneagles Penang" },
+            { type: 'hospital', state: 'penang', city: 'georgetown', name: "Penang Adventist Hospital" },
+            
+            // KEDAH HOSPITALS
+            { type: 'hospital', state: 'kedah', city: 'alor setar', name: "Kedah Medical Centre" },
+            { type: 'hospital', state: 'kedah', city: 'sungai petani', name: "Amanjaya Specialist Centre" },
+            { type: 'hospital', state: 'kedah', city: 'sungai petani', name: "Pantai Hospital Sungai Petani" },
+            { type: 'hospital', state: 'kedah', city: 'sungai petani', name: "Metro Specialist Hospital" },
+            
+            // PERAK HOSPITALS
+            { type: 'hospital', state: 'perak', city: 'taiping', name: "Columbia Asia Hospital - Taiping" },
+            { type: 'hospital', state: 'perak', city: 'taiping', name: "Apollo Medical Centre" },
+            { type: 'hospital', state: 'perak', city: 'taiping', name: "Taiping Medical Centre" },
+            { type: 'hospital', state: 'perak', city: 'ipoh', name: "Hospital Fatimah" },
+            { type: 'hospital', state: 'perak', city: 'ipoh', name: "KPJ Ipoh Specialist Hospital" },
+            { type: 'hospital', state: 'perak', city: 'ipoh', name: "Pantai Hospital Ipoh" },
+            { type: 'hospital', state: 'perak', city: 'ipoh', name: "Perak Community Specialist Hospital" },
+            { type: 'hospital', state: 'perak', city: 'manjung', name: "Pantai Hospital Manjung" },
+            { type: 'hospital', state: 'perak', city: 'sri manjung', name: "KPJ Sri Manjung Specialist Hospital" },
+            
+            // NEGERI SEMBILAN HOSPITALS
+            { type: 'hospital', state: 'negeri sembilan', city: 'senawang', name: "Senawang Specialist Hospital" },
+            { type: 'hospital', state: 'negeri sembilan', city: 'seremban', name: "KPJ Seremban Specialist Hospital" },
+            { type: 'hospital', state: 'negeri sembilan', city: 'seremban', name: "Columbia Asia Hospital - Seremban" },
+            { type: 'hospital', state: 'negeri sembilan', city: 'nilai', name: "Aurelius Hospital Nilai" },
+            
+            // MELAKA HOSPITALS
+            { type: 'hospital', state: 'melaka', city: 'ayer keroh', name: "Pantai Hospital Ayer Keroh" },
+            { type: 'hospital', state: 'melaka', city: 'melaka', name: "Putra Specialist Hospital (Melaka)" },
+            { type: 'hospital', state: 'melaka', city: 'melaka', name: "Mahkota Medical Centre" },
+            
+            // KUALA LUMPUR & SELANGOR HOSPITALS
+            { type: 'hospital', state: 'kuala lumpur', city: 'kl city centre', name: "Sentosa Medical Centre" },
+            { type: 'hospital', state: 'kuala lumpur', city: 'kl city centre', name: "Tung Shin Hospital" },
+            { type: 'hospital', state: 'kuala lumpur', city: 'kl city centre', name: "KPJ Tawakkal Specialist Hospital" },
+            { type: 'hospital', state: 'kuala lumpur', city: 'kl city centre', name: "Institut Jantung Negara" },
+            { type: 'hospital', state: 'kuala lumpur', city: 'kl city centre', name: "Hospital Pusrawi" },
+            { type: 'hospital', state: 'kuala lumpur', city: 'kl city centre', name: "Prince Court Medical Centre" },
+            { type: 'hospital', state: 'kuala lumpur', city: 'kl city centre', name: "Pantai Hospital Kuala Lumpur" },
+            { type: 'hospital', state: 'kuala lumpur', city: 'kl city centre', name: "International Specialist Eye Centre" },
+            { type: 'hospital', state: 'kuala lumpur', city: 'setapak', name: "Columbia Asia Hospital - Setapak" },
+            { type: 'hospital', state: 'kuala lumpur', city: 'kl city centre', name: "Gleneagles Kuala Lumpur" },
+            { type: 'hospital', state: 'kuala lumpur', city: 'desa parkcity', name: "Parkcity Medical Centre" },
+            { type: 'hospital', state: 'selangor', city: 'damansara', name: "KPJ Damansara Specialist Hospital" },
+            { type: 'hospital', state: 'selangor', city: 'petaling jaya', name: "Columbia Asia Hospital Petaling Jaya" },
+            { type: 'hospital', state: 'selangor', city: 'ampang', name: "KPJ Ampang Puteri Specialist Hospital" },
+            { type: 'hospital', state: 'selangor', city: 'damansara', name: "Hospital Pakar Damansara 2" },
+            { type: 'hospital', state: 'selangor', city: 'ampang', name: "Pantai Hospital Ampang" },
+            { type: 'hospital', state: 'selangor', city: 'cheras', name: "UKM Specialist Centre" },
+            { type: 'hospital', state: 'selangor', city: 'petaling jaya', name: "Assunta Hospital" },
+            { type: 'hospital', state: 'selangor', city: 'cheras', name: "Pantai Hospital Cheras" },
+            { type: 'hospital', state: 'selangor', city: 'kota damansara', name: "Tropicana Medical Centre" },
+            { type: 'hospital', state: 'selangor', city: 'shah alam', name: "UiTM Private Specialist Centre" },
+            { type: 'hospital', state: 'selangor', city: 'sunway', name: "Sunway Medical Centre" },
+            { type: 'hospital', state: 'selangor', city: 'subang jaya', name: "Subang Jaya Medical Centre" },
+            { type: 'hospital', state: 'selangor', city: 'puchong', name: "Columbia Asia Hospital - Puchong" },
+            { type: 'hospital', state: 'selangor', city: 'cheras', name: "Columbia Asia Hospital - Cheras" },
+            { type: 'hospital', state: 'selangor', city: 'shah alam', name: "KPJ Selangor Specialist Hospital" },
+            { type: 'hospital', state: 'selangor', city: 'shah alam', name: "Avisena Specialist Hospital" },
+            { type: 'hospital', state: 'selangor', city: 'kajang', name: "KPJ Kajang Specialist Hospital" },
+            { type: 'hospital', state: 'selangor', city: 'bukit rimau', name: "Columbia Asia Hospital Bukit Rimau" },
+            { type: 'hospital', state: 'selangor', city: 'rawang', name: "KPJ Rawang Specialist Hospital" },
+            { type: 'hospital', state: 'selangor', city: 'klang', name: "Sri Kota Specialist Medical Centre" },
+            { type: 'hospital', state: 'selangor', city: 'klang', name: "KPJ Klang Specialist Hospital" },
+            { type: 'hospital', state: 'selangor', city: 'klang', name: "Pantai Hospital Klang" },
+            { type: 'hospital', state: 'selangor', city: 'ara damansara', name: "Ara Damansara Medical Centre" },
+            
+            // PAHANG HOSPITALS
+            { type: 'hospital', state: 'pahang', city: 'kuantan', name: "Kuantan Medical Centre" },
+            { type: 'hospital', state: 'pahang', city: 'kuantan', name: "IIUM Medical Specialist Centre (IMSC)" },
+            { type: 'hospital', state: 'pahang', city: 'kuantan', name: "Darul Makmur Medical Centre" },
+            { type: 'hospital', state: 'pahang', city: 'kuantan', name: "KPJ Pahang Specialist Hospital" },
+            
+            // SABAH HOSPITALS
+            { type: 'hospital', state: 'sabah', city: 'kota kinabalu', name: "Rafflesia Medical Centre" },
+            { type: 'hospital', state: 'sabah', city: 'kota kinabalu', name: "KPJ Sabah Specialist Hospital" },
+            { type: 'hospital', state: 'sabah', city: 'kota kinabalu', name: "Damai Specialist Hospital" },
+            { type: 'hospital', state: 'sabah', city: 'kota kinabalu', name: "Gleneagles Kota Kinabalu" },
+            
+            // SARAWAK HOSPITALS
+            { type: 'hospital', state: 'sarawak', city: 'bintulu', name: "Columbia Asia Hospital - Bintulu" },
+            { type: 'hospital', state: 'sarawak', city: 'sibu', name: "Rejang Medical Centre" },
+            { type: 'hospital', state: 'sarawak', city: 'sibu', name: "Sibu Specialist Medical Centre" },
+            { type: 'hospital', state: 'sarawak', city: 'miri', name: "Columbia Asia Hospital - Miri" },
+            { type: 'hospital', state: 'sarawak', city: 'miri', name: "KPJ Miri Specialist Hospital" },
+            { type: 'hospital', state: 'sarawak', city: 'kuching', name: "KPJ Kuching Specialist Hospital" },
+            { type: 'hospital', state: 'sarawak', city: 'kuching', name: "Normah Medical Specialist Centre" },
+            { type: 'hospital', state: 'sarawak', city: 'kuching', name: "Timberland Medical Centre" }
+        ];
+
+        // Function to generate hospital list
+        function generateHospitalList() {
+            const hospitalList = document.getElementById('hospitalList');
+            hospitalData.forEach(item => {
+                const hospitalItem = document.createElement('div');
+                hospitalItem.className = 'hospital-item';
+                hospitalItem.setAttribute('data-type', item.type);
+                hospitalItem.setAttribute('data-state', item.state);
+                hospitalItem.setAttribute('data-city', item.city);
+                
+                const tagClass = item.type === 'hospital' ? 'tag-hospital' : 'tag-clinic';
+                const tagText = item.type === 'hospital' ? 'Hospital' : 'Klinik';
+                
+                hospitalItem.innerHTML = `
+                    <h4>${item.name}</h4>
+                    <div class="city">${item.city.charAt(0).toUpperCase() + item.city.slice(1)}</div>
+                    <div class="tag-type ${tagClass}">${tagText}</div>
+                `;
+                
+                hospitalList.appendChild(hospitalItem);
+            });
+        }
+
+        // Generate hospital list on page load
+        window.addEventListener('DOMContentLoaded', generateHospitalList);
     </script>
 </body>
 </html>
