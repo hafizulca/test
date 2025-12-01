@@ -892,139 +892,7 @@
             transform: translateY(0);
         }
         
-        /* NEW IMPROVEMENTS */
-        .search-input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        .search-input:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .result-counter {
-            text-align: center;
-            margin: 20px 0;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .hospital-item.highlight {
-            border: 2px solid var(--secondary-color);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.2);
-        }
-
-        .faq-search-container {
-            margin-bottom: 30px;
-        }
-
-        .faq-search {
-            width: 100%;
-            padding: 15px 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        .faq-search:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 20px;
-            border-radius: 5px;
-            color: white;
-            z-index: 10000;
-            transition: transform 0.3s ease;
-        }
-
-        .notification.success {
-            background: var(--secondary-color);
-        }
-
-        .notification.error {
-            background: #e53e3e;
-        }
-
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 50px;
-            height: 50px;
-            background: var(--accent-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 900;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-
-        /* Performance optimizations */
-        .service-card, .hospital-item, .feature-item {
-            will-change: transform;
-        }
-
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Print styles */
-        @media print {
-            .float-badge,
-            .promo-float-badge,
-            .modal-overlay,
-            .cta-buttons,
-            .mobile-menu-toggle,
-            .back-to-top {
-                display: none !important;
-            }
-            
-            .hero {
-                background: white !important;
-                color: black !important;
-                padding: 50px 20px !important;
-            }
-            
-            .service-action {
-                display: none !important;
-            }
-        }
-
-        /* Responsive Design */
+        /* Responsive Design - Improved for Portrait Mode */
         @media (max-width: 992px) {
             .nav-links {
                 display: none;
@@ -1069,6 +937,16 @@
             
             .cta-button {
                 width: 200px;
+            }
+            
+            /* Logo layout for tablets */
+            .logo-container {
+                flex-direction: row;
+            }
+            
+            .partner-logo {
+                margin-left: 15px;
+                padding-left: 15px;
             }
         }
         
@@ -1127,14 +1005,17 @@
             }
         }
         
+        /* Improved portrait mode styles */
         @media (max-width: 480px) {
             .hero {
-                padding: 90px 20px 40px;
+                padding: 90px 15px 40px;
             }
 
             .hero h1 {
                 font-size: 1.6rem;
                 margin-bottom: 15px;
+                line-height: 1.3;
+                word-wrap: break-word;
             }
             
             .hero p {
@@ -1156,14 +1037,14 @@
             }
             
             .service-card {
-                flex-direction: row;
-                text-align: left;
+                flex-direction: column;
+                text-align: center;
                 align-items: center;
             }
             
             .service-icon {
-                margin-bottom: 0;
-                margin-right: 20px;
+                margin-bottom: 20px;
+                margin-right: 0;
             }
             
             .testimonial-author {
@@ -1188,13 +1069,69 @@
                 border-left: none;
                 margin-top: 10px;
             }
+            
+            /* Panel search improvement for mobile */
+            .search-controls {
+                padding: 20px 15px;
+                gap: 15px;
+            }
+            
+            .control-group {
+                min-width: 100%;
+            }
+            
+            /* Fix hospital list display */
+            .hospital-list {
+                grid-template-columns: 1fr;
+                max-height: 400px;
+            }
+            
+            .hospital-item {
+                padding: 15px;
+            }
+            
+            /* Fix title wrapping in service cards */
+            .service-title {
+                font-size: 1.1rem;
+                word-wrap: break-word;
+            }
+            
+            /* Footer improvements */
+            footer {
+                padding-bottom: 120px;
+            }
+        }
+        
+        /* Extra small devices (phones smaller than 360px) */
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .service-card {
+                padding: 20px 15px;
+            }
+            
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .hero {
+                padding: 80px 15px 30px;
+            }
         }
     </style>
 </head>
 <body>
     <nav id="navbar">
         <div class="nav-container">
-            <div class="logo-container">
+           <div class="logo-container">
                <div class="logo">
                    <img src="https://i.ibb.co/zTsc152b/unnamed.jpg" alt="PruBSN Takaful Logo">
                    <span>PruBSN Takaful</span>
@@ -1217,7 +1154,7 @@
            </div>
         </div>
     </nav>
- 
+
     <section class="hero" id="home">
         <div class="hero-content">
            <h1>Perlindungan Takaful Untuk Keluarga Anda</h1>
@@ -1234,7 +1171,7 @@
            </div>
         </div>
     </section>
- 
+
     <section class="services" id="services">
         <div class="section-header animate-on-scroll">
            <h2>Perkhidmatan Takaful Kami</h2>
@@ -1379,28 +1316,14 @@
                         <option value="all">Semua Daerah</option>
                     </select>
                 </div>
-
-                <div class="control-group">
-                    <label><i class="fas fa-search"></i> Cari</label>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Cari hospital atau klinik..." oninput="filterPanels()">
-                </div>
             </div>
 
-            <div class="result-counter" id="resultCounter"></div>
-
             <div class="hospital-list" id="hospitalList">
-                <!-- Hospital items remain the same as in your original code -->
-                <div class="hospital-item" data-type="hospital" data-state="johor" data-city="kluang">
-                    <span class="tag-type tag-hospital">Hospital</span>
-                    <h4>Kluang Utama Specialist Hospital</h4>
-                    <p class="city">Kluang, Johor</p>
-                    <a href="tel:077718999" class="phone"><i class="fas fa-phone"></i> 07-771 8999</a>
-                </div>
-                <!-- ... rest of hospital items ... -->
+                <!-- Hospital items would be here -->
             </div>
         </div>
     </section>
- 
+
     <section class="features" id="features">
         <div class="section-header animate-on-scroll">
            <h2>Mengapa Pilih Takaful Kami</h2>
@@ -1469,7 +1392,7 @@
            </div>
         </div>
     </section>
- 
+
     <section class="testimonials" id="testimonials">
         <div class="section-header animate-on-scroll">
            <h2>Apa Kata Pelanggan Kami</h2>
@@ -1496,7 +1419,7 @@
            </div>
         </div>
     </section>
- 
+
     <section class="faq" id="faq">
         <div class="section-header animate-on-scroll">
            <h2>Soalan Lazim</h2>
@@ -1504,10 +1427,6 @@
         </div>
         
         <div class="faq-container">
-            <div class="faq-search-container">
-                <input type="text" class="faq-search" id="faqSearch" placeholder="Cari soalan lazim...">
-            </div>
-            
             <div class="faq-item animate-on-scroll">
                 <div class="faq-question">
                     <span>Kalau saya sihat dan tak pernah claim, bolehkah saya dapat balik semua duit caruman?</span>
@@ -1599,7 +1518,7 @@
            </div>
         </div>
     </section>
- 
+
     <section class="cta-section" id="contact">
         <div class="cta-content animate-on-scroll">
            <h2>Bersedia Untuk Perlindungan Yang Lebih Baik?</h2>
@@ -1610,7 +1529,7 @@
             </a>
         </div>
     </section>
- 
+
     <footer>
         <div class="footer-container">
             <div class="footer-column">
@@ -1660,11 +1579,7 @@
            <p>&copy; 2025 PruBSN Takaful. Hak Cipta Terpelihara Hafizul Che Amid</p>
         </div>
     </footer>
- 
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-chevron-up"></i>
-    </div>
- 
+
     <div class="promo-float-badge" onclick="openPromo()">
         <div class="speech-bubble">Year End Sale!</div>
         <button class="badge-btn promo-btn">
@@ -1672,7 +1587,7 @@
             <span></span>
         </button>
     </div>
- 
+
     <div class="float-badge" onclick="openCard()">
         <div class="speech-bubble">Kad Bisnes Saya</div>
         <button class="badge-btn">
@@ -1680,7 +1595,7 @@
             <span></span>
         </button>
     </div>
- 
+
     <div class="modal-overlay" id="cardModal">
         <div class="card-modal-content">
             <div class="scene">
@@ -1699,7 +1614,7 @@
             </div>
         </div>
     </div>
- 
+
     <div class="modal-overlay" id="promoModal">
         <div class="promo-modal-content">
             <button class="close-btn" onclick="closePromo()">✕</button>
@@ -1711,95 +1626,82 @@
 
     <script>
         // Mobile menu toggle
-        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+       document.getElementById('mobileMenuToggle').addEventListener('click', function() {
             const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
+           navLinks.classList.toggle('active');
         });
         
         // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+           anchor.addEventListener('click', function (e) {
+               e.preventDefault();
+               document.querySelector(this.getAttribute('href')).scrollIntoView({
+                   behavior: 'smooth'
                 });
                 
                 // Close mobile menu if open
                 const navLinks = document.querySelector('.nav-links');
                 if (window.innerWidth <= 992 && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
+                   navLinks.classList.remove('active');
                 }
             });
         });
         
         // Navbar background on scroll
-        window.addEventListener('scroll', function() {
+       window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
-                navbar.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+               navbar.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
             } else {
-                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+               navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
             }
-            
-            // Back to top button visibility
-            const backToTop = document.getElementById('backToTop');
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-        
-        // Back to top functionality
-        document.getElementById('backToTop').addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
         
         // Animate elements on scroll
         function animateOnScroll() {
             const elements = document.querySelectorAll('.animate-on-scroll');
-            elements.forEach(element => {
+           elements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
                 const elementBottom = element.getBoundingClientRect().bottom;
                 
                 if (elementTop < window.innerHeight - 100 && elementBottom > 0) {
-                    element.classList.add('animated');
+                   element.classList.add('animated');
                 }
             });
         }
         
-        window.addEventListener('scroll', animateOnScroll);
-        window.addEventListener('load', animateOnScroll);
+       window.addEventListener('scroll', animateOnScroll);
+       window.addEventListener('load', animateOnScroll);
         
         // Testimonial slider
         const dots = document.querySelectorAll('.dot');
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
+       dots.forEach((dot, index) => {
+           dot.addEventListener('click', () => {
                 // Remove active class from all dots
-                dots.forEach(d => d.classList.remove('active'));
+               dots.forEach(d => d.classList.remove('active'));
                 // Add active class to clicked dot
-                dot.classList.add('active');
+               dot.classList.add('active');
             });
         });
         
         // FAQ accordion
         const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
+       faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
+           question.addEventListener('click', () => {
                 // Close all other FAQ items
-                faqItems.forEach(otherItem => {
+               faqItems.forEach(otherItem => {
                     if (otherItem !== item) {
-                        otherItem.classList.remove('active');
+                       otherItem.classList.remove('active');
                     }
                 });
                 
                 // Toggle current item
-                item.classList.toggle('active');
+               item.classList.toggle('active');
             });
         });
 
-        // --- NEW PANEL SEARCH LOGIC (Enhanced with Search) ---
+        // --- NEW PANEL SEARCH LOGIC (Updated with Cities from PDF) ---
 
         // Data Daerah/Bandar yang TEPAT ikut PDF Panel Hospital & Klinik 2025
         const districtsData = {
@@ -1856,29 +1758,22 @@
             const typeFilter = document.getElementById('typeFilter').value.toLowerCase();
             const stateFilter = document.getElementById('stateFilter').value.toLowerCase();
             const districtFilter = document.getElementById('districtFilter').value.toLowerCase();
-            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
             
             const panels = document.querySelectorAll('.hospital-item');
             const listContainer = document.getElementById('hospitalList');
-            const resultCounter = document.getElementById('resultCounter');
 
             // Logic: Sembunyi list jika negeri belum dipilih
             if (stateFilter === "hide" || stateFilter === "") {
                 listContainer.style.display = "none";
-                resultCounter.textContent = "";
                 return;
             } else {
                 listContainer.style.display = "grid"; // Tunjuk list
             }
 
-            let visibleCount = 0;
-            
             panels.forEach(item => {
                 const itemType = item.getAttribute('data-type');
                 const itemState = item.getAttribute('data-state');
                 const itemCity = item.getAttribute('data-city').toLowerCase();
-                const itemName = item.querySelector('h4').textContent.toLowerCase();
-                const itemPhone = item.querySelector('.phone').textContent;
                 
                 // Logic Matching
                 const typeMatch = (typeFilter === 'all') || (itemType === typeFilter);
@@ -1887,79 +1782,14 @@
                 // Logic Daerah: Check kalau daerah dalam item sama dengan selection
                 // Atau kalau user pilih "Semua Daerah", tunjuk semua dalam negeri tu
                 const districtMatch = (districtFilter === 'all') || (itemCity.includes(districtFilter));
-                
-                // Search logic
-                const searchMatch = !searchQuery || 
-                    itemName.includes(searchQuery) || 
-                    itemCity.includes(searchQuery) ||
-                    itemPhone.includes(searchQuery);
 
-                if (typeMatch && stateMatch && districtMatch && searchMatch) {
+                if (typeMatch && stateMatch && districtMatch) {
                     item.style.display = 'block';
-                    visibleCount++;
-                    
-                    // Highlight search matches
-                    if (searchQuery) {
-                        highlightText(item, searchQuery);
-                    }
                 } else {
                     item.style.display = 'none';
                 }
             });
-            
-            // Update result counter
-            const total = panels.length;
-            resultCounter.textContent = `Menunjukkan ${visibleCount} daripada ${total} hasil`;
         }
-
-        // Highlight text in search results
-        function highlightText(element, query) {
-            if (!query) return;
-            
-            const walker = document.createTreeWalker(
-                element,
-                NodeFilter.SHOW_TEXT,
-                null,
-                false
-            );
-            
-            let node;
-            while (node = walker.nextNode()) {
-                const parent = node.parentNode;
-                if (parent.nodeName === 'SPAN' || parent.nodeName === 'MARK') continue;
-                
-                const text = node.textContent;
-                const regex = new RegExp(query, 'gi');
-                const newText = text.replace(regex, match => `<mark>${match}</mark>`);
-                
-                if (newText !== text) {
-                    const newElement = document.createElement('span');
-                    newElement.innerHTML = newText;
-                    parent.replaceChild(newElement, node);
-                }
-            }
-        }
-
-        // FAQ Search Functionality
-        document.getElementById('faqSearch').addEventListener('input', function(e) {
-            const query = e.target.value.toLowerCase();
-            const faqItems = document.querySelectorAll('.faq-item');
-            
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
-                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
-                
-                if (question.includes(query) || answer.includes(query)) {
-                    item.style.display = 'block';
-                    // Open FAQ items that match search
-                    if (query) {
-                        item.classList.add('active');
-                    }
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
 
         // --- MARKETING WIDGETS LOGIC ---
         
@@ -2039,71 +1869,6 @@
         // Close promo when clicking background
         promoModal.addEventListener('click', (e) => {
             if(e.target === promoModal) closePromo();
-        });
-
-        // Error handling for images
-        document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                img.addEventListener('error', function() {
-                    this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjOTk5Ij5JbWFnZSBub3QgZm91bmQ8L3RleHQ+PC9zdmc+';
-                    this.alt = 'Image not available';
-                });
-            });
-        });
-
-        // Network status monitoring
-        window.addEventListener('online', () => {
-            showNotification('Kembali dalam talian', 'success');
-        });
-
-        window.addEventListener('offline', () => {
-            showNotification('Sambungan internet terputus', 'error');
-        });
-
-        function showNotification(message, type) {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.textContent = message;
-            
-            document.body.appendChild(notification);
-            
-            // Remove notification after 3 seconds
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            const navLinks = document.querySelector('.nav-links');
-            const toggle = document.getElementById('mobileMenuToggle');
-            
-            if (navLinks.classList.contains('active') && 
-                !navLinks.contains(e.target) && 
-                !toggle.contains(e.target)) {
-                navLinks.classList.remove('active');
-            }
-        });
-
-        // Initialize the panel search when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize hospital panel search
-            populateDistricts();
-            
-            // Preload critical resources
-            const criticalImages = [
-                'https://i.ibb.co/zTsc152b/unnamed.jpg',
-                'https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg'
-            ];
-            
-            criticalImages.forEach(src => {
-                const link = document.createElement('link');
-                link.rel = 'preload';
-                link.as = 'image';
-                link.href = src;
-                document.head.appendChild(link);
-            });
         });
     </script>
 </body>
