@@ -864,11 +864,6 @@
         .nav-btn.prev { left: 10px; }
         .nav-btn.next { right: 10px; }
 
-        @media (max-width: 400px) {
-            .scene { width: 280px; height: 440px; }
-            .promo-float-badge { bottom: 80px; }
-        }
-        
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -892,7 +887,7 @@
             transform: translateY(0);
         }
         
-        /* Responsive Design - Improved for Portrait Mode */
+        /* Responsive Design */
         @media (max-width: 992px) {
             .nav-links {
                 display: none;
@@ -937,16 +932,6 @@
             
             .cta-button {
                 width: 200px;
-            }
-            
-            /* Logo layout for tablets */
-            .logo-container {
-                flex-direction: row;
-            }
-            
-            .partner-logo {
-                margin-left: 15px;
-                padding-left: 15px;
             }
         }
         
@@ -1005,7 +990,6 @@
             }
         }
         
-        /* Improved portrait mode styles */
         @media (max-width: 480px) {
             .hero {
                 padding: 90px 15px 40px;
@@ -1015,7 +999,6 @@
                 font-size: 1.6rem;
                 margin-bottom: 15px;
                 line-height: 1.3;
-                word-wrap: break-word;
             }
             
             .hero p {
@@ -1037,14 +1020,14 @@
             }
             
             .service-card {
-                flex-direction: column;
-                text-align: center;
+                flex-direction: row;
+                text-align: left;
                 align-items: center;
             }
             
             .service-icon {
-                margin-bottom: 20px;
-                margin-right: 0;
+                margin-bottom: 0;
+                margin-right: 20px;
             }
             
             .testimonial-author {
@@ -1069,61 +1052,60 @@
                 border-left: none;
                 margin-top: 10px;
             }
-            
-            /* Panel search improvement for mobile */
-            .search-controls {
-                padding: 20px 15px;
-                gap: 15px;
-            }
-            
-            .control-group {
-                min-width: 100%;
-            }
-            
-            /* Fix hospital list display */
-            .hospital-list {
-                grid-template-columns: 1fr;
-                max-height: 400px;
-            }
-            
-            .hospital-item {
-                padding: 15px;
-            }
-            
-            /* Fix title wrapping in service cards */
-            .service-title {
-                font-size: 1.1rem;
-                word-wrap: break-word;
-            }
-            
-            /* Footer improvements */
-            footer {
-                padding-bottom: 120px;
-            }
         }
-        
-        /* Extra small devices (phones smaller than 360px) */
-        @media (max-width: 360px) {
-            .hero h1 {
-                font-size: 1.4rem;
-            }
-            
-            .section-header h2 {
-                font-size: 1.5rem;
-            }
-            
-            .service-card {
-                padding: 20px 15px;
-            }
-            
-            .service-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-            }
-            
+
+        /* Fix for very narrow screens in portrait mode */
+        @media (max-width: 380px) and (orientation: portrait) {
             .hero {
                 padding: 80px 15px 30px;
+            }
+
+            .hero h1 {
+                font-size: 1.4rem;
+                margin-bottom: 12px;
+                line-height: 1.3;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
+                margin-bottom: 20px;
+            }
+
+            .cta-buttons {
+                width: 100%;
+                gap: 10px;
+            }
+
+            .cta-button {
+                width: 100%; 
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.6rem;
+            }
+            
+            .section-header p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Additional fix for very tall screens in portrait mode */
+        @media (max-height: 700px) and (orientation: portrait) {
+            .hero {
+                padding: 70px 15px 30px;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+                margin-bottom: 12px;
+                line-height: 1.3;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
+                margin-bottom: 20px;
             }
         }
     </style>
@@ -1132,15 +1114,15 @@
     <nav id="navbar">
         <div class="nav-container">
            <div class="logo-container">
-               <div class="logo">
-                   <img src="https://i.ibb.co/zTsc152b/unnamed.jpg" alt="PruBSN Takaful Logo">
-                   <span>PruBSN Takaful</span>
-               </div>
-               <div class="partner-logo">
-                   <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Shazay And Associates Logo">
-                   <span>Shazay And Associates</span>
-               </div>
-           </div>
+              <div class="logo">
+                  <img src="https://i.ibb.co/zTsc152b/unnamed.jpg" alt="PruBSN Takaful Logo">
+                  <span>PruBSN Takaful</span>
+              </div>
+              <div class="partner-logo">
+                  <img src="https://i.ibb.co/0pCRzt0b/8284c3c0-29c5-11ed-b68f-96d3f09e23e7.jpg" alt="Shazay And Associates Logo">
+                  <span>Shazay And Associates</span>
+              </div>
+          </div>
             <ul class="nav-links">
                <li><a href="#home">Utama</a></li>
                <li><a href="#services">Perkhidmatan</a></li>
@@ -1319,7 +1301,7 @@
             </div>
 
             <div class="hospital-list" id="hospitalList">
-                <!-- Hospital items would be here -->
+                <!-- Hospital items here -->
             </div>
         </div>
     </section>
@@ -1701,9 +1683,9 @@
             });
         });
 
-        // --- NEW PANEL SEARCH LOGIC (Updated with Cities from PDF) ---
+        // --- PANEL SEARCH LOGIC ---
 
-        // Data Daerah/Bandar yang TEPAT ikut PDF Panel Hospital & Klinik 2025
+        // Data Daerah/Bandar
         const districtsData = {
             johor: ["Johor Bahru", "Iskandar Puteri", "Pasir Gudang", "Masai", "Batu Pahat", "Muar", "Kluang", "Skudai", "Kota Tinggi", "Ulu Tiram", "Segamat"],
             "kuala lumpur": ["KL City Centre", "Cheras", "Setapak", "Desa ParkCity", "Bangsar", "Jalan Ipoh", "Jalan Pudu", "Jalan Ampang"],
